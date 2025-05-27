@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StudioFrame | Portfolio</title>
+  <link rel="stylesheet" href="styles/styles.css" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <h1>StudioFrame</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="gallery" data-aos="fade-up">
+    <h2>Our Portfolio</h2>
+    <div class="grid">
+      <div class="image-container">
+        <img src="images/photo1.webp" alt="Wedding Shoot 1" loading="lazy" />
+      </div>
+      <div class="image-container">
+        <img src="images/photo2.webp" alt="Corporate Event" loading="lazy" />
+      </div>
+      <div class="image-container">
+        <img src="images/photo3.webp" alt="Portrait Session" loading="lazy" />
+      </div>
+      <div class="image-container">
+        <img src="images/photo4.webp" alt="Product Shoot" loading="lazy" />
+      </div>
+      <!-- add more photos here -->
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 StudioFrame. All rights reserved.</p>
+  </footer>
+
+  <script>
+    AOS.init();
+
+    // Disable right-click on images
+    document.addEventListener('contextmenu', e => {
+      if (e.target.tagName === 'IMG') e.preventDefault();
+    });
+  </script>
+</body>
+</html>
