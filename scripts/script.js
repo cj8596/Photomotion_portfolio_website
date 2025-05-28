@@ -125,8 +125,8 @@ menuClose.addEventListener('click', () => {
   fullpageMenu.querySelectorAll('a').forEach(a => a.tabIndex = -1);
 });
 
-// MENU DISPLAY TOGGLE FOR FALLBACK (display block instead of class toggle)
-document.addEventListener("DOMContentLoaded", () => {
+// MENU DISPLAY TOGGLE FOR FALLBACK (in case you use display block instead of class toggle)
+document.addEventListener("DOMContentLoaded", function () {
   const menuBtn = document.getElementById("menu-button");
   const closeBtn = document.getElementById("menu-close");
   const menu = document.getElementById("fullpage-menu");
@@ -148,7 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// MENU OPEN/CLOSE WITH ANIMATION
 const menu = document.getElementById('fullpage-menu');
 const openBtn = document.getElementById('menu-toggle');
 const closeBtn = document.getElementById('menu-close');
@@ -158,7 +157,6 @@ openBtn.addEventListener('click', () => {
   menu.classList.remove('closing');
   menu.classList.add('active');
   document.body.classList.add('menu-active');
-  menu.style.display = 'flex'; // show before animation
 });
 
 closeBtn.addEventListener('click', () => {
@@ -172,4 +170,13 @@ closeBtn.addEventListener('click', () => {
     menu.classList.remove('closing');
     menu.style.display = 'none'; // hide it for real
   }, 700); // match animation duration
+});
+
+// Also, if you want to reset display on open:
+openBtn.addEventListener('click', () => {
+  menu.style.display = 'flex'; // show before animation
+});
+
+window.addEventListener('resize', () => {
+  revealSections();
 });
