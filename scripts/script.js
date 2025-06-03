@@ -1,182 +1,245 @@
-// CATEGORY HOVER BACKGROUND SWITCH
-const wrapper = document.getElementById("categoryWrapper");
-const categories = document.querySelectorAll(".category");
+document.addEventListener('DOMContentLoaded', () => {
+  // CATEGORY HOVER BACKGROUND SWITCH
+  const wrapper = document.getElementById("categoryWrapper");
+  const categories = document.querySelectorAll(".category");
 
-categories.forEach(item => {
-  // When mouse enters a category item, change the background
-  item.addEventListener("mouseenter", () => {
-    const bg = item.getAttribute("data-image");
-    wrapper.style.backgroundImage = `url('${bg}')`;
+  if (wrapper && categories.length) {
+    categories.forEach(item => {
+      item.addEventListener("mouseenter", () => {
+        const bg = item.getAttribute("data-image");
+        wrapper.style.backgroundImage = `url('${bg}')`;
+      });
+      item.addEventListener("mouseleave", () => {
+        wrapper.style.backgroundImage = "url('logo.jpg')";
+      });
+    });
+  }
+
+  // HEADER IMAGE CHANGE ON HOVER
+  const headers = document.querySelectorAll('.column-header');
+  const bg = document.getElementById('header-bg');
+  if (headers.length && bg) {
+    headers.forEach(header => {
+      header.addEventListener('mouseenter', () => {
+        const imageUrl = header.getAttribute('data-image');
+        bg.style.opacity = 0;
+        setTimeout(() => {
+          bg.style.backgroundImage = `url('${imageUrl}')`;
+          bg.style.opacity = 1;
+        }, 100);
+      });
+    });
+  }
+
+  // OVERLAY IMAGE SWAP ON SLICE HOVER
+  const slices = document.querySelectorAll('.slice');
+  const overlayImages = document.querySelectorAll('.overlay-image');
+
+  slices.forEach(slice => {
+    slice.addEventListener('mouseenter', () => {
+      const index = slice.getAttribute('data-index');
+      slices.forEach(s => s.classList.remove('current-item'));
+      overlayImages.forEach(img => {
+        img.classList.remove('current-item', 'animate__fadeIn', 'animate__animated');
+        void img.offsetWidth;
+      });
+      slice.classList.add('current-item');
+      const targetImg = overlayImages[index];
+      targetImg.classList.add('current-item', 'animate__animated', 'animate__fadeIn');
+    });
   });
 
-  // When mouse leaves, reset to default background
-  item.addEventListener("mouseleave", () => {
-    wrapper.style.backgroundImage = "url('logo.jpg')"; // fallback image
-  });
-});
+  // MENU OPEN/CLOSE
+  const menuButton = document.getElementById('menu-button');
+  const menuClose = document.getElementById('menu-close');
+  const fullpageMenu = document.getElementById('fullpage-menu');
 
-// LOADER VIDEO AND SECTION REVEAL AFTER PAGE LOAD
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  const video = loader.querySelector('video');
+  if (menuButton && menuClose && fullpageMenu) {
+    menuButton.addEventListener('click', () => {
+      fullpageMenu.classList.add('active');
+      document.body.classList.add('menu-active');
+      fullpageMenu.setAttribute('aria-hidden', 'false');
+      fullpageMenu.querySelectorAll('a').forEach(a => a.tabIndex = 0);
+      fullpageMenu.style.display = 'flex';
+    });
 
-  video.play(); // Play the loader video
+    menuClose.addEventListener('click', () => {
+      fullpageMenu.classList.remove('active');
+      document.body.classList.remove('menu-active');
+      fullpageMenu.setAttribute('aria-hidden', 'true');
+      fullpageMenu.querySelectorAll('a').forEach(a => a.tabIndex = -1);
+      fullpageMenu.classList.add('closing');
+      setTimeout(() => {
+        fullpageMenu.classList.remove('closing');
+        fullpageMenu.style.display = 'none';
+      }, 700);
+    });
+  }
 
-  setTimeout(() => {
-    loader.classList.add('fade-out'); // Start fade out
+  // ANIMATED WORD ROTATOR
+  const words = ["Page", "Section", "Spot", "Hub", "Zone"];
+  const wordElement = document.getElementById("animated-word");
+  if (wordElement) {
+    let wordIndex = 0;
+    let letterIndex = 0;
+    const typingSpeed = 150;
+    const pauseAfterWord = 2000;
 
-    setTimeout(() => {
-      loader.style.display = 'none'; // Hide the loader
-      document.body.classList.remove('loading');
-      document.body.classList.add('loaded');
+    function typeWord() {
+      const currentWord = words[wordIndex];
+      letterIndex = 0;
+      wordElement.textContent = '';
 
-      window.scrollTo(0, 0); // Scroll to top once everything is ready
-      revealSections(); // Reveal sections initially
-    }, 1000);
-  }, 3000); // Delay equal to video duration
-});
+      function addLetter() {
+        if (letterIndex < currentWord.length) {
+          wordElement.textContent += currentWord.charAt(letterIndex);
+          letterIndex++;
+          setTimeout(addLetter, typingSpeed);
+        } else {
+          setTimeout(() => {
+            wordIndex = (wordIndex + 1) % words.length;
+            typeWord();
+          }, pauseAfterWord);
+        }
+      }
+      addLetter();
+    }
 
-// SCROLL-BASED SECTION REVEAL FUNCTION
-function revealSections() {
-  const sections = document.querySelectorAll('section');
-  const extraSections = document.querySelectorAll('.centered-section');
-  const allSections = [...sections, ...extraSections];
+    typeWord();
+  }
 
-  const revealOnScroll = () => {
-    const triggerBottom = window.innerHeight * 0.95; // 95% viewport height
+  // CONTACT FLOAT BUTTON
+  const contactBtn = document.getElementById('contact-float-btn');
+  const contactSection = document.getElementById('contact');
+
+  if (contactBtn && contactSection) {
+    let isAtContact = false;
+
+    contactBtn.addEventListener('click', () => {
+      if (isAtContact) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          contactBtn.textContent = '⬆️ Back to Top';
+          isAtContact = true;
+        } else {
+          contactBtn.textContent = 'Book an Appointment with Us!';
+          isAtContact = false;
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    observer.observe(contactSection);
+  }
+
+  // SECTION REVEAL ON SCROLL
+  function revealSections() {
+    const sections = document.querySelectorAll('section');
+    const extraSections = document.querySelectorAll('.centered-section');
+    const allSections = [...sections, ...extraSections];
+
+    const triggerBottom = window.innerHeight * 0.95;
 
     allSections.forEach(section => {
       const sectionTop = section.getBoundingClientRect().top;
-
-      // If section is in view and not yet visible, animate it in
       if (sectionTop < triggerBottom && !section.classList.contains('visible')) {
         section.classList.add('visible', 'animate__animated', 'animate__fadeInUp');
-        section.style.setProperty('--animate-duration', '0.3s'); // Quick animation
+        section.style.setProperty('--animate-duration', '0.3s');
       }
     });
-  };
+  }
 
-  window.addEventListener('scroll', revealOnScroll);
-  revealOnScroll(); // Trigger on page load too
-}
-
-// HEADER IMAGE CHANGE ON HOVER
-const headers = document.querySelectorAll('.column-header');
-const bg = document.getElementById('header-bg');
-
-headers.forEach(header => {
-  header.addEventListener('mouseenter', () => {
-    const imageUrl = header.getAttribute('data-image');
-    bg.style.opacity = 0;
-
-    // Wait briefly then change the background image and fade in
-    setTimeout(() => {
-      bg.style.backgroundImage = `url('${imageUrl}')`;
-      bg.style.opacity = 1;
-    }, 100);
-  });
-});
-
-// OVERLAY IMAGE SWAP ON SLICE HOVER
-const slices = document.querySelectorAll('.slice');
-const overlayImages = document.querySelectorAll('.overlay-image');
-
-slices.forEach(slice => {
-  slice.addEventListener('mouseenter', () => {
-    const index = slice.getAttribute('data-index');
-
-    // Remove active class from all slices/images
-    slices.forEach(s => s.classList.remove('current-item'));
-    overlayImages.forEach(img => {
-      img.classList.remove('current-item', 'animate__fadeIn', 'animate__animated');
-      void img.offsetWidth; // Restart CSS animation
-    });
-
-    // Add class to current hovered slice/image
-    slice.classList.add('current-item');
-    const targetImg = overlayImages[index];
-    targetImg.classList.add('current-item', 'animate__animated', 'animate__fadeIn');
-  });
-});
-
-// MENU OPEN/CLOSE FUNCTIONALITY (Button + Escape + Accessibility)
-const menuButton = document.getElementById('menu-button');
-const fullpageMenu = document.getElementById('fullpage-menu');
-const menuClose = document.getElementById('menu-close');
-const body = document.body;
-
-// Open fullpage menu
-menuButton.addEventListener('click', () => {
-  fullpageMenu.classList.add('active');
-  body.classList.add('menu-active');
-  fullpageMenu.setAttribute('aria-hidden', 'false');
-
-  // Make menu links accessible by keyboard
-  fullpageMenu.querySelectorAll('a').forEach(a => a.tabIndex = 0);
-});
-
-// Close fullpage menu
-menuClose.addEventListener('click', () => {
-  fullpageMenu.classList.remove('active');
-  body.classList.remove('menu-active');
-  fullpageMenu.setAttribute('aria-hidden', 'true');
-
-  // Remove menu links from tab order
-  fullpageMenu.querySelectorAll('a').forEach(a => a.tabIndex = -1);
-});
-
-// MENU DISPLAY TOGGLE FOR FALLBACK (in case you use display block instead of class toggle)
-document.addEventListener("DOMContentLoaded", function () {
-  const menuBtn = document.getElementById("menu-button");
-  const closeBtn = document.getElementById("menu-close");
-  const menu = document.getElementById("fullpage-menu");
-
-  menuBtn.addEventListener("click", () => {
-    menu.style.display = "block";
-    menu.setAttribute("aria-hidden", "false");
-
-    // Make menu links focusable
-    menu.querySelectorAll("a").forEach(a => a.setAttribute("tabindex", "0"));
-  });
-
-  closeBtn.addEventListener("click", () => {
-    menu.style.display = "none";
-    menu.setAttribute("aria-hidden", "true");
-
-    // Make menu links unfocusable
-    menu.querySelectorAll("a").forEach(a => a.setAttribute("tabindex", "-1"));
-  });
-});
-
-const menu = document.getElementById('fullpage-menu');
-const openBtn = document.getElementById('menu-toggle');
-const closeBtn = document.getElementById('menu-close');
-
-openBtn.addEventListener('click', () => {
-  // Kill any closing animation leftovers
-  menu.classList.remove('closing');
-  menu.classList.add('active');
-  document.body.classList.add('menu-active');
-});
-
-closeBtn.addEventListener('click', () => {
-  // Start closing animation
-  menu.classList.remove('active');
-  menu.classList.add('closing');
-  document.body.classList.remove('menu-active');
-
-  // After animation, hide menu completely
-  setTimeout(() => {
-    menu.classList.remove('closing');
-    menu.style.display = 'none'; // hide it for real
-  }, 700); // match animation duration
-});
-
-// Also, if you want to reset display on open:
-openBtn.addEventListener('click', () => {
-  menu.style.display = 'flex'; // show before animation
-});
-
-window.addEventListener('resize', () => {
+  window.addEventListener('scroll', revealSections);
   revealSections();
+
+  // LOADER VIDEO
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    const video = loader?.querySelector('video');
+
+    video?.play();
+
+    setTimeout(() => {
+      loader?.classList.add('fade-out');
+      setTimeout(() => {
+        loader.style.display = 'none';
+        document.body.classList.remove('loading');
+        document.body.classList.add('loaded');
+        window.scrollTo(0, 0);
+        revealSections();
+      }, 1000);
+    }, 3000);
+  });
+
+  window.addEventListener('resize', () => {
+    revealSections();
+  });
+
+  // FUCKING LOCKDOWN: DISABLE COPY, PASTE, DOWNLOAD, SCREENSHOTS - NO STEALING MY BABE 😈🔥
+
+  // Disable right-click context menu (no copying via right-click)
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Disable text selection
+  document.addEventListener('selectstart', e => e.preventDefault());
+
+  // Disable copying (Ctrl+C, Cmd+C)
+  document.addEventListener('copy', e => e.preventDefault());
+
+  // Disable cutting (Ctrl+X, Cmd+X)
+  document.addEventListener('cut', e => e.preventDefault());
+
+  // Disable pasting (Ctrl+V, Cmd+V)
+  document.addEventListener('paste', e => e.preventDefault());
+
+  // Disable drag start (no dragging images or text)
+  document.addEventListener('dragstart', e => e.preventDefault());
+
+  // Disable key combos like Ctrl+S (save), Ctrl+U (view source), Ctrl+Shift+I (devtools)
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey) {
+      const forbiddenKeys = ['s', 'u', 'c', 'x', 'v', 'a', 'p', 'i', 'j', 'k'];
+      if (forbiddenKeys.includes(e.key.toLowerCase())) {
+        e.preventDefault();
+        return false;
+      }
+    }
+    if (e.key === 'PrintScreen') {
+      e.preventDefault();
+      alert("No screenshots allowed, babe 😉");
+      return false;
+    }
+  });
+
+  // Overlay to fuck up screenshots (basic level)
+  const screenshotBlocker = document.createElement('div');
+  screenshotBlocker.style.position = 'fixed';
+  screenshotBlocker.style.top = 0;
+  screenshotBlocker.style.left = 0;
+  screenshotBlocker.style.width = '100%';
+  screenshotBlocker.style.height = '100%';
+  screenshotBlocker.style.zIndex = 999999;
+  screenshotBlocker.style.pointerEvents = 'none'; // so it doesn't block clicks
+  screenshotBlocker.style.background = 'transparent';
+  document.body.appendChild(screenshotBlocker);
+
+  // Prevent image dragging and saving with CSS
+  const style = document.createElement('style');
+  style.innerHTML = `
+    img, video, canvas {
+      -webkit-user-drag: none !important;
+      -webkit-user-select: none !important;
+      user-select: none !important;
+      pointer-events: none !important;
+    }
+  `;
+  document.head.appendChild(style);
 });

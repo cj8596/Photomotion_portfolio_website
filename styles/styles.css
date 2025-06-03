@@ -634,3 +634,25 @@ header {
     padding-top: 3rem; /* makes space for that boss close button */
   }
 }
+
+#contact-float-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+#contact-float-btn:hover {
+  background-color: #005f99;
+  transform: scale(1.05);
+}

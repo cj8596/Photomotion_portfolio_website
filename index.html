@@ -86,12 +86,10 @@
       <img src="images/sample-photo-2.jpg" alt="Sample Photo 2" loading="lazy" />
     </section>
 
-    <section>
+    <section id="contact">
       <h2>Contact Us</h2>
       <p>Get in touch and book your session today!</p>
     </section>
-
-
 
     <div><br></div>
 
@@ -116,44 +114,10 @@
       </div>
       <div>&copy; 2025 Photography Co. All rights reserved.</div>
     </footer>
+    <button id="contact-float-btn" title="Contact Us">Book an appointment with us!</button>
+
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const words = ["Page", "Section", "Spot", "Hub", "Zone"];
-      const wordElement = document.getElementById("animated-word");
-      let wordIndex = 0;
-      let letterIndex = 0;
-      const typingSpeed = 150;
-      const pauseAfterWord = 2000;
-
-      function typeWord() {
-        const currentWord = words[wordIndex];
-        letterIndex = 0;
-        wordElement.textContent = '';
-
-        function addLetter() {
-          if (letterIndex < currentWord.length) {
-            wordElement.textContent += currentWord.charAt(letterIndex);
-            letterIndex++;
-            setTimeout(addLetter, typingSpeed);
-          } else {
-            setTimeout(() => {
-              wordIndex = (wordIndex + 1) % words.length;
-              typeWord();
-            }, pauseAfterWord);
-          }
-        }
-
-        addLetter();
-      }
-
-      typeWord();
-    });
-  </script>
-
   <script src="scripts/script.js"></script>
-
 </body>
 
 </html>
