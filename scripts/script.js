@@ -166,7 +166,7 @@ if (headers.length && bg) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          contactBtn.textContent = '⬆️ Back to Top';
+          contactBtn.textContent = '⬆️';
           isAtContact = true;
         } else {
           contactBtn.textContent = 'Book an Appointment with Us!';
