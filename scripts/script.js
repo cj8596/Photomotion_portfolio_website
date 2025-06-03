@@ -16,20 +16,49 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // HEADER IMAGE CHANGE ON HOVER
+  // const headers = document.querySelectorAll('.column-header');
+  // const bg = document.getElementById('header-bg');
+  // if (headers.length && bg) {
+  //   headers.forEach(header => {
+  //     header.addEventListener('mouseenter', () => {
+  //       const imageUrl = header.getAttribute('data-image');
+  //       bg.style.opacity = 0;
+  //       setTimeout(() => {
+  //         bg.style.backgroundImage = `url('${imageUrl}')`;
+  //         bg.style.opacity = 1;
+  //       }, 100);
+  //     });
+  //   });
+  // }
+
+
   const headers = document.querySelectorAll('.column-header');
-  const bg = document.getElementById('header-bg');
-  if (headers.length && bg) {
-    headers.forEach(header => {
-      header.addEventListener('mouseenter', () => {
-        const imageUrl = header.getAttribute('data-image');
-        bg.style.opacity = 0;
-        setTimeout(() => {
-          bg.style.backgroundImage = `url('${imageUrl}')`;
-          bg.style.opacity = 1;
-        }, 100);
-      });
-    });
-  }
+const bg = document.getElementById('header-bg');
+
+if (headers.length && bg) {
+  headers.forEach(header => {
+    const imageUrl = header.getAttribute('data-image');
+
+    const showColor = () => {
+      bg.style.backgroundImage = `url('${imageUrl}')`;
+      bg.classList.add('show-color');
+    };
+
+    const showBlack = () => {
+      bg.classList.remove('show-color');
+    };
+
+    // Desktop hover
+    header.addEventListener('mouseenter', showColor);
+    header.addEventListener('mouseleave', showBlack);
+
+    // Mobile touch
+    header.addEventListener('touchstart', showColor);
+    header.addEventListener('touchend', showBlack);
+    header.addEventListener('touchcancel', showBlack);
+  });
+}
+
 
   // OVERLAY IMAGE SWAP ON SLICE HOVER
   const slices = document.querySelectorAll('.slice');
@@ -61,6 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
       fullpageMenu.setAttribute('aria-hidden', 'false');
       fullpageMenu.querySelectorAll('a').forEach(a => a.tabIndex = 0);
       fullpageMenu.style.display = 'flex';
+
+
+      // Hide floating button when menu opens, huh?
+      const contactBtn = document.getElementById('contact-float-btn');
+      if (contactBtn) contactBtn.style.display = 'none';
     });
 
     menuClose.addEventListener('click', () => {
@@ -69,6 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
       fullpageMenu.setAttribute('aria-hidden', 'true');
       fullpageMenu.querySelectorAll('a').forEach(a => a.tabIndex = -1);
       fullpageMenu.classList.add('closing');
+
+      // Show floating button back when menu closes
+      const contactBtn = document.getElementById('contact-float-btn');
+      if (contactBtn) contactBtn.style.display = 'block';
+
+
       setTimeout(() => {
         fullpageMenu.classList.remove('closing');
         fullpageMenu.style.display = 'none';
@@ -183,6 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
     revealSections();
   });
 
+
   // FUCKING LOCKDOWN: DISABLE COPY, PASTE, DOWNLOAD, SCREENSHOTS - NO STEALING MY BABE 😈🔥
 
   // Disable right-click context menu (no copying via right-click)
@@ -238,7 +279,6 @@ document.addEventListener('DOMContentLoaded', () => {
       -webkit-user-drag: none !important;
       -webkit-user-select: none !important;
       user-select: none !important;
-      pointer-events: none !important;
     }
   `;
   document.head.appendChild(style);

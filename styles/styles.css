@@ -225,6 +225,11 @@ h2.section-title {
   border-radius: 12px;
   background: #111;
 }
+.overlay-images {
+  pointer-events: auto; /* or remove pointer-events */
+}
+
+
 .overlay-image {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -515,6 +520,7 @@ body.menu-active {
     border: none;
     color: #fff;
     cursor: pointer;
+    display: block !important;
   }
 
   #menu-close {
@@ -655,4 +661,11 @@ header {
 #contact-float-btn:hover {
   background-color: #005f99;
   transform: scale(1.05);
+}
+
+.slice:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  transform: scale(1.05) !important;
+  color: white !important;
+  z-index: 9999 !important;
 }
