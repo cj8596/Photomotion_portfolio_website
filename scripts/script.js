@@ -9,6 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initSectionReveal();
   initLoader();
   initContentLockdown();
+  initCameraHover();
 });
 
 function initCategoryHover() {
@@ -31,37 +32,91 @@ function initHeaderHover() {
   const bg = document.getElementById('header-bg');
   if (!headers.length || !bg) return;
 
+  let timeoutId = null;
+
+  const isSmallScreen = () => window.innerWidth < 768;
+
   headers.forEach(header => {
     const imageUrl = header.dataset.image;
 
     const showColor = () => {
+      clearTimeout(timeoutId);
       bg.style.backgroundImage = `url('${imageUrl}')`;
       bg.classList.add('show-color');
     };
 
     const showBlack = () => {
+      clearTimeout(timeoutId);
       bg.classList.remove('show-color');
     };
 
-    // Desktop hover
-    header.addEventListener('mouseenter', showColor);
-    header.addEventListener('mouseleave', showBlack);
+    // Desktop hover (no timeout bullshit)
+    header.addEventListener('mouseenter', () => {
+      if (!isSmallScreen()) showColor();
+    });
+    header.addEventListener('mouseleave', () => {
+      if (!isSmallScreen()) showBlack();
+    });
 
-    // Mobile touch - now with toggle on tap and release back to black
+    // Mobile touch with timeout fallback ONLY on small screens
     header.addEventListener('touchstart', e => {
-      e.preventDefault(); // prevent ghost clicks and double triggers
+      if (!isSmallScreen()) return;
+      e.preventDefault();
       showColor();
+
+      timeoutId = setTimeout(() => {
+        bg.classList.remove('show-color');
+      }, 1000);
     });
 
     header.addEventListener('touchend', e => {
+      if (!isSmallScreen()) return;
       e.preventDefault();
+      clearTimeout(timeoutId);
       showBlack();
     });
 
     header.addEventListener('touchcancel', e => {
+      if (!isSmallScreen()) return;
       e.preventDefault();
+      clearTimeout(timeoutId);
       showBlack();
     });
+  });
+}
+
+
+function initCameraHover() {
+  const img = document.querySelector('section img[src="images/camera.webp"]');
+  if (!img) return;
+
+  img.style.transition = 'filter 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+
+  // Start: dark but visible
+  img.style.filter = 'grayscale(100%) brightness(30%)';
+
+  img.addEventListener('mouseenter', () => {
+    img.style.filter = 'grayscale(0%) brightness(100%)';
+  });
+
+  img.addEventListener('mouseleave', () => {
+    img.style.filter = 'grayscale(100%) brightness(30%)';
+  });
+
+  // Mobile touch support
+  img.addEventListener('touchstart', e => {
+    e.preventDefault();
+    img.style.filter = 'grayscale(0%) brightness(100%)';
+  });
+
+  img.addEventListener('touchend', e => {
+    e.preventDefault();
+    img.style.filter = 'grayscale(100%) brightness(30%)';
+  });
+
+  img.addEventListener('touchcancel', e => {
+    e.preventDefault();
+    img.style.filter = 'grayscale(100%) brightness(30%)';
   });
 }
 
