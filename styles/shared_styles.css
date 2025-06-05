@@ -11,6 +11,7 @@ header nav a {
   color: #007acc;
   font-weight: bold;
 }
+
 header nav a:hover {
   color: #005f99;
 }
@@ -31,15 +32,18 @@ header {
   flex-wrap: wrap;
   border-bottom: 2px solid #007acc;
 }
+
 header .logo {
   display: flex;
   align-items: center;
 }
+
 header .logo img {
   height: 40px;
   margin-right: 10px;
   filter: none;
 }
+
 header h1 {
   font-size: 1.5em;
   margin: 0;
@@ -64,15 +68,18 @@ footer {
   font-size: 0.9em;
   border-top: 2px solid #007acc;
 }
+
 footer .social-icons {
   margin-bottom: 10px;
 }
+
 footer .social-icons a {
   color: #fff;
   margin: 0 8px;
   font-size: 1.2em;
   text-decoration: none;
 }
+
 footer .social-icons a:hover {
   color: #00bfff;
 }
@@ -94,15 +101,19 @@ footer .social-icons a:hover {
 /* Full page menu base styling */
 #fullpage-menu {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.95);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
   color: #fff;
   z-index: 9999;
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 3rem; /* 💥 this gives space for the close button */
+  padding-top: 3rem;
+  /* 💥 this gives space for the close button */
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.5s ease, right 0.4s ease;
@@ -147,10 +158,12 @@ footer .social-icons a:hover {
   width: 100%;
   text-align: center;
 }
+
 #fullpage-menu ul li {
   margin: 15px 0;
   font-size: 1.5rem;
 }
+
 #fullpage-menu ul li a {
   color: white;
   font-size: 1.5em;
@@ -158,6 +171,7 @@ footer .social-icons a:hover {
   font-weight: 700;
   transition: color 0.3s;
 }
+
 #fullpage-menu ul li a:hover {
   color: #00bfff;
 }
@@ -166,7 +180,8 @@ footer .social-icons a:hover {
 body.menu-active {
   background-color: rgba(0, 0, 0, 0.8);
   transition: background-color 0.5s ease;
-  overflow: hidden; /* no scroll while menu is open */
+  overflow: hidden;
+  /* no scroll while menu is open */
 }
 
 /* Menu container boxes */
@@ -217,27 +232,59 @@ body.menu-active {
 /* Slide animations */
 /* Slide in animations for opening */
 @keyframes slideDownIn {
-  0% { transform: translateY(-100%); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
+
 @keyframes slideUpIn {
-  0% { transform: translateY(100%); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
+
 /* Slide out animations for closing */
 @keyframes slideDownOut {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-100%); opacity: 0; }
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
 }
+
 @keyframes slideUpOut {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(100%); opacity: 0; }
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
 }
 
 /* Animate slide down and up on open */
 #fullpage-menu.active .slide-down {
   animation: slideDownIn 0.7s forwards ease-out;
 }
+
 #fullpage-menu.active .slide-up {
   animation: slideUpIn 0.7s forwards ease-out;
 }
@@ -246,6 +293,7 @@ body.menu-active {
 #fullpage-menu.closing .slide-down {
   animation: slideDownOut 0.7s forwards ease-in;
 }
+
 #fullpage-menu.closing .slide-up {
   animation: slideUpOut 0.7s forwards ease-in;
 }
@@ -254,17 +302,28 @@ body.menu-active {
 @media (max-width: 768px) {
   #fullpage-menu {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: 100vw;
     height: 100vh;
     background: #111;
-    display: flex !important; /* force visible */
+    display: flex !important;
+    /* force visible */
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 9999;
     overflow-y: auto;
     padding: 2rem;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 1rem;
   }
 
   #fullpage-menu ul {
@@ -356,21 +415,23 @@ body.menu-active {
 
 @media (max-width: 768px) {
   #menu-close {
-  position: absolute;
-  top: 1rem;
-  right: 1.5rem;
-  z-index: 10000;
-  font-size: 3rem;
-  color: #fff;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  line-height: 1;
-  display: block; /* 👈 ensures visibility */
-}
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    z-index: 10000;
+    font-size: 3rem;
+    color: #fff;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    display: block;
+    /* 👈 ensures visibility */
+  }
 
   .contact-section {
-    padding-top: 3rem; /* makes space for that boss close button */
+    padding-top: 3rem;
+    /* makes space for that boss close button */
   }
 }
 
@@ -391,6 +452,7 @@ body.menu-active {
   transition: all 0.3s ease;
   white-space: nowrap;
 }
+
 #contact-float-btn:hover {
   background-color: #005f99;
   transform: scale(1.05);
