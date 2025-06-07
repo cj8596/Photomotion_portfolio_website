@@ -250,6 +250,20 @@ h2.section-title {
   z-index: 6;
 }
 
+.overlay-image::after {
+  content: "© YOURNAME";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 3em;
+  color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 10;
+}
+
 /* Centered section helper */
 .centered-section {
   display: flex;
@@ -670,3 +684,4 @@ header {
   color: white !important;
   z-index: 9999 !important;
 }
+

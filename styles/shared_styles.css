@@ -21,6 +21,27 @@ img {
   height: auto;
 }
 
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.image-wrapper img {
+  display: block;
+}
+
+.image-wrapper::after {
+  content: "© YOURNAME";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 3em;
+  color: rgba(255, 255, 255, 0.1); /* Lighter, almost see-through */
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
 /* Header styling */
 header {
   background: #ffffff;
@@ -88,7 +109,7 @@ footer .social-icons a:hover {
 
 
 /* Menu toggle button */
-#menu-toggle {
+#menu-button {
   background: none;
   border: none;
   font-size: 1.3rem;
@@ -298,6 +319,29 @@ body.menu-active {
   animation: slideUpOut 0.7s forwards ease-in;
 }
 
+#contact-float-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+#contact-float-btn:hover {
+  background-color: #005f99;
+  transform: scale(1.05);
+}
+
 /* Mobile Menu Styles */
 @media (max-width: 768px) {
   #fullpage-menu {
@@ -347,11 +391,12 @@ body.menu-active {
   }
 
   #menu-button {
+    position: relative;
     font-size: 2rem;
     padding: 0.5rem 1rem;
     background: transparent;
     border: none;
-    color: #fff;
+    color: #007acc;
     cursor: pointer;
     display: block !important;
   }
@@ -366,9 +411,7 @@ body.menu-active {
     border: none;
     cursor: pointer;
   }
-}
 
-@media (max-width: 768px) {
   .menu-container {
     flex-direction: column;
     height: auto;
@@ -383,10 +426,7 @@ body.menu-active {
   #fullpage-menu {
     padding: 1rem;
   }
-}
 
-
-@media (max-width: 768px) {
   .contact-section {
     box-sizing: border-box;
     width: 100%;
@@ -411,9 +451,7 @@ body.menu-active {
     display: inline-block;
     max-width: 100%;
   }
-}
 
-@media (max-width: 768px) {
   #menu-close {
     position: absolute;
     top: 1rem;
@@ -433,27 +471,4 @@ body.menu-active {
     padding-top: 3rem;
     /* makes space for that boss close button */
   }
-}
-
-#contact-float-btn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: #007acc;
-  color: white;
-  border: none;
-  border-radius: 30px;
-  padding: 15px 25px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 10000;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-#contact-float-btn:hover {
-  background-color: #005f99;
-  transform: scale(1.05);
 }

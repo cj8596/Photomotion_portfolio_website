@@ -3,12 +3,12 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Photography Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="styles/shared_styles.css" />
   <link rel="stylesheet" href="styles/index_styles.css" />
-  
+
 </head>
 
 <body class="loading">
@@ -58,7 +58,11 @@
     <section>
       <h2>Welcome to our portfolio</h2>
       <p>Check out our stunning shots and creative vibe.</p>
-      <img src="images/camera.webp" alt="Sample Photo 1" loading="lazy" />
+      <div class="image-wrapper" style="position:relative;">
+        <img src="images/camera.webp" alt="Sample Photo 1" loading="lazy" />
+        <div style="position:absolute; top:0; left:0; right:0; bottom:0;pointer-events:none;"></div>
+      </div>
+
     </section>
 
     <div class="centered-section">

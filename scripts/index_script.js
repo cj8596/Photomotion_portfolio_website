@@ -10,6 +10,8 @@ window.addEventListener('DOMContentLoaded', () => {
   initLoader();
   initContentLockdown();
   initCameraHover();
+  initializeKeyboardProtection();
+  wrapImagesWithWatermark();
 });
 
 function initCategoryHover() {
@@ -291,4 +293,26 @@ function initContentLockdown() {
   const style = document.createElement('style');
   style.innerHTML = `img, video, canvas { -webkit-user-drag: none !important; user-select: none !important; }`;
   document.head.appendChild(style);
+}
+
+function initializeKeyboardProtection() {
+  document.addEventListener('keydown', function(event) {
+    const forbiddenKeys = ['s', 'u', 'c', 'a'];
+    if (event.ctrlKey && forbiddenKeys.includes(event.key.toLowerCase())) {
+      event.preventDefault();
+      alert("Action disabled on this page.");
+    }
+  });
+}
+
+function wrapImagesWithWatermark() {
+  const images = document.querySelectorAll('img'); // Select all images you want to watermark
+  images.forEach(img => {
+    if (!img.parentElement.classList.contains('image-wrapper')) {
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('image-wrapper');
+      img.parentNode.insertBefore(wrapper, img);
+      wrapper.appendChild(img);
+    }
+  });
 }
