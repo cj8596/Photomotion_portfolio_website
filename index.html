@@ -15,14 +15,14 @@
 
   <!-- Loader with your 3-second intro video -->
   <div id="loader">
-    <img src="video/logo-animation-2.gif" autoplay muted playsinline></img>
+    <video src="video/logo-animation.mp4" autoplay muted playsinline></video>
   </div>
 
   <!-- Your main page content -->
   <div id="content">
     <header>
       <div class="logo">
-        <img src="images/logo.png" alt="Logo" />
+        <img src="images/logo.jpg" alt="Logo" />
         <h1>Sample Photography Co.</h1>
       </div>
       <nav>
@@ -62,25 +62,26 @@
         <img src="images/camera.webp" alt="Sample Photo 1" loading="lazy" />
         <div style="position:absolute; top:0; left:0; right:0; bottom:0;pointer-events:none;"></div>
       </div>
+
     </section>
 
     <div class="centered-section">
       <h2 class="section-title">SHOOTS BY CATEGORY</h2>
       <div class="big-rect">
-        <div class="slice current-item" data-index="0" data-bg="images/fashion.jpeg">Fashion</div>
-        <div class="slice" data-index="1" data-bg="images/food.jpeg">Food</div>
-        <div class="slice" data-index="2" data-bg="images/lifestyle.jpeg">Lifestyle</div>
-        <div class="slice" data-index="3" data-bg="images/jewellery.jpeg">Jewellery</div>
-        <div class="slice" data-index="4" data-bg="images/interior.jpeg">Interior</div>
+        <div class="slice current-item" data-index="0">Fashion</div>
+        <div class="slice" data-index="1">Food</div>
+        <div class="slice" data-index="2">Lifestyle</div>
+        <div class="slice" data-index="3">Jewellery</div>
+        <div class="slice" data-index="4">Interior</div>
 
-        <!-- <div class="overlay-images">
+        <div class="overlay-images">
           <div class="overlay-image current-item animate__animated animate__fadeIn"
             style="background-image:url('images/fashion.jpeg');"></div>
           <div class="overlay-image" style="background-image:url('images/food.jpeg');"></div>
           <div class="overlay-image" style="background-image:url('images/lifestyle.jpeg');"></div>
           <div class="overlay-image" style="background-image:url('images/jewellery.jpeg');"></div>
           <div class="overlay-image" style="background-image:url('images/interior.jpeg');"></div>
-        </div> -->
+        </div>
       </div>
     </div>
 
@@ -117,7 +118,7 @@
           </svg>
         </a>
       </div>
-      <div class="footer">&copy; 2025 Photography Co. All rights reserved.</div>
+      <div>&copy; 2025 Photography Co. All rights reserved.</div>
     </footer>
     <button id="contact-float-btn" title="Contact Us">Book an appointment with us!</button>
 

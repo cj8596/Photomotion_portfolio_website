@@ -123,179 +123,24 @@ function initCameraHover() {
 }
 
 
-// function initSliceOverlay() {
-//   const slices = document.querySelectorAll('.slice');
-
-//   // Store each slice's original image
-//   slices.forEach(slice => {
-//     const bg = slice.dataset.bg;
-//     slice.dataset.original = bg;
-
-//     // Initial state: show individual image sized to fit slice
-//     slice.style.backgroundImage = `url('${bg}')`;
-//     slice.style.backgroundSize = 'cover';
-//     slice.style.backgroundPosition = 'center';
-//     slice.style.backgroundRepeat = 'no-repeat';
-//   });
-
-//   // Hover: make all slices show one unified image
-//   // slices.forEach(slice => {
-//   //   slice.addEventListener('mouseenter', () => {
-//   //     const bgUrl = slice.dataset.bg;
-
-//   //     slices.forEach((s, i) => {
-//   //       s.classList.remove('current-item');
-//   //       s.style.backgroundImage = `url('${bgUrl}')`;
-//   //       s.style.backgroundSize = '900px 600px'; // match .big-rect
-//   //       s.style.backgroundRepeat = 'no-repeat';
-//   //       s.style.backgroundPosition = `${(i / (slices.length - 1)) * 100}% 0`;
-//   //     });
-
-//   //     slice.classList.add('current-item');
-//   //   });
-
-//   //   // Revert to original images on mouse leave
-//   //   slice.addEventListener('mouseleave', () => {
-//   //     slices.forEach(s => {
-//   //       const original = s.dataset.original;
-//   //       s.classList.remove('current-item');
-//   //       s.style.backgroundImage = `url('${original}')`;
-//   //       s.style.backgroundSize = 'cover';
-//   //       s.style.backgroundPosition = 'center';
-//   //       s.style.backgroundRepeat = 'no-repeat';
-//   //     });
-//   //   });
-//   // });
-//   slices.forEach(slice => {
-//   // Existing hover
-//   slice.addEventListener('mouseenter', () => {
-//     const bgUrl = slice.dataset.bg;
-
-//     slices.forEach((s, i) => {
-//       s.classList.remove('current-item');
-//       s.style.backgroundImage = `url('${bgUrl}')`;
-//       s.style.backgroundSize = '900px 600px';
-//       s.style.backgroundRepeat = 'no-repeat';
-//       s.style.backgroundPosition = `${(i / (slices.length - 1)) * 100}% 0`;
-//     });
-
-//     slice.classList.add('current-item');
-//   });
-
-//   slice.addEventListener('mouseleave', () => {
-//     slices.forEach(s => {
-//       const original = s.dataset.original;
-//       s.classList.remove('current-item');
-//       s.style.backgroundImage = `url('${original}')`;
-//       s.style.backgroundSize = 'cover';
-//       s.style.backgroundPosition = 'center';
-//       s.style.backgroundRepeat = 'no-repeat';
-//     });
-//   });
-
-//   // ✅ Mobile touch support (mimics hover)
-//   slice.addEventListener('touchstart', () => {
-//     const bgUrl = slice.dataset.bg;
-
-//     slices.forEach((s, i) => {
-//       s.classList.remove('current-item');
-//       s.style.backgroundImage = `url('${bgUrl}')`;
-//       s.style.backgroundSize = 'cover';
-//       s.style.backgroundRepeat = 'no-repeat';
-//       s.style.backgroundPosition = 'center';
-//     });
-
-//     slice.classList.add('current-item');
-//   });
-
-//   slice.addEventListener('touchend', () => {
-//     slices.forEach(s => {
-//       const original = s.dataset.original;
-//       s.classList.remove('current-item');
-//       s.style.backgroundImage = `url('${original}')`;
-//       s.style.backgroundSize = 'cover';
-//       s.style.backgroundPosition = 'center';
-//       s.style.backgroundRepeat = 'no-repeat';
-//     });
-//   });
-// });
-// }
 
 function initSliceOverlay() {
   const slices = document.querySelectorAll('.slice');
-
-  // Store each slice's original image
+  const overlayImages = document.querySelectorAll('.overlay-image');
   slices.forEach(slice => {
-    const bg = slice.dataset.bg;
-    slice.dataset.original = bg;
-
-    // Set initial slice backgrounds
-    slice.style.backgroundImage = `url('${bg}')`;
-    slice.style.backgroundSize = 'cover';
-    slice.style.backgroundPosition = 'center';
-    slice.style.backgroundRepeat = 'no-repeat';
-  });
-
-  const getResponsiveSize = () => window.innerWidth < 768 ? '600px 400px' : '900px 600px';
-
-  const applyUnifiedImage = (bgUrl) => {
-    slices.forEach((s, i) => {
-      s.classList.remove('current-item');
-      s.style.backgroundImage = `url('${bgUrl}')`;
-      s.style.backgroundSize = getResponsiveSize();
-      s.style.backgroundRepeat = 'no-repeat';
-      s.style.backgroundPosition = `${(i / (slices.length - 1)) * 100}% 0`;
-    });
-  };
-
-  const resetOriginalImages = () => {
-    slices.forEach(s => {
-      const original = s.dataset.original;
-      s.classList.remove('current-item');
-      s.style.backgroundImage = `url('${original}')`;
-      s.style.backgroundSize = 'cover';
-      s.style.backgroundPosition = 'center';
-      s.style.backgroundRepeat = 'no-repeat';
-    });
-  };
-
-  slices.forEach(slice => {
-    const bgUrl = slice.dataset.bg;
-
-    // Desktop hover
     slice.addEventListener('mouseenter', () => {
-      if (window.innerWidth >= 768) {
-        applyUnifiedImage(bgUrl);
-        slice.classList.add('current-item');
-      }
-    });
-
-    slice.addEventListener('mouseleave', () => {
-      if (window.innerWidth >= 768) {
-        resetOriginalImages();
-      }
-    });
-
-    // Mobile tap: show unified image
-    slice.addEventListener('touchstart', (e) => {
-      if (window.innerWidth < 768) {
-        e.stopPropagation(); // Prevent outer tap reset
-        applyUnifiedImage(bgUrl);
-        slice.classList.add('current-item');
-      }
+      const index = slice.dataset.index;
+      slices.forEach(s => s.classList.remove('current-item'));
+      overlayImages.forEach(img => {
+        img.classList.remove('current-item', 'animate__fadeIn', 'animate__animated');
+        void img.offsetWidth;
+      });
+      slice.classList.add('current-item');
+      const targetImg = overlayImages[index];
+      targetImg.classList.add('current-item', 'animate__animated', 'animate__fadeIn');
     });
   });
-
-  // Tap outside to reset (on mobile only)
-  if (window.innerWidth < 768) {
-    document.addEventListener('touchstart', (e) => {
-      if (!e.target.closest('.slice')) {
-        resetOriginalImages();
-      }
-    });
-  }
 }
-
 
 function initMenuToggle() {
   const menuButton = document.getElementById('menu-button');
@@ -376,7 +221,7 @@ function initContactButton() {
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      contactBtn.textContent = entry.isIntersecting ? '^' : 'Book an Appointment with Us!';
+      contactBtn.textContent = entry.isIntersecting ? '⬆️' : 'Book an Appointment with Us!';
       isAtContact = entry.isIntersecting;
     });
   }, { threshold: 0.5 });
@@ -413,7 +258,7 @@ function initLoader() {
         document.body.classList.add('loaded');
         window.scrollTo(0, 0);
       }, 1000);
-    }, 2000);
+    }, 3000);
   });
 }
 
@@ -460,14 +305,14 @@ function initializeKeyboardProtection() {
   });
 }
 
-// function wrapImagesWithWatermark() {
-//   const images = document.querySelectorAll('img'); // Select all images you want to watermark
-//   images.forEach(img => {
-//     if (!img.parentElement.classList.contains('image-wrapper')) {
-//       const wrapper = document.createElement('div');
-//       wrapper.classList.add('image-wrapper');
-//       img.parentNode.insertBefore(wrapper, img);
-//       wrapper.appendChild(img);
-//     }
-//   });
-// }
+function wrapImagesWithWatermark() {
+  const images = document.querySelectorAll('img'); // Select all images you want to watermark
+  images.forEach(img => {
+    if (!img.parentElement.classList.contains('image-wrapper')) {
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('image-wrapper');
+      img.parentNode.insertBefore(wrapper, img);
+      wrapper.appendChild(img);
+    }
+  });
+}
