@@ -1,7 +1,7 @@
 // Main entry
 window.addEventListener('DOMContentLoaded', () => {
   initCategoryHover();
-  // initHeaderHover(); // ❌ Not used in HTML – commented out for cleanup
+  // initHeaderHover(); 
   initSliceOverlay();
   initMenuToggle();
   initWordAnimator();
@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initContentLockdown();
   initCameraHover();
   initializeKeyboardProtection();
-  // wrapImagesWithWatermark(); // ❌ Not needed unless watermark wrapping is used
+  // wrapImagesWithWatermark(); 
 });
 
 // Hover effect for SHOOTS BY CATEGORY section
