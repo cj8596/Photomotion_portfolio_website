@@ -105,7 +105,7 @@ h2.section-title {
   cursor: pointer;
   overflow: hidden;
   border-radius: 12px;
-  box-shadow: 0 0 30px 5px rgba(255, 255, 255, 0.3);
+  /* box-shadow: 0 0 30px 5px rgba(255, 255, 255, 0.3); */
   background: #222;
 }
 

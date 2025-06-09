@@ -1,11 +1,30 @@
+/* Global Responsive Reset */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
   background-color: #000;
   color: #000;
+  line-height: 1.6;
 }
 
-/* Image Styling */
+body.menu-active {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: background-color 0.5s ease;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -20,37 +39,22 @@ img {
   display: block;
 }
 
-/* .image-wrapper::after {
-  content: "© YOURNAME";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-45deg);
-  font-size: 3em;
-  color: rgba(255, 255, 255, 0.1); /* Lighter, almost see-through */
-/* pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
-} */
-
-
-/* Main Div Styling*/
 #content {
   transition: opacity 1s ease;
-  padding: 20px;
+  padding: 5vw;
   font-family: Arial, sans-serif;
   background: #000;
   min-height: 100vh;
 }
 
-/* Header styling */
 header {
   position: relative;
   background: #000;
   color: #ff9933;
-  padding: 10px 20px 20px;
+  padding: 10px 20px;
   border-bottom: 2px solid #ff9933;
   text-align: center;
+  flex-wrap: wrap;
 }
 
 header nav {
@@ -68,33 +72,16 @@ header .logo {
 }
 
 header .logo img {
-  height: 60px;
+  height: 8vw;
+  max-height: 70px;
   margin-right: 10px;
   display: block;
 }
 
 header .logo h1 {
-  font-size: 1.5em;
+  font-size: 1pem;
   margin: 0;
   color: #ff9933;
-}
-
-header nav a {
-  text-decoration: none;
-  margin: 0 10px;
-  color: #ff9933;
-  font-weight: bold;
-  position: absolute;
-  left: 20px;
-}
-
-header nav a:hover {
-  color: #fff;
-}
-
-/* Navigation */
-header {
-  flex-wrap: wrap;
 }
 
 header nav a,
@@ -110,19 +97,17 @@ nav a:hover {
   color: #ff9933;
 }
 
-/* Menu toggle button */
 #menu-button {
   background: none;
   border: none;
-  font-size: 3rem;
+  font-size: 4vw;
   color: #ff9933;
   cursor: pointer;
   padding: 10px 15px;
-  font-weight: bold;
+  /* font-weight: bold; */
   line-height: -1;
 }
 
-/* Full page menu base styling */
 #fullpage-menu {
   position: fixed;
   top: 0;
@@ -136,22 +121,16 @@ nav a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 3rem;
-  /* 💥 this gives space for the close button */
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.5s ease, right 0.4s ease;
-  height: 100vh;
+  height: 100vh !important;
+  width: 100vw !important;
+  overflow: hidden !important;
+  padding: 2vw;
 }
 
-/* Show menu */
-#fullpage-menu.active {
-  display: flex;
-  pointer-events: auto;
-  opacity: 1;
-  right: 0;
-}
-
+#fullpage-menu.active,
 #fullpage-menu.show {
   display: flex;
   pointer-events: auto;
@@ -159,21 +138,20 @@ nav a:hover {
   right: 0;
 }
 
-/* Close button */
 #menu-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 3em;
-  background: none;
+  position: absolute !important;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10001 !important;
+  font-size: 3rem;
+  background: transparent;
   border: none;
   color: #ff9933;
   cursor: pointer;
-  font-weight: bold;
   line-height: 1;
+  display: block;
 }
 
-/* Menu list styling */
 #fullpage-menu ul {
   list-style: none;
   padding: 0;
@@ -184,12 +162,12 @@ nav a:hover {
 
 #fullpage-menu ul li {
   margin: 15px 0;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 #fullpage-menu ul li a {
   color: white;
-  font-size: 1.5em;
+  font-size: 2rem;
   text-decoration: none;
   font-weight: 700;
   transition: color 0.3s;
@@ -199,24 +177,18 @@ nav a:hover {
   color: #ff9933;
 }
 
-/* Menu container boxes */
 .menu-container {
   display: flex;
   flex-direction: row;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   gap: 0;
   justify-content: space-between;
-}
-
-/* Body dim background when menu is active */
-body.menu-active {
-  background-color: rgba(0, 0, 0, 0.8);
-  transition: background-color 0.5s ease;
+  max-height: 100vh;
   overflow: hidden;
-  /* no scroll while menu is open */
+  flex-wrap: wrap;
 }
 
 .menu-section,
@@ -229,7 +201,6 @@ body.menu-active {
   padding: 60px 40px;
   overflow-y: auto;
 }
-
 
 .menu-section {
   background: #000;
@@ -246,25 +217,22 @@ body.menu-active {
   padding: 60px 40px;
 }
 
-
-/* Titles inside menu */
 #fullpage-menu h2 {
-  font-size: 2.5rem;
+  font-size: 4vw;
   margin-bottom: 20px;
   color: #ff9933;
 }
 
-/* Floating Button Styles */
 #contact-float-btn {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 20px;
+  right: 20px;
   background-color: #ff9933;
   color: white;
   border: none;
   border-radius: 30px;
-  padding: 15px 25px;
-  font-size: 16px;
+  padding: 10px 20px;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
   z-index: 10000;
@@ -278,13 +246,12 @@ body.menu-active {
   transform: scale(1.05);
 }
 
-/* Footer Styling*/
 footer {
   background: #000;
   color: #000000;
-  padding: 20px;
+  padding: 20px 40px;
   text-align: center;
-  font-size: 0.9em;
+  font-size: 0.8em;
   border-top: 2px solid #ff9933;
 }
 
@@ -307,15 +274,50 @@ footer .footer {
   color: #fff;
 }
 
+@media (max-width: 768px) {
+  header .logo h1 {
+    font-size: 4vw;
+  }
 
-/* Slide animations */
-/* Slide in animations for opening */
+  #menu-button {
+    font-size: 6vw;
+  }
+
+  #menu-close {
+    font-size: 2.5rem;
+  }
+
+  #fullpage-menu h2 {
+    font-size: 6vw;
+  }
+
+  .menu-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .menu-section,
+  .contact-section {
+    padding: 6vw 4vw;
+  }
+
+  .contact-section li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .contact-section a {
+    word-break: break-word;
+    display: inline-block;
+    width: 100%;
+  }
+}
+
 @keyframes slideDownIn {
   0% {
     transform: translateY(-100%);
     opacity: 0;
   }
-
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -327,20 +329,17 @@ footer .footer {
     transform: translateY(100%);
     opacity: 0;
   }
-
   100% {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-/* Slide out animations for closing */
 @keyframes slideDownOut {
   0% {
     transform: translateY(0);
     opacity: 1;
   }
-
   100% {
     transform: translateY(-100%);
     opacity: 0;
@@ -352,14 +351,12 @@ footer .footer {
     transform: translateY(0);
     opacity: 1;
   }
-
   100% {
     transform: translateY(100%);
     opacity: 0;
   }
 }
 
-/* Animate slide down and up on open */
 #fullpage-menu.active .slide-down {
   animation: slideDownIn 0.7s forwards ease-out;
 }
@@ -368,131 +365,10 @@ footer .footer {
   animation: slideUpIn 0.7s forwards ease-out;
 }
 
-/* Animate slide down and up on close */
 #fullpage-menu.closing .slide-down {
   animation: slideDownOut 0.7s forwards ease-in;
 }
 
 #fullpage-menu.closing .slide-up {
   animation: slideUpOut 0.7s forwards ease-in;
-}
-
-/* Mobile Menu Styles */
-@media (max-width: 768px) {
-  #fullpage-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #111;
-    display: flex !important;
-    /* force visible */
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    overflow-y: auto;
-    padding: 2rem;
-    width: 100vw;
-    height: 100vh;
-    max-width: 100%;
-    max-height: 100%;
-    overflow-y: auto;
-    box-sizing: border-box;
-    padding: 1rem;
-  }
-
-  #fullpage-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    text-align: center;
-  }
-
-  #fullpage-menu ul li {
-    margin: 1rem 0;
-  }
-
-  #fullpage-menu ul li a {
-    font-size: 1.5rem;
-    color: white;
-    text-decoration: none;
-    padding: 1rem 0;
-    display: block;
-  }
-
-  #menu-button {
-    position: relative;
-    font-size: 2rem;
-    padding: 0.5rem 1rem;
-    background: transparent;
-    border: none;
-    color: #ff9933;
-    cursor: pointer;
-    display: block !important;
-  }
-
-  .menu-container {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .menu-section,
-  .contact-section {
-    height: auto;
-    padding: 30px 20px;
-  }
-
-  #fullpage-menu {
-    padding: 1rem;
-  }
-
-  .contact-section {
-    box-sizing: border-box;
-    width: 100%;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    text-align: center;
-  }
-
-  .contact-section ul {
-    padding: 0;
-  }
-
-  .contact-section li {
-    font-size: 1rem;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    margin-bottom: 10px;
-  }
-
-  .contact-section a {
-    word-break: break-all;
-    display: inline-block;
-    max-width: 100%;
-  }
-
-  #menu-close {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    z-index: 10000;
-    font-size: 3rem;
-    color: #ff9933;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    line-height: 1;
-    display: block;
-    /* 👈 ensures visibility */
-  }
-
-  .contact-section {
-    padding-top: 3rem;
-    /* makes space for that boss close button */
-  }
 }
