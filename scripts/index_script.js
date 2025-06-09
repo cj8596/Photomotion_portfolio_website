@@ -1,7 +1,7 @@
 // Main entry
 window.addEventListener('DOMContentLoaded', () => {
   initCategoryHover();
-  initHeaderHover();
+  // initHeaderHover(); // ❌ Not used in HTML – commented out for cleanup
   initSliceOverlay();
   initMenuToggle();
   initWordAnimator();
@@ -11,9 +11,10 @@ window.addEventListener('DOMContentLoaded', () => {
   initContentLockdown();
   initCameraHover();
   initializeKeyboardProtection();
-  wrapImagesWithWatermark();
+  // wrapImagesWithWatermark(); // ❌ Not needed unless watermark wrapping is used
 });
 
+// Hover effect for SHOOTS BY CATEGORY section
 function initCategoryHover() {
   const wrapper = document.getElementById("categoryWrapper");
   const categories = document.querySelectorAll(".category");
@@ -29,101 +30,83 @@ function initCategoryHover() {
   }
 }
 
-function initHeaderHover() {
-  const headers = document.querySelectorAll('.column-header');
-  const bg = document.getElementById('header-bg');
-  if (!headers.length || !bg) return;
+// Image transition from black to color on hover (currently unused)
+// function initHeaderHover() {
+//   const headers = document.querySelectorAll('.column-header');
+//   const bg = document.getElementById('header-bg');
+//   if (!headers.length || !bg) return;
 
-  let timeoutId = null;
+//   let timeoutId = null;
+//   const isSmallScreen = () => window.innerWidth < 768;
 
-  const isSmallScreen = () => window.innerWidth < 768;
+//   headers.forEach(header => {
+//     const imageUrl = header.dataset.image;
+//     const showColor = () => {
+//       clearTimeout(timeoutId);
+//       bg.style.backgroundImage = `url('${imageUrl}')`;
+//       bg.classList.add('show-color');
+//     };
+//     const showBlack = () => {
+//       clearTimeout(timeoutId);
+//       bg.classList.remove('show-color');
+//     };
+//     header.addEventListener('mouseenter', () => {
+//       if (!isSmallScreen()) showColor();
+//     });
+//     header.addEventListener('mouseleave', () => {
+//       if (!isSmallScreen()) showBlack();
+//     });
+//     header.addEventListener('touchstart', e => {
+//       if (!isSmallScreen()) return;
+//       e.preventDefault();
+//       showColor();
+//       timeoutId = setTimeout(() => {
+//         bg.classList.remove('show-color');
+//       }, 1000);
+//     });
+//     header.addEventListener('touchend', e => {
+//       if (!isSmallScreen()) return;
+//       e.preventDefault();
+//       clearTimeout(timeoutId);
+//       showBlack();
+//     });
+//     header.addEventListener('touchcancel', e => {
+//       if (!isSmallScreen()) return;
+//       e.preventDefault();
+//       clearTimeout(timeoutId);
+//       showBlack();
+//     });
+//   });
+// }
 
-  headers.forEach(header => {
-    const imageUrl = header.dataset.image;
-
-    const showColor = () => {
-      clearTimeout(timeoutId);
-      bg.style.backgroundImage = `url('${imageUrl}')`;
-      bg.classList.add('show-color');
-    };
-
-    const showBlack = () => {
-      clearTimeout(timeoutId);
-      bg.classList.remove('show-color');
-    };
-
-    // Desktop hover (no timeout bullshit)
-    header.addEventListener('mouseenter', () => {
-      if (!isSmallScreen()) showColor();
-    });
-    header.addEventListener('mouseleave', () => {
-      if (!isSmallScreen()) showBlack();
-    });
-
-    // Mobile touch with timeout fallback ONLY on small screens
-    header.addEventListener('touchstart', e => {
-      if (!isSmallScreen()) return;
-      e.preventDefault();
-      showColor();
-
-      timeoutId = setTimeout(() => {
-        bg.classList.remove('show-color');
-      }, 1000);
-    });
-
-    header.addEventListener('touchend', e => {
-      if (!isSmallScreen()) return;
-      e.preventDefault();
-      clearTimeout(timeoutId);
-      showBlack();
-    });
-
-    header.addEventListener('touchcancel', e => {
-      if (!isSmallScreen()) return;
-      e.preventDefault();
-      clearTimeout(timeoutId);
-      showBlack();
-    });
-  });
-}
-
-
+// Hover color effect on camera image (first image in section)
 function initCameraHover() {
   const img = document.querySelector('section img[src="images/camera.webp"]');
   if (!img) return;
 
   img.style.transition = 'filter 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-
-  // Start: dark but visible
   img.style.filter = 'grayscale(100%) brightness(30%)';
 
   img.addEventListener('mouseenter', () => {
     img.style.filter = 'grayscale(0%) brightness(100%)';
   });
-
   img.addEventListener('mouseleave', () => {
     img.style.filter = 'grayscale(100%) brightness(30%)';
   });
 
   // Mobile touch support
-  img.addEventListener('touchstart', e => {
-    e.preventDefault();
-    img.style.filter = 'grayscale(0%) brightness(100%)';
-  });
-
-  img.addEventListener('touchend', e => {
-    e.preventDefault();
-    img.style.filter = 'grayscale(100%) brightness(30%)';
-  });
-
-  img.addEventListener('touchcancel', e => {
-    e.preventDefault();
-    img.style.filter = 'grayscale(100%) brightness(30%)';
+  ['touchstart', 'touchend', 'touchcancel'].forEach(eventType => {
+    img.addEventListener(eventType, e => {
+      e.preventDefault();
+      const isActive = eventType === 'touchstart';
+      img.style.filter = isActive
+        ? 'grayscale(0%) brightness(100%)'
+        : 'grayscale(100%) brightness(30%)';
+    });
   });
 }
 
-
-
+// Overlay image transition on slice hover
 function initSliceOverlay() {
   const slices = document.querySelectorAll('.slice');
   const overlayImages = document.querySelectorAll('.overlay-image');
@@ -133,7 +116,7 @@ function initSliceOverlay() {
       slices.forEach(s => s.classList.remove('current-item'));
       overlayImages.forEach(img => {
         img.classList.remove('current-item', 'animate__fadeIn', 'animate__animated');
-        void img.offsetWidth;
+        void img.offsetWidth; // force reflow
       });
       slice.classList.add('current-item');
       const targetImg = overlayImages[index];
@@ -142,6 +125,7 @@ function initSliceOverlay() {
   });
 }
 
+// Full-page menu toggle logic
 function initMenuToggle() {
   const menuButton = document.getElementById('menu-button');
   const menuClose = document.getElementById('menu-close');
@@ -176,8 +160,9 @@ function initMenuToggle() {
   }
 }
 
+// Rotating animated text in menu contact section
 function initWordAnimator() {
-  const words = ["Page", "Section", "Spot", "Hub", "Zone"];
+  const words = ["Start a Conversation!", "Book a Session!", "Let’s Create!", "Say Hello!"];
   const wordElement = document.getElementById("animated-word");
   if (!wordElement) return;
   let wordIndex = 0;
@@ -202,9 +187,11 @@ function initWordAnimator() {
     }
     addLetter();
   }
+
   typeWord();
 }
 
+// Floating button toggles contact section scroll
 function initContactButton() {
   const contactBtn = document.getElementById('contact-float-btn');
   const contactSection = document.getElementById('contact');
@@ -221,17 +208,25 @@ function initContactButton() {
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      contactBtn.textContent = entry.isIntersecting ? '⬆️' : 'Book an Appointment with Us!';
+      contactBtn.textContent = entry.isIntersecting
+        ? '⬆'
+        : 'Book an Appointment with Us!';
       isAtContact = entry.isIntersecting;
     });
   }, { threshold: 0.5 });
+
   observer.observe(contactSection);
 }
 
+// Reveal sections on scroll with animation
 function initSectionReveal() {
   const reveal = () => {
-    const allSections = [...document.querySelectorAll('section'), ...document.querySelectorAll('.centered-section')];
+    const allSections = [
+      ...document.querySelectorAll('section'),
+      ...document.querySelectorAll('.centered-section')
+    ];
     const triggerBottom = window.innerHeight * 0.95;
+
     allSections.forEach(section => {
       const sectionTop = section.getBoundingClientRect().top;
       if (sectionTop < triggerBottom && !section.classList.contains('visible')) {
@@ -239,17 +234,20 @@ function initSectionReveal() {
         section.style.setProperty('--animate-duration', '0.3s');
       }
     });
-  }
+  };
+
   window.addEventListener('scroll', reveal);
   window.addEventListener('resize', reveal);
-  reveal();
+  reveal(); // initial call
 }
 
+// Loader logic for intro animation
 function initLoader() {
   window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
     const video = loader?.querySelector('video');
     video?.play();
+
     setTimeout(() => {
       loader?.classList.add('fade-out');
       setTimeout(() => {
@@ -258,45 +256,51 @@ function initLoader() {
         document.body.classList.add('loaded');
         window.scrollTo(0, 0);
       }, 1000);
-    }, 3000);
+    }, 1700);
   });
 }
 
+// Disables text selection, copy/paste, dev tools
 function initContentLockdown() {
-  document.addEventListener('contextmenu', e => e.preventDefault());
-  document.addEventListener('selectstart', e => e.preventDefault());
-  document.addEventListener('copy', e => e.preventDefault());
-  document.addEventListener('cut', e => e.preventDefault());
-  document.addEventListener('paste', e => e.preventDefault());
-  document.addEventListener('dragstart', e => e.preventDefault());
+  const preventEvent = e => e.preventDefault();
+
+  ['contextmenu', 'selectstart', 'copy', 'cut', 'paste', 'dragstart'].forEach(event =>
+    document.addEventListener(event, preventEvent)
+  );
+
   document.addEventListener('keydown', e => {
     if (e.ctrlKey || e.metaKey) {
-      if (["s","u","c","x","v","a","p","i","j","k"].includes(e.key.toLowerCase())) e.preventDefault();
+      if (["s", "u", "c", "x", "v", "a", "p", "i", "j", "k"].includes(e.key.toLowerCase())) {
+        e.preventDefault();
+      }
     }
     if (e.key === 'PrintScreen') {
       e.preventDefault();
-      alert("No screenshots allowed, babe 😉");
+      alert("No Screenshots Allowed");
     }
   });
 
   const blocker = document.createElement('div');
-  blocker.style.position = 'fixed';
-  blocker.style.top = 0;
-  blocker.style.left = 0;
-  blocker.style.width = '100%';
-  blocker.style.height = '100%';
-  blocker.style.zIndex = 999999;
-  blocker.style.pointerEvents = 'none';
-  blocker.style.background = 'transparent';
+  blocker.style.cssText = `
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 999999; pointer-events: none; background: transparent;
+  `;
   document.body.appendChild(blocker);
 
   const style = document.createElement('style');
-  style.innerHTML = `img, video, canvas { -webkit-user-drag: none !important; user-select: none !important; }`;
+  style.innerHTML = `
+    img, video, canvas {
+      -webkit-user-drag: none !important;
+      user-select: none !important;
+    }
+  `;
   document.head.appendChild(style);
 }
 
+// Secondary key protection
 function initializeKeyboardProtection() {
-  document.addEventListener('keydown', function(event) {
+  document.addEventListener('keydown', function (event) {
     const forbiddenKeys = ['s', 'u', 'c', 'a'];
     if (event.ctrlKey && forbiddenKeys.includes(event.key.toLowerCase())) {
       event.preventDefault();
@@ -305,14 +309,15 @@ function initializeKeyboardProtection() {
   });
 }
 
-function wrapImagesWithWatermark() {
-  const images = document.querySelectorAll('img'); // Select all images you want to watermark
-  images.forEach(img => {
-    if (!img.parentElement.classList.contains('image-wrapper')) {
-      const wrapper = document.createElement('div');
-      wrapper.classList.add('image-wrapper');
-      img.parentNode.insertBefore(wrapper, img);
-      wrapper.appendChild(img);
-    }
-  });
-}
+// Image watermark wrapper (unused, optional feature)
+// function wrapImagesWithWatermark() {
+//   const images = document.querySelectorAll('img');
+//   images.forEach(img => {
+//     if (!img.parentElement.classList.contains('image-wrapper')) {
+//       const wrapper = document.createElement('div');
+//       wrapper.classList.add('image-wrapper');
+//       img.parentNode.insertBefore(wrapper, img);
+//       wrapper.appendChild(img);
+//     }
+//   });
+// }
