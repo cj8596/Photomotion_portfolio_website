@@ -3,48 +3,51 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Photography Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhotoMotion Media Production</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="styles/shared_styles.css" />
+  <link rel="stylesheet" href="styles/index_styles.css" />
+
 </head>
 
 <body class="loading">
 
   <!-- Loader with your 3-second intro video -->
   <div id="loader">
-    <video src="video/logo-animation.mp4" autoplay muted playsinline></video>
+    <img src="images/logo-animation-2.gif" alt="logo"></img>
   </div>
 
   <!-- Your main page content -->
   <div id="content">
     <header>
-      <div class="logo">
-        <img src="images/logo.jpg" alt="Logo" />
-        <h1>Sample Photography Co.</h1>
-      </div>
       <nav>
         <button id="menu-button" aria-label="Open menu">☰</button>
       </nav>
+      <div class="logo">
+        <img src="images/logo.png" alt="Logo" />
+        <h1>PhotoMotion Media Production</h1>
+      </div>
 
       <!-- Full page dropdown menu -->
       <div id="fullpage-menu" aria-hidden="true">
+        <button id="menu-close" aria-label="Close menu">☰</button>
         <div class="menu-container">
           <div class="menu-section slide-down">
             <h2>Menu</h2>
             <ul>
+              <br>
               <li><a href="index.html" tabindex="-1">Home</a></li>
-              <li><a href="portfolio.html" tabindex="-1">Portfolio</a></li>
-              <li><a href="about.html" tabindex="-1">About</a></li>
+              <li><a href="portfolio.html" tabindex="-1">Our Work</a></li>
+              <li><a href="services.html" tabindex="-1">Our Service</a></li>
+              <li><a href="about_us.html" tabindex="-1">About Us</a></li>
             </ul>
           </div>
 
           <div class="contact-section slide-up">
-            <button id="menu-close" aria-label="Close menu">×</button>
-            <h2>Contact Us</h2>
             <ul>
               <li>
-                <h2>Contact <span id="animated-word">Page</span></h2>
+                <h2><span id="animated-word">Start a Conversation</span></h2><br>
               </li>
               <li>Email: <a href="mailto:contact@samplephoto.com" tabindex="-1">contact@samplephoto.com</a></li>
               <li>Phone: <a href="tel:+1234567890" tabindex="-1">+1 234 567 890</a></li>
@@ -57,25 +60,28 @@
     <section>
       <h2>Welcome to our portfolio</h2>
       <p>Check out our stunning shots and creative vibe.</p>
-      <img src="images/camera.webp" alt="Sample Photo 1" loading="lazy" />
+      <div class="image-wrapper" style="position:relative;">
+        <img src="images/camera.webp" alt="Sample Photo 1" loading="lazy" />
+        <div style="position:absolute; top:0; left:0; right:0; bottom:0;pointer-events:none;"></div>
+      </div>
     </section>
 
     <div class="centered-section">
       <h2 class="section-title">SHOOTS BY CATEGORY</h2>
       <div class="big-rect">
-        <div class="slice current-item" data-index="0">Fashion</div>
-        <div class="slice" data-index="1">Food</div>
-        <div class="slice" data-index="2">Lifestyle</div>
-        <div class="slice" data-index="3">Jewellery</div>
-        <div class="slice" data-index="4">Interior</div>
+        <div class="slice current-item" data-index="0">Product</div>
+        <div class="slice" data-index="1">Jewellery</div>
+        <div class="slice" data-index="2">Food</div>
+        <div class="slice" data-index="3">Fashion</div>
+        <!-- <div class="slice" data-index="4">Interior</div> -->
 
         <div class="overlay-images">
           <div class="overlay-image current-item animate__animated animate__fadeIn"
-            style="background-image:url('images/fashion.jpeg');"></div>
-          <div class="overlay-image" style="background-image:url('images/food.jpeg');"></div>
-          <div class="overlay-image" style="background-image:url('images/lifestyle.jpeg');"></div>
+            style="background-image:url('images/interior.jpeg');"></div>
           <div class="overlay-image" style="background-image:url('images/jewellery.jpeg');"></div>
-          <div class="overlay-image" style="background-image:url('images/interior.jpeg');"></div>
+          <div class="overlay-image" style="background-image:url('images/food.jpeg');"></div>
+          <div class="overlay-image" style="background-image:url('images/fashion.jpeg');"></div>
+          <!-- <div class="overlay-image" style="background-image:url('images/interior.jpeg');"></div> -->
         </div>
       </div>
     </div>
@@ -87,14 +93,10 @@
       <img src="images/sample-photo-2.jpg" alt="Sample Photo 2" loading="lazy" />
     </section>
 
-    <section>
+    <section id="contact">
       <h2>Contact Us</h2>
       <p>Get in touch and book your session today!</p>
     </section>
-
-
-
-    <div><br></div>
 
     <footer>
       <div class="social-icons">
@@ -115,46 +117,11 @@
           </svg>
         </a>
       </div>
-      <div>&copy; 2025 Photography Co. All rights reserved.</div>
+      <div class="footer">&copy; 2025 Photography Co. All rights reserved.</div>
     </footer>
+    <button id="contact-float-btn" title="Contact Us">Book an appointment with us!</button>
+
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const words = ["Page", "Section", "Spot", "Hub", "Zone"];
-      const wordElement = document.getElementById("animated-word");
-      let wordIndex = 0;
-      let letterIndex = 0;
-      const typingSpeed = 150;
-      const pauseAfterWord = 2000;
-
-      function typeWord() {
-        const currentWord = words[wordIndex];
-        letterIndex = 0;
-        wordElement.textContent = '';
-
-        function addLetter() {
-          if (letterIndex < currentWord.length) {
-            wordElement.textContent += currentWord.charAt(letterIndex);
-            letterIndex++;
-            setTimeout(addLetter, typingSpeed);
-          } else {
-            setTimeout(() => {
-              wordIndex = (wordIndex + 1) % words.length;
-              typeWord();
-            }, pauseAfterWord);
-          }
-        }
-
-        addLetter();
-      }
-
-      typeWord();
-    });
-  </script>
-
-  <script src="scripts/script.js"></script>
-
+  <script src="scripts/index_script.js"></script>
 </body>
-
 </html>
