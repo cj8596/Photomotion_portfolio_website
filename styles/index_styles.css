@@ -202,6 +202,141 @@ h2.section-title {
   z-index: 10;
 }
 
+.carousel-wrapper {
+  width: 100vw;
+  overflow: hidden; /* This hides anything overflowing horizontally */
+  position: relative;
+  padding: 0; /* optional, to tightly contain */
+  margin: 0 auto; /* center if needed */
+}
+
+.carousel-container {
+  height: 70vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* This allows full transform motion inside */
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 200px;
+  position: relative;
+  will-change: transform;
+  transition: transform 0.3s ease;
+}
+
+
+.carousel-item {
+  flex: 0 0 auto;
+  transition: filter 0.4s ease, transform 0.4s ease;
+  margin: 0;
+}
+
+.carousel-item img {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.4s ease;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+
+
+/* .carousel-container {
+  overflow: hidden;
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 200px;
+  will-change: transform;
+  cursor: grab;
+  user-select: none;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  margin: 0;
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.carousel-item img {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.4s ease;
+} */
+
+/* .carousel-track {
+  display: flex;
+  gap: 200px;
+  cursor: grab;
+  will-change: transform;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  filter: blur(2px);
+  transition: filter 0.4s ease, transform 0.4s ease;
+  margin: 0;
+}
+
+.carousel-item img {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.4s ease;
+} */
+
+
+/* .scroll-container {
+  width: 100vw;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: auto;
+  position: relative;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-track {
+  display: inline-flex;
+  gap: 100px;
+  align-items: center;
+  padding: 80px 0;
+}
+
+.scroll-item {
+  flex: 0 0 auto;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  scroll-snap-align: center;
+}
+
+.scroll-image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+} */
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .big-rect {
