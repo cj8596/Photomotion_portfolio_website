@@ -267,6 +267,7 @@ h2.section-title {
   position: relative;
   will-change: transform;
   transition: transform 0.2s linear, opacity 0.2s linear;
+   padding: 0 170px;
 }
 
 
