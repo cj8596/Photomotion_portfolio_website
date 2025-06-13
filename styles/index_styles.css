@@ -96,9 +96,11 @@ h2.section-title {
 
   /* Use a shorter height */
   min-height: 70vh;
-  padding: 40px 5vw;  /* Smaller padding on all sides */
+  padding: 40px 5vw;
+  /* Smaller padding on all sides */
   box-sizing: border-box;
-  background-color: #000; /* Optional background */
+  background-color: #000;
+  /* Optional background */
 }
 
 .why-us h2 {
@@ -358,7 +360,48 @@ h2.section-title {
   header nav a {
     display: none;
   }
+
+  /* ✨ Added Carousel Improvements */
+  .carousel-item img {
+    width: 250px;
+    height: 250px;
+    filter: blur(2px);
+    transform: scale(1);
+  }
+
+  .carousel-item img.zoomed-in-center {
+    transform: scale(1.2);
+    filter: blur(0);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+  }
+
+  .carousel-track {
+    gap: 120px;
+  }
+
+  .carousel-container {
+    height: 60vh;
+  }
+
+  /* ✨ Added Text Readability */
+  .why-us p.about {
+    font-size: 1.8em;
+    line-height: 1.5;
+    letter-spacing: normal;
+  }
+
+  .why-us h2 {
+    font-size: 1.8em;
+    letter-spacing: 3px;
+  }
+
+  /* ✨ Loader Video Scaling */
+  #loader video {
+    max-width: 90vw;
+    max-height: 70vh;
+  }
 }
+
 
 @media (max-width: 480px) {
   body {
@@ -399,7 +442,8 @@ h2.section-title {
   }
 
   .carousel-item img.zoomed-in-center {
-    transform: scale(1.4);
+    transform: scale(1);
+    /* prevent over-zoom */
     filter: blur(0);
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
   }
@@ -413,6 +457,17 @@ h2.section-title {
     padding: 0;
   }
 
+  .why-us p.about {
+    font-size: 1em;
+    line-height: 1.4;
+    letter-spacing: normal;
+  }
+
+  .why-us h2 {
+    font-size: 1.4em;
+    letter-spacing: 0.5px;
+  }
+
   footer {
     font-size: 0.75em;
   }
@@ -420,10 +475,15 @@ h2.section-title {
   header {
     flex-wrap: wrap;
   }
-}
 
-@media (max-width: 480px) {
-  .carousel-item img.zoomed-in-center {
-    transform: scale(1); /* prevent over-zoom */
+  header nav a {
+    display: block;
+    margin: 5px 0;
+    font-size: 14px;
+  }
+
+  #loader video {
+    max-width: 100vw;
+    max-height: 60vh;
   }
 }
