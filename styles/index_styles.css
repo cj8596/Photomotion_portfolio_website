@@ -75,6 +75,7 @@ section:first-of-type img:hover {
 section h2,
 section p {
   color: #fff;
+  text-align: center;
 }
 
 /* Titles */
@@ -86,6 +87,40 @@ h2.section-title {
   user-select: none;
   color: #ff9933;
 }
+
+.why-us {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* Use a shorter height */
+  min-height: 70vh;
+  padding: 40px 5vw;  /* Smaller padding on all sides */
+  box-sizing: border-box;
+  background-color: #000; /* Optional background */
+}
+
+.why-us h2 {
+  font-size: 2.5em;
+  letter-spacing: 1.5px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  user-select: none;
+  color: #ff9933;
+  text-align: center;
+}
+
+.why-us p.about {
+  max-width: 900px;
+  width: 100%;
+  text-align: justify;
+  font-size: 1.5em;
+  line-height: 1.6;
+  color: #fff;
+  margin: 0 auto;
+}
+
 
 
 /* Vertical Slice Layout */
@@ -204,10 +239,13 @@ h2.section-title {
 
 .carousel-wrapper {
   width: 100vw;
-  overflow: hidden; /* This hides anything overflowing horizontally */
+  overflow: hidden;
+  /* This hides anything overflowing horizontally */
   position: relative;
-  padding: 0; /* optional, to tightly contain */
-  margin: 0 auto; /* center if needed */
+  padding: 0;
+  /* optional, to tightly contain */
+  margin: 0 auto;
+  /* center if needed */
 }
 
 .carousel-container {
@@ -216,16 +254,17 @@ h2.section-title {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* This allows full transform motion inside */
+  overflow: hidden;
+  /* This allows full transform motion inside */
   position: relative;
 }
 
 .carousel-track {
   display: flex;
-  gap: 200px;
+  gap: 170px;
   position: relative;
   will-change: transform;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s linear, opacity 0.2s linear;
 }
 
 
@@ -236,18 +275,32 @@ h2.section-title {
 }
 
 .carousel-item img {
-  width: 350px;
+  /* width: 350px;
   height: 350px;
   object-fit: cover;
   border-radius: 10px;
   transition: transform 0.4s ease;
-  filter: blur(2px);
+  filter: blur(2px); */
   /* box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); */
+  width: 70vw;
+  height: 70vw;
+  max-width: 350px;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+  filter: blur(2px);
+  transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease;
 }
 
+/* .carousel-item img.zoomed-in-center {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+} */
 .carousel-item img.zoomed-in-center {
+  transform: scale(1.4);
+  filter: blur(0);
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
 }
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -338,11 +391,39 @@ h2.section-title {
     border-left: 1px solid #444;
   }
 
+  .carousel-item img {
+    width: 200px;
+    height: 200px;
+    transform: scale(1);
+    filter: blur(2px);
+  }
+
+  .carousel-item img.zoomed-in-center {
+    transform: scale(1.4);
+    filter: blur(0);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  }
+
+  .carousel-track {
+    gap: 100px;
+  }
+
+  .carousel-container {
+    height: 50vh;
+    padding: 0;
+  }
+
   footer {
     font-size: 0.75em;
   }
 
   header {
     flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-item img.zoomed-in-center {
+    transform: scale(1); /* prevent over-zoom */
   }
 }
