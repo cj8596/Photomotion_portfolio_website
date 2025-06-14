@@ -116,9 +116,9 @@ h2.section-title {
   line-height: 1.6;
   color: #fff;
   margin: 0 auto;
+  text-align: justify;     /* Ensures even edges left and right */
+  text-align-last: center;
 }
-
-
 
 /* Vertical Slice Layout */
 .centered-section {
