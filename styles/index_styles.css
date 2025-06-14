@@ -245,7 +245,7 @@ h2.section-title {
 }
 
 .carousel-container {
-  height: 80vh;
+  height: 60vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -272,10 +272,10 @@ h2.section-title {
 }
 
 .carousel-item img {
-  width: 70vw;
-  height: 70vw;
-  max-width: 350px;
-  max-height: 350px;
+  width: 60vw;
+  height: 60vw;
+  max-width: 250px;
+  max-height: 250px;
   object-fit: cover;
   border-radius: 10px;
   filter: blur(2px);
