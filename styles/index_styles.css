@@ -93,14 +93,9 @@ h2.section-title {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   /* Use a shorter height */
   min-height: 70vh;
-  padding: 40px 5vw;
-  /* Smaller padding on all sides */
-  box-sizing: border-box;
-  background-color: #000;
-  /* Optional background */
+  padding: 40px 5vw;   /* Smaller padding on all sides */
 }
 
 .why-us h2 {
@@ -116,7 +111,7 @@ h2.section-title {
 .why-us p.about {
   max-width: 900px;
   width: 100%;
-  text-align: justify;
+  /* text-align: justify; */
   font-size: 1.5em;
   line-height: 1.6;
   color: #fff;
