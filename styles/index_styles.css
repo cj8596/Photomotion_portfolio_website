@@ -146,7 +146,6 @@ h2.section-title {
   background: #222;
 }
 
-
 .slice {
   flex: 1;
   position: relative;
@@ -267,7 +266,7 @@ h2.section-title {
   position: relative;
   will-change: transform;
   transition: transform 0.2s linear, opacity 0.2s linear;
-   padding: 0 170px;
+  padding: 0 170px;
 }
 
 
@@ -278,13 +277,6 @@ h2.section-title {
 }
 
 .carousel-item img {
-  /* width: 350px;
-  height: 350px;
-  object-fit: cover;
-  border-radius: 10px;
-  transition: transform 0.4s ease;
-  filter: blur(2px); */
-  /* box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); */
   width: 70vw;
   height: 70vw;
   max-width: 350px;
@@ -295,9 +287,6 @@ h2.section-title {
   transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* .carousel-item img.zoomed-in-center {
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-} */
 .carousel-item img.zoomed-in-center {
   transform: scale(1.4);
   filter: blur(0);
@@ -363,9 +352,14 @@ h2.section-title {
   }
 
   /* ✨ Added Carousel Improvements */
+
+  .carousel-container {
+    height: 60vh;
+  }
+
   .carousel-item img {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     filter: blur(2px);
     transform: scale(1);
   }
@@ -377,11 +371,7 @@ h2.section-title {
   }
 
   .carousel-track {
-    gap: 120px;
-  }
-
-  .carousel-container {
-    height: 60vh;
+    gap: 100px;
   }
 
   /* ✨ Added Text Readability */
@@ -404,7 +394,7 @@ h2.section-title {
 }
 
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   body {
     padding: 10px;
   }
@@ -435,27 +425,28 @@ h2.section-title {
     border-left: 1px solid #444;
   }
 
+  .carousel-container {
+    height: 50vh;
+    padding: 0;
+  }
+
+  .carousel-track {
+    gap: 60px;
+    padding: 0 10px;
+  }
+
   .carousel-item img {
-    width: 200px;
-    height: 200px;
+    width: 130px;
+    height: 130px;
     transform: scale(1);
     filter: blur(2px);
   }
 
   .carousel-item img.zoomed-in-center {
-    transform: scale(1);
+    transform: scale(1.05);
     /* prevent over-zoom */
     filter: blur(0);
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-  }
-
-  .carousel-track {
-    gap: 100px;
-  }
-
-  .carousel-container {
-    height: 50vh;
-    padding: 0;
   }
 
   .why-us p.about {

@@ -11,7 +11,6 @@ window.addEventListener('DOMContentLoaded', () => {
   initCameraHover();
   initializeKeyboardProtection();
   initZoomStopCarousel();
-  // wrapImagesWithWatermark(); // ❌ Not needed unless watermark wrapping is used
 });
 
 // Hover effect for SHOOTS BY CATEGORY section
@@ -118,180 +117,6 @@ function initLoader() {
   });
 }
 
-//experiment
-
-// Infinite Zoom Carousel with Seamless Loop and Pause
-// function initZoomStopCarousel() {
-//   const track = document.getElementById("carousel-track");
-//   const originalItems = Array.from(track.children);
-
-//   // Clone setup
-//   const cloneFactor = 2;
-//   const clonesBefore = [], clonesAfter = [];
-//   for (let i = 0; i < cloneFactor; i++) {
-//     originalItems.forEach(item => {
-//       clonesBefore.push(item.cloneNode(true));
-//       clonesAfter.push(item.cloneNode(true));
-//     });
-//   }
-//   clonesBefore.reverse().forEach(clone => track.prepend(clone));
-//   clonesAfter.forEach(clone => track.append(clone));
-
-//   const allItems = Array.from(track.children);
-//   const originalCount = originalItems.length;
-
-//   const style = getComputedStyle(track);
-//   const itemGap = parseFloat(style.columnGap || style.gap || "0");
-//   const itemWidth = originalItems[0].getBoundingClientRect().width + itemGap;
-
-//   const middleStartOffset = cloneFactor * originalCount * itemWidth;
-//   const scrollOffsetStart = middleStartOffset;
-//   let scrollOffset = scrollOffsetStart;
-//   let lastCenteredOriginalIndex = -1;
-//   let lastCenteredIndex = null;
-//   let isPaused = false;
-//   let pauseStartTime = 0;
-
-//   const pauseDuration = 1000;
-//   const glideSpeed = 4; // slower for smoother motion
-
-//   let isDragging = false;
-//   let startX = 0;
-//   let currentOffset = 0;
-
-//   // Enable smooth motion globally for auto-scroll
-//   track.style.transition = 'transform 0.1s linear';
-
-//   // Mouse drag
-//   track.addEventListener('mousedown', e => {
-//     isDragging = true;
-//     startX = e.clientX;
-//     currentOffset = scrollOffset;
-//     track.style.cursor = 'grabbing';
-//   });
-//   document.addEventListener('mouseup', () => {
-//     isDragging = false;
-//     track.style.cursor = 'grab';
-//     resetIfOutOfBounds();
-//   });
-//   document.addEventListener('mousemove', e => {
-//     if (!isDragging) return;
-//     const dx = e.clientX - startX;
-//     scrollOffset = currentOffset - dx;
-//     track.style.transition = 'none'; // disable transition for manual drag
-//     track.style.transform = `translateX(${-scrollOffset}px)`;
-//     updateCenterDuringDrag();
-//   });
-
-//   // Touch drag
-//   track.addEventListener('touchstart', e => {
-//     isDragging = true;
-//     startX = e.touches[0].clientX;
-//     currentOffset = scrollOffset;
-//   });
-//   track.addEventListener('touchend', () => {
-//     isDragging = false;
-//     resetIfOutOfBounds();
-//   });
-//   track.addEventListener('touchmove', e => {
-//     if (!isDragging) return;
-//     const dx = e.touches[0].clientX - startX;
-//     scrollOffset = currentOffset - dx;
-//     track.style.transition = 'none';
-//     track.style.transform = `translateX(${-scrollOffset}px)`;
-//     updateCenterDuringDrag();
-//   });
-
-//   function setItemState(index, isCenter) {
-//   const item = allItems[index];
-//   const img = item?.querySelector("img");
-//   if (!item || !img) return;
-
-//   img.style.transform = isCenter ? 'scale(1.4)' : 'scale(1)';
-//   img.style.filter = isCenter ? 'blur(0px)' : 'blur(2px)';
-
-//   if (isCenter) {
-//     img.classList.add('zoomed-in-center');
-//   } else {
-//     img.classList.remove('zoomed-in-center');
-//   }
-// }
-
-
-
-//   function getCenteredItemIndex() {
-//     const centerX = window.innerWidth / 2;
-//     let closestIndex = -1;
-//     let minDistance = Infinity;
-//     allItems.forEach((item, index) => {
-//       const rect = item.getBoundingClientRect();
-//       const itemCenter = rect.left + rect.width / 2;
-//       const distance = Math.abs(centerX - itemCenter);
-//       if (distance < minDistance) {
-//         minDistance = distance;
-//         closestIndex = index;
-//       }
-//     });
-//     return {
-//       index: closestIndex,
-//       originalIndex: closestIndex % originalCount,
-//       distance: minDistance
-//     };
-//   }
-
-//   function updateCenterDuringDrag() {
-//     const { index } = getCenteredItemIndex();
-//     if (lastCenteredIndex !== index) {
-//       if (lastCenteredIndex !== null) setItemState(lastCenteredIndex, false);
-//       setItemState(index, true);
-//       lastCenteredIndex = index;
-//     }
-//   }
-
-//   function resetIfOutOfBounds() {
-//   const totalScrollWidth = (originalCount * itemWidth) * cloneFactor * 2; // full length of clones only
-//   const offsetFromMiddle = scrollOffset - middleStartOffset;
-
-//   if (Math.abs(offsetFromMiddle) > totalScrollWidth) {
-//     const wrappedOffset = offsetFromMiddle % (originalCount * itemWidth);
-//     scrollOffset = middleStartOffset + wrappedOffset;
-//     track.style.transition = 'none';
-//     track.style.transform = `translateX(${-scrollOffset}px)`;
-//     void track.offsetWidth;
-//     track.style.transition = 'transform 0.1s linear';
-//   }
-// }
-
-//   function animate() {
-//     const now = performance.now();
-//     if (!isPaused && !isDragging) {
-//       scrollOffset += glideSpeed;
-//       track.style.transform = `translateX(${-scrollOffset}px)`;
-//     }
-
-//     const { index, originalIndex, distance } = getCenteredItemIndex();
-
-//     if (distance < 50 && index !== lastCenteredIndex && !isPaused && !isDragging) {
-//       if (lastCenteredIndex !== null) setItemState(lastCenteredIndex, false);
-//       lastCenteredIndex = index;
-//       setItemState(index, true);
-//       isPaused = true;
-//       pauseStartTime = now;
-//     }
-
-//     if (isPaused && now - pauseStartTime >= pauseDuration) {
-//       isPaused = false;
-//     }
-
-//     resetIfOutOfBounds();
-//     requestAnimationFrame(animate);
-//   }
-
-//   // Initial position and animation start
-//   track.style.transform = `translateX(${-scrollOffset}px)`;
-//   requestAnimationFrame(animate);
-// }
-
 function initZoomStopCarousel() {
   const track = document.getElementById("carousel-track");
   const originalItems = Array.from(track.children);
@@ -321,7 +146,7 @@ function initZoomStopCarousel() {
   let pauseStartTime = 0;
 
   const pauseDuration = 1000;
-  const glideSpeed = 4;
+  const glideSpeed = 5;
 
   let isDragging = false;
   let startX = 0;
@@ -391,57 +216,6 @@ function initZoomStopCarousel() {
     };
   }
 
-  // function resetIfOutOfBounds() {
-  //   const loopDistance = originalCount * itemWidth;
-  //   const offsetFromMiddle = scrollOffset - middleStartOffset;
-
-  //   if (Math.abs(offsetFromMiddle) > loopDistance) {
-  //     const wrappedOffset = ((scrollOffset % loopDistance) + loopDistance) % loopDistance;
-  //     scrollOffset = middleStartOffset + wrappedOffset;
-
-  //     // Hide the track for a frame to avoid flicker
-  //     track.style.transition = 'opacity 0.05s linear';
-  //     track.style.opacity = '0';
-
-  //     requestAnimationFrame(() => {
-  //       track.style.transition = 'none';
-  //       track.style.transition = 'transform 0.2s linear'; 
-  //       track.style.transform = `translateX(${-scrollOffset}px)`;
-  //       void track.offsetWidth;
-
-  //       requestAnimationFrame(() => {
-  //         track.style.transition = 'opacity 0.2s linear, transform 0.2s linear';
-  //         track.style.opacity = '1';
-  //       });
-  //     });
-  //   }
-  // }
-
-  // function resetIfOutOfBounds() {
-  //   const loopDistance = originalCount * itemWidth;
-  //   const offsetFromMiddle = scrollOffset - middleStartOffset;
-
-  //   if (Math.abs(offsetFromMiddle) >= loopDistance * cloneFactor) {
-  //     const wrappedOffset = ((offsetFromMiddle % loopDistance) + loopDistance) % loopDistance;
-  //     scrollOffset = middleStartOffset + wrappedOffset;
-
-  //     track.style.transition = 'opacity 0.05s linear';
-  //     track.style.opacity = '0';
-
-  //     requestAnimationFrame(() => {
-  //       track.style.transition = 'none';
-  //       track.style.transform = `translateX(${-scrollOffset}px)`;
-  //       void track.offsetWidth;
-
-  //       // ✅ Only restore transition here — after jump is done
-  //       requestAnimationFrame(() => {
-  //         track.style.transition = 'opacity 0.2s linear, transform 0.2s linear';
-  //         track.style.opacity = '1';
-  //       });
-  //     });
-  //   }
-  // }
-
 
   function resetIfOutOfBounds() {
     const loopDistance = originalCount * itemWidth;
@@ -468,8 +242,6 @@ function initZoomStopCarousel() {
       });
     }
   }
-
-
 
   function animate() {
     const now = performance.now();
