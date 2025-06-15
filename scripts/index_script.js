@@ -11,6 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initCameraHover();
   initializeKeyboardProtection();
   initZoomStopCarousel();
+  initSmartHeaderFlip();
 });
 
 // Hover effect for SHOOTS BY CATEGORY section
@@ -31,7 +32,7 @@ function initCategoryHover() {
 
 // Hover color effect on camera image (first image in section)
 function initCameraHover() {
-  const img = document.querySelector('section img[src="images/camera.webp"]');
+  const img = document.querySelector('section img[src="images/grid.webp"]');
   if (!img) return;
 
   img.style.transition = 'filter 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -299,3 +300,4 @@ function initZoomStopCarousel() {
 
   animate(); // Start animation loop
 }
+

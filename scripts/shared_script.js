@@ -67,31 +67,62 @@ function initWordAnimator() {
 }
 
 // Floating contact button toggle
+// function initContactButton() {
+//   const contactBtn = document.getElementById('contact-float-btn');
+//   const contactSection = document.getElementById('contact');
+//   if (!(contactBtn && contactSection)) return;
+//   let isAtContact = false;
+
+//   contactBtn.addEventListener('click', () => {
+//     if (isAtContact) {
+//       window.scrollTo({ top: 0, behavior: 'smooth' });
+//     } else {
+//       contactSection.scrollIntoView({ behavior: 'smooth' });
+//     }
+//   });
+
+//   const observer = new IntersectionObserver(entries => {
+//     entries.forEach(entry => {
+//       contactBtn.textContent = entry.isIntersecting
+//         ? '⬆'
+//         : 'Book an Appointment with Us!';
+//       isAtContact = entry.isIntersecting;
+//     });
+//   }, { threshold: 0.5 });
+
+//   observer.observe(contactSection);
+// }
+
 function initContactButton() {
   const contactBtn = document.getElementById('contact-float-btn');
-  const contactSection = document.getElementById('contact');
-  if (!(contactBtn && contactSection)) return;
-  let isAtContact = false;
+  if (!contactBtn) return;
+
+  let isInBackToTopMode = false;
 
   contactBtn.addEventListener('click', () => {
-    if (isAtContact) {
+    if (isInBackToTopMode) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+      window.location.href = 'contact.html'; // Replace with actual contact page
     }
   });
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      contactBtn.textContent = entry.isIntersecting
-        ? '⬆'
-        : 'Book an Appointment with Us!';
-      isAtContact = entry.isIntersecting;
-    });
-  }, { threshold: 0.5 });
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const pageHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollProgress = scrollTop / pageHeight;
 
-  observer.observe(contactSection);
+    if (scrollProgress > 0.6 && !isInBackToTopMode) {
+      isInBackToTopMode = true;
+      contactBtn.textContent = '^';
+    } else if (scrollProgress <= 0.6 && isInBackToTopMode) {
+      isInBackToTopMode = false;
+      contactBtn.textContent = 'Book a Session!';
+    }
+  });
 }
+
+
 
 // Disables text selection, copy/paste, dev tools
 function initContentLockdown() {
@@ -140,4 +171,32 @@ function initializeKeyboardProtection() {
       alert("Action disabled on this page.");
     }
   });
+}
+
+function initSmartHeaderFlip() {
+  const header = document.getElementById('main-header');
+  const gridSection = document.querySelector('.image-wrapper') || document.getElementById('grid-section');
+  if (!header || !gridSection) return;
+
+  let pageTurned = false;
+
+  function updateHeaderState() {
+    const gridTop = gridSection.getBoundingClientRect().top;
+
+    if (gridTop < 50 && gridTop > -window.innerHeight / 2) {
+      header.classList.add('light-header');
+      header.classList.remove('turn-page');
+      pageTurned = false;
+    } else if (gridTop <= -window.innerHeight / 2 && !pageTurned) {
+      header.classList.remove('light-header');
+      header.classList.add('turn-page');
+      pageTurned = true;
+    } else if (gridTop > 80) {
+      header.classList.remove('light-header', 'turn-page');
+      pageTurned = false;
+    }
+  }
+
+  window.addEventListener('scroll', updateHeaderState);
+  window.addEventListener('load', updateHeaderState);
 }
