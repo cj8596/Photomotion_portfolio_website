@@ -8,6 +8,10 @@ html {
   box-sizing: inherit;
 }
 
+body, html {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -279,7 +283,7 @@ footer .footer {
   color: #fff;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   header .logo h1 {
     font-size: 4vw;
   }
@@ -315,7 +319,7 @@ footer .footer {
   .contact-section {
     flex: 1 1 50%;
     height: 50%;
-    padding: 2vh 4vw; /* less vertical padding */
+    padding: 2vh 4vw; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -348,18 +352,135 @@ footer .footer {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 90%;
-    white-space: normal; /* allow wrapping if needed */
+    white-space: normal;
   }
 }
 
 @media (max-height: 500px) {
   #fullpage-menu {
-    overflow-y: auto; /* ✅ Enable scroll only on very short screens */
+    overflow-y: auto; 
     -webkit-overflow-scrolling: touch;
   }
 
   .menu-container {
-    flex-direction: column !important; /* ✅ Enforce vertical stack */
+    flex-direction: column !important; 
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .menu-section,
+  .contact-section {
+    flex: none;
+    min-height: 50vh;
+    height: auto;
+    padding: 2vh 4vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #fullpage-menu ul li a {
+    font-size: clamp(14px, 4vw, 18px);
+  }
+
+  .contact-section a {
+    font-size: clamp(13px, 3.5vw, 16px);
+    word-break: break-word;
+    text-align: center;
+  }
+
+  #animated-word {
+    font-size: clamp(14px, 4vw, 20px);
+    max-width: 90%;
+    text-align: center;
+    white-space: normal;
+  }
+} */
+
+@media (max-width: 768px) {
+  header .logo h1 {
+    font-size: 4vw;
+  }
+
+  
+  #menu-button {
+    font-size: 4vw;
+    top: 20px;
+    left: 20px;
+  }
+
+  #menu-close {
+    font-size: 2.5rem;
+    top: 30px;
+    left: 50px;
+  }
+
+  #fullpage-menu {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  #fullpage-menu h2 {
+    font-size: 6vw;
+  }
+
+  .menu-container {
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .menu-section,
+  .contact-section {
+    flex: 1 1 50%;
+    height: 50%;
+    padding: 2vh 4vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .menu-section h2,
+  .contact-section h2,
+  #animated-word {
+    font-size: clamp(1.2rem, 4.5vw, 1.8rem);
+    margin-bottom: 1vh;
+  }
+
+  .menu-section ul li,
+  .contact-section li {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    margin-bottom: 1vh;
+  }
+
+  .contact-section a,
+  .contact-section p {
+    font-size: clamp(0.9rem, 3.5vw, 1.3rem);
+    word-break: break-word;
+    text-align: center;
+  }
+
+  #animated-word {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    white-space: normal;
+  }
+}
+
+@media (max-height: 500px) {
+  #fullpage-menu {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .menu-container {
+    flex-direction: column !important;
     height: auto;
     min-height: 100vh;
   }
