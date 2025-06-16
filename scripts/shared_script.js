@@ -187,7 +187,7 @@ function initSmartHeaderFlip() {
       header.classList.add('light-header');
       header.classList.remove('turn-page');
       pageTurned = false;
-    } else if (gridTop <= -window.innerHeight / 2 && !pageTurned) {
+    } else if (gridTop <= -window.innerHeight * 0.05 && !pageTurned) {
       header.classList.remove('light-header');
       header.classList.add('turn-page');
       pageTurned = true;

@@ -319,6 +319,129 @@ header.turn-page {
   opacity: 0;
 }
 
+.process {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.step {
+  background: transparent;
+  border-radius: 1.5rem;
+  padding: 3rem 1rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.step:hover,
+.step.active {
+  background: #666666;
+  /* original blue background */
+  box-shadow: 0 8px 24px rgba(92, 92, 92, 0.05);
+  /* optional subtle shadow */
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  transition: all 0.6s ease;
+}
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: #666666;
+  border-radius: 50%;
+  padding: 6px;
+  transition: all 0.6s ease;
+  z-index: 2;
+  margin-left: 20px;
+}
+
+.icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.icon-line-short {
+  height: 2px;
+  width: 100px;
+  /* Smaller initial line */
+  background: #ff9933;
+  margin-left: 10px;
+  transition: opacity 0.4s ease;
+  flex-grow: 0;
+}
+
+
+.icon-line-full {
+  position: absolute;
+  top: 65px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ff9933;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.4s ease;
+}
+
+.step .title {
+  margin-top: 2rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  color: white;
+}
+
+.step .desc {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-top: 0.5rem;
+  color: white;
+}
+
+/* === Hover or Tap Triggered Animation === */
+.step:hover .icon-container,
+.step.active .icon-container {
+  justify-content: center;
+}
+
+.step:hover .icon-wrapper,
+.step.active .icon-wrapper {
+  margin-left: 0;
+}
+
+.step:hover .icon-line-short,
+.step.active .icon-line-short {
+  opacity: 0;
+}
+
+.step:hover .icon-line-full,
+.step.active .icon-line-full {
+  transform: scaleX(1);
+}
+
+
 @keyframes glitch {
   0% {
     filter: grayscale(100%) brightness(50%) contrast(100%)
@@ -624,141 +747,11 @@ header.turn-page {
   }
 } */
 
-@media (max-width: 768px)  {
-  .big-rect {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    border-radius: 12px;
-     overflow: hidden;
-  }
-
-  .slice {
-    flex: 1 1 25%;
-    min-width: 0;
-    font-size: 14px;
-    padding: 12px 5px;
-    box-sizing: border-box;
-    text-align: center;
-  }
-
-  .slice:first-child {
-    border-top: none;
-  }
-
-  .slice.current-item {
-    border-radius: 12px 12px 0 0;
-    transform: scale(1.02);
-    /* was 1.05 — toned down to prevent overflow */
-  }
-
-  .overlay-image {
-    border-radius: 12px;
-  }
-
-  .carousel-container {
-    height: 60vh;
-    overflow-x: hidden;
-  }
-
-  .carousel-track {
-    gap: 80px;
-    padding: 0 10px;
-  }
-
-  .carousel-item img {
-    width: 200px;
-    height: 200px;
-    filter: blur(2px);
-    transform: scale(1);
-  }
-
-  .carousel-item img.zoomed-in-center {
-    transform: scale(1.2);
-    filter: blur(0);
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
-  }
-
-  h2.section-title {
-    font-size: 1.8em;
-    text-align: center;
-  }
-
-  .why-us p.about {
-    font-size: 1.4em;
-    line-height: 1.5;
-    padding: 0 15px;
-  }
-
-  .why-us h2 {
-    font-size: 1.8em;
-    letter-spacing: 3px;
-  }
-
-  footer {
-    font-size: 0.8rem;
-    padding: 10px 0;
-    text-align: center;
-  }
-
-  header .logo img {
-    height: 30px;
-  }
-
-  #loader video {
-    max-width: 90vw;
-    max-height: 70vh;
-  }
-}
-
-
-@media (max-width: 600px) {
-  .big-rect {
-    flex-direction: row;
-    height: auto;
-    width: 90vw;
-    aspect-ratio: 4 / 3;
-    border-radius: 12px;
-  }
-
-  .slice {
-    font-size: 8px;
-    padding: 15px;
-    border-left: 1px solid #444;
-  }
-
-  .carousel-container {
-    height: 50vh;
-  }
-
-  .carousel-item img {
-    width: 140px;
-    height: 140px;
-  }
-
-  .carousel-item img.zoomed-in-center {
-    transform: scale(1.05);
-    filter: blur(0);
-  }
-
-  .why-us p.about {
-    font-size: 1.1em;
-    line-height: 1.4;
-  }
-
-  .why-us h2 {
-    font-size: 1.4em;
-  }
-
-  footer {
-    font-size: 0.75em;
-  }
-}
 /* ──────────────── GENERAL TABLETS ──────────────── */
 @media (min-width: 768px) and (max-width: 1199px) {
-  html, body {
+
+  html,
+  body {
     overflow-x: hidden;
   }
 
@@ -851,11 +844,46 @@ header.turn-page {
     max-width: 85vw;
     max-height: 70vh;
   }
+
+
+  .process {
+    gap: 4rem;
+    padding: 0 2rem;
+  }
+
+  .step {
+    padding: 2.5rem 1.2rem 1.8rem;
+  }
+
+  .step .title {
+    font-size: 1.3rem;
+    margin-top: 1.8rem;
+  }
+
+  .step .desc {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .icon-wrapper {
+    width: 46px;
+    height: 46px;
+  }
+
+  .icon-line-short {
+    width: 45px;
+  }
+
+  .icon-line-full {
+    top: 60px;
+  }
 }
 
 /* ──────────────── PORTRAIT TABLETS (OVERRIDE) ──────────────── */
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-  html, body {
+
+  html,
+  body {
     overflow-x: hidden;
   }
 
@@ -909,4 +937,222 @@ header.turn-page {
   body #menu-button {
     font-size: 24px !important;
   }
+}
+
+
+@media (max-width: 768px) {
+  .big-rect {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .slice {
+    flex: 1 1 25%;
+    min-width: 0;
+    font-size: 14px;
+    padding: 12px 5px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .slice:first-child {
+    border-top: none;
+  }
+
+  .slice.current-item {
+    border-radius: 12px 12px 0 0;
+    transform: scale(1.02);
+    /* was 1.05 — toned down to prevent overflow */
+  }
+
+  .overlay-image {
+    border-radius: 12px;
+  }
+
+  .carousel-container {
+    height: 60vh;
+    overflow-x: hidden;
+  }
+
+  .carousel-track {
+    gap: 80px;
+    padding: 0 10px;
+  }
+
+  .carousel-item img {
+    width: 200px;
+    height: 200px;
+    filter: blur(2px);
+    transform: scale(1);
+  }
+
+  .carousel-item img.zoomed-in-center {
+    transform: scale(1.2);
+    filter: blur(0);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+  }
+
+  h2.section-title {
+    font-size: 1.8em;
+    text-align: center;
+  }
+
+  .why-us p.about {
+    font-size: 1.4em;
+    line-height: 1.5;
+    padding: 0 15px;
+  }
+
+  .why-us h2 {
+    font-size: 1.8em;
+    letter-spacing: 3px;
+  }
+
+  footer {
+    font-size: 0.8rem;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  header .logo img {
+    height: 30px;
+  }
+
+  #loader video {
+    max-width: 90vw;
+    max-height: 70vh;
+  }
+
+  .process {
+        gap: 3rem;
+        padding: 0 1rem;
+      }
+
+      .step {
+        padding: 2rem 1rem 1.5rem;
+      }
+
+      .step .title {
+        font-size: 1.2rem;
+        margin-top: 1.5rem;
+      }
+
+      .step .desc {
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .icon-wrapper {
+        width: 42px;
+        height: 42px;
+      }
+
+      .icon-line-short {
+        width: 40px;
+      }
+
+      .icon-line-full {
+        top: 53px;
+      }
+}
+
+
+@media (max-width: 600px) {
+  .big-rect {
+    flex-direction: row;
+    height: auto;
+    width: 90vw;
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+  }
+
+  .slice {
+    font-size: 8px;
+    padding: 15px;
+    border-left: 1px solid #444;
+  }
+
+  .carousel-container {
+    height: 50vh;
+  }
+
+  .carousel-item img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .carousel-item img.zoomed-in-center {
+    transform: scale(1.05);
+    filter: blur(0);
+  }
+
+  .why-us p.about {
+    font-size: 1.1em;
+    line-height: 1.4;
+  }
+
+  .why-us h2 {
+    font-size: 1.4em;
+  }
+
+  footer {
+    font-size: 0.75em;
+  }
+
+  .step {
+        padding: 1.5rem 1rem;
+      }
+
+      .step .title {
+        font-size: 1.1rem;
+      }
+
+      .step .desc {
+        font-size: 0.9rem;
+      }
+
+      .icon-wrapper {
+        width: 38px;
+        height: 38px;
+      }
+
+      .icon-line-short {
+        width: 30px;
+      }
+
+      .icon-line-full {
+        top: 48px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      h2 {
+        font-size: 1.6rem;
+      }
+      
+      .step .title {
+        font-size: 1rem;
+      }
+
+      .step .desc {
+        font-size: 0.85rem;
+      }
+
+      .icon-wrapper {
+        width: 34px;
+        height: 34px;
+      }
+
+      .icon-line-short {
+        width: 25px;
+      }
+
+      .icon-line-full {
+        top: 44px;
+      }
 }
