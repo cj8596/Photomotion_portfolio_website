@@ -12,6 +12,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initializeKeyboardProtection();
   initZoomStopCarousel();
   initSmartHeaderFlip();
+  initWhyOurProcess();
 });
 
 // Hover effect for SHOOTS BY CATEGORY section
@@ -301,3 +302,26 @@ function initZoomStopCarousel() {
   animate(); // Start animation loop
 }
 
+function initWhyOurProcess(){
+  if (window.matchMedia('(max-width: 768px)').matches) {
+      const steps = document.querySelectorAll('.step');
+
+      // Handle step activation on tap
+      steps.forEach(step => {
+        step.addEventListener('click', (e) => {
+          e.stopPropagation(); // prevent bubbling to document
+
+          const isActive = step.classList.contains('active');
+          steps.forEach(s => s.classList.remove('active'));
+          if (!isActive) {
+            step.classList.add('active');
+          }
+        });
+      });
+
+      // Handle tap outside to deactivate all
+      document.addEventListener('click', () => {
+        steps.forEach(s => s.classList.remove('active'));
+      });
+    }
+}
