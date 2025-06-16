@@ -381,15 +381,14 @@ header.turn-page {
   object-fit: contain;
 }
 
-.icon-line-short {
+/* .icon-line-short {
   height: 2px;
-  width: 100px;
-  /* Smaller initial line */
+  width: 100px; 
   background: #ff9933;
   margin-left: 10px;
   transition: opacity 0.4s ease;
   flex-grow: 0;
-}
+} */
 
 
 .icon-line-full {
