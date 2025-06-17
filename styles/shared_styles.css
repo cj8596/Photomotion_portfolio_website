@@ -67,8 +67,8 @@ header .logo {
 }
 
 header .logo img {
-  height: 8vw;
-  max-height: 80px;
+  height: 15vw;
+  max-height: 150px;
   margin-right: 10px;
   display: block;
 }
@@ -98,7 +98,7 @@ nav a:hover {
   font-size: clamp(20px, 6vw, 32px);
   color: #ff9933;
   cursor: pointer;
-  padding: 10px 15px;
+  padding: 50px 15px;
   /* font-weight: bold; */
   line-height: -1;
 }
