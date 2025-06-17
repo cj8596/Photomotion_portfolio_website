@@ -577,6 +577,21 @@ header.turn-page {
     letter-spacing: 1px;
   }
 
+  .image-wrapper {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-top: 30px;
+    padding: 0 1px;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+  }
+
   .why-us p.about {
     font-size: 1em;
     padding: 0 10px;
@@ -662,14 +677,6 @@ header.turn-page {
     max-width: 95vw;
     max-height: 60vh;
   }
-
-  section {
-    margin-bottom: 30px;
-  }
-
-  .image-wrapper {
-    margin-top: 60px;
-  }
 }
 
 /* ≤ 500px - Mobile phones */
@@ -683,8 +690,21 @@ header.turn-page {
   h2.section-title,
   .why-us h2,
   .work h2 {
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-align: center;
+  }
+
+  .image-wrapper {
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover; /* or 'contain' depending on your look */
   }
 
   .why-us p.about {
@@ -698,6 +718,7 @@ header.turn-page {
     /* or 100vw if you want edge-to-edge */
     height: auto;
     min-height: 400px;
+    margin-bottom: 10px;
   }
 
   .slice {
@@ -728,11 +749,5 @@ header.turn-page {
     padding: 0 10px;
   }
 
-  .image-wrapper {
-    margin-top: 40px;
-  }
 
-  section {
-    padding: 0 10px;
-  }
 }
