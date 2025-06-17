@@ -114,10 +114,10 @@ function initContactButton() {
 
     if (scrollProgress > 0.6 && !isInBackToTopMode) {
       isInBackToTopMode = true;
-      contactBtn.textContent = '^';
+      ccontactBtn.innerHTML = '<i class="fas fa-home"></i>';
     } else if (scrollProgress <= 0.6 && isInBackToTopMode) {
       isInBackToTopMode = false;
-      contactBtn.textContent = 'Book a Session!';
+      contactBtn.innerHTML = 'Book a Session!';
     }
   });
 }
