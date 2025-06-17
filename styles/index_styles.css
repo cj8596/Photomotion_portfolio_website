@@ -1,3 +1,7 @@
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* Loader Styles */
 #loader {
   position: fixed;
@@ -547,7 +551,8 @@ header.turn-page {
   }
 
   .overlay-image {
-    background-size: cover;/* instead of contain */
+    background-size: cover;
+    /* instead of contain */
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
@@ -581,18 +586,23 @@ header.turn-page {
 
   .big-rect {
     flex-direction: row;
-    width: 95vw;
+    width: 100vw;
     /* or 100vw if you want edge-to-edge */
+    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
     height: auto;
     min-height: 200px;
   }
 
   .slice {
     padding: 20px 10px;
-    font-size: 1em;
+    font-size: 0.5em;
     justify-content: center;
     border-left: 1px solid #444;
     border-top: none;
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+
   }
 
   .slice:first-child {
@@ -601,13 +611,13 @@ header.turn-page {
 
   .overlay-image {
     background-size: cover;
-    /* instead of contain */
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
     height: 100%;
     border-radius: 12px;
     filter: brightness(0.9);
+    pointer-events: none;
   }
 
 
@@ -691,7 +701,7 @@ header.turn-page {
   }
 
   .slice {
-    font-size: 0.9em;
+    font-size: 0.7em;
     padding: 15px 5px;
   }
 
