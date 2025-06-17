@@ -31,20 +31,6 @@ body.menu-active {
   transition: background-color 0.5s ease;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-.image-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.image-wrapper img {
-  display: block;
-}
-
 #content {
   transition: opacity 1s ease;
   padding: 5vw;
@@ -256,6 +242,7 @@ nav a:hover {
 }
 
 footer {
+  margin-top: 60px;
   background: #000;
   color: #000000;
   padding: 20px 40px;
