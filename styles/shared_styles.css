@@ -4,11 +4,14 @@ html {
   font-size: 16px;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
-body, html {
+body,
+html {
   overflow-x: hidden;
 }
 
@@ -154,18 +157,22 @@ nav a:hover {
 
 #fullpage-menu ul li {
   margin: 1vh 0;
-  font-size: clamp(14px, 4vw, 20px); /* ✅ Scales with screen size */
+  font-size: clamp(14px, 4vw, 20px);
+  /* ✅ Scales with screen size */
 }
 
 #fullpage-menu ul li a {
   color: white;
-  font-size: clamp(16px, 5vw, 24px); /* ✅ Scales down on smaller screens */
+  font-size: clamp(16px, 5vw, 24px);
+  /* ✅ Scales down on smaller screens */
   text-decoration: none;
   font-weight: 700;
   transition: color 0.3s;
   display: inline-block;
-  max-width: 90vw;         /* ✅ Prevents long text overflow */
-  word-break: break-word;  /* ✅ Ensures it wraps if needed */
+  max-width: 90vw;
+  /* ✅ Prevents long text overflow */
+  word-break: break-word;
+  /* ✅ Ensures it wraps if needed */
 }
 
 #fullpage-menu ul li a:hover {
@@ -387,19 +394,43 @@ footer .footer {
 } */
 
 @media (max-width: 768px) {
+
+  #content {
+    padding-top: 8vh;
+    /* to visually balance under the header */
+  }
+
+  header {
+    padding: 20px 10px;
+    /* increase padding on mobile */
+    text-align: center;
+  }
+
+  header .logo {
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+
+  header .logo img {
+    height: 15vw;    /* increase logo height for visibility */
+    max-height: 100px;
+    
+  }
+
+
   header .logo h1 {
     font-size: 4vw;
   }
 
-  
+
   #menu-button {
-    font-size: 4vw;
+    font-size: 6vw;
     top: 20px;
     left: 20px;
   }
 
   #menu-close {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     top: 30px;
     left: 50px;
   }
@@ -461,6 +492,17 @@ footer .footer {
 }
 
 @media (max-height: 500px) {
+
+  header {
+    padding: 16px 8px;
+    min-height: 10vh; /* taller header */
+  }
+
+  header .logo img {
+    height: 12vw;        /* scale up more on tiny screens */
+    max-height: 80px;   /* keep it clean */
+  }
+
   #fullpage-menu {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -509,6 +551,7 @@ footer .footer {
     transform: translateY(-100%);
     opacity: 0;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -520,6 +563,7 @@ footer .footer {
     transform: translateY(100%);
     opacity: 0;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -531,6 +575,7 @@ footer .footer {
     transform: translateY(0);
     opacity: 1;
   }
+
   100% {
     transform: translateY(-100%);
     opacity: 0;
@@ -542,6 +587,7 @@ footer .footer {
     transform: translateY(0);
     opacity: 1;
   }
+
   100% {
     transform: translateY(100%);
     opacity: 0;
