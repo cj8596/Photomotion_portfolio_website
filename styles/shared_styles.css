@@ -364,217 +364,88 @@ footer .footer {
   font-size: 1em;
 }
 
-/* @media (max-width: 768px) {
-  header .logo h1 {
-    font-size: 4vw;
-  }
 
-  #menu-button {
-    font-size: 6vw;
-    top: 20px;
-    left: 20px;
-  }
+/* === Responsive Adjustments for Shared Styles === */
 
-  #menu-close {
-    font-size: 2.5rem;
-    top: 30px;
-    left: 50px;
-  }
-
-  #fullpage-menu {
-  height: 100vh;
-  overflow: hidden;
-}
-
-  #fullpage-menu h2 {
-    font-size: 6vw;
-  }
-
-.menu-container {
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-  }
-
-  .menu-section,
-  .contact-section {
-    flex: 1 1 50%;
-    height: 50%;
-    padding: 2vh 4vw; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    text-align: center;
-  }
-
-  .menu-section h2,
-  .contact-section h2,
-  #animated-word {
-    font-size: clamp(1.2rem, 4.5vw, 1.8rem);
-    margin-bottom: 1vh;
-  }
-
-  .menu-section ul li,
-  .contact-section li {
-    font-size: clamp(1rem, 4vw, 1.5rem);
-    margin-bottom: 1vh;
-  }
-
-  .contact-section a,
-  .contact-section p {
-    font-size: clamp(0.9rem, 3.5vw, 1.3rem);
-    word-break: break-word;
-    text-align: center;
-  }
-
-  #animated-word {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 90%;
-    white-space: normal;
-  }
-}
-
-@media (max-height: 500px) {
-  #fullpage-menu {
-    overflow-y: auto; 
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .menu-container {
-    flex-direction: column !important; 
-    height: auto;
-    min-height: 100vh;
-  }
-
-  .menu-section,
-  .contact-section {
-    flex: none;
-    min-height: 50vh;
-    height: auto;
-    padding: 2vh 4vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-
-  #fullpage-menu ul li a {
-    font-size: clamp(14px, 4vw, 18px);
-  }
-
-  .contact-section a {
-    font-size: clamp(13px, 3.5vw, 16px);
-    word-break: break-word;
-    text-align: center;
-  }
-
-  #animated-word {
-    font-size: clamp(14px, 4vw, 20px);
-    max-width: 90%;
-    text-align: center;
-    white-space: normal;
-  }
-} */
-
-@media (max-width: 768px) {
-
-  #content {
-    padding-top: 8vh;
-    /* to visually balance under the header */
-  }
-
+/* iPad Pro and smaller tablets */
+@media (max-width: 1024px) {
   header {
-    padding: 20px 10px;
-    /* increase padding on mobile */
-    text-align: center;
-  }
-
-  header .logo {
-    margin-top: 0;
-    margin-bottom: 8px;
+    padding: 20px 16px;
   }
 
   header .logo img {
-    height: 15vw;    /* increase logo height for visibility */
-    max-height: 100px;
-    
+    height: 12vw;
+    max-height: 120px;
   }
-
-
-  header .logo h1 {
-    font-size: 4vw;
-  }
-
 
   #menu-button {
-    font-size: 6vw;
-    top: 20px;
-    left: 20px;
-  }
-
-  #menu-close {
-    font-size: 1.5rem;
-    top: 30px;
-    left: 50px;
-  }
-
-  #fullpage-menu {
-    height: 100vh;
-    overflow: hidden;
+    font-size: 5vw;
+    padding: 30px 10px;
   }
 
   #fullpage-menu h2 {
-    font-size: 6vw;
-  }
-
-  .menu-container {
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
+    font-size: 4.5vw;
   }
 
   .menu-section,
   .contact-section {
-    flex: 1 1 50%;
-    height: 50%;
-    padding: 2vh 4vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    text-align: center;
+    padding: 50px 30px;
   }
 
-  .menu-section h2,
-  .contact-section h2,
-  #animated-word {
-    font-size: clamp(1.2rem, 4.5vw, 1.8rem);
-    margin-bottom: 1vh;
+  .footer-section {
+    padding: 20px 30px;
+  }
+
+  .footer-grid {
+    gap: 30px;
+  }
+
+  .left-links a,
+  .right-links a {
+    font-size: 16px;
+  }
+
+  .logo-image {
+    width: 140px;
+  }
+
+  .center-logo .line {
+    height: 90px;
+  }
+}
+
+/* Tablets (≤768px) */
+@media (max-width: 768px) {
+  header {
+    padding: 16px 10px;
+  }
+
+  header .logo img {
+    height: 14vw;
+    max-height: 100px;
+  }
+
+  #menu-button {
+    font-size: 6vw;
+    padding: 20px 10px;
+  }
+
+  .menu-section,
+  .contact-section {
+    padding: 40px 20px;
+  }
+
+  #fullpage-menu h2 {
+    font-size: 5.5vw;
   }
 
   .menu-section ul li,
   .contact-section li {
-    font-size: clamp(1rem, 4vw, 1.5rem);
-    margin-bottom: 1vh;
+    font-size: 1.1rem;
   }
 
-  .contact-section a,
-  .contact-section p {
-    font-size: clamp(0.9rem, 3.5vw, 1.3rem);
-    word-break: break-word;
-    text-align: center;
-  }
-
-  #animated-word {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 90%;
-    white-space: normal;
+  .contact-section a {
+    font-size: 1rem;
   }
 
   .footer-section {
@@ -582,27 +453,19 @@ footer .footer {
   }
 
   .footer-grid {
-    gap: 20px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .footer-column {
     gap: 10px;
+    align-items: center;
   }
 
   .left-links a,
   .right-links a {
     font-size: 14px;
-  }
-
-  .right-links {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .right-links img {
-    width: 14px;
-    height: 14px;
   }
 
   .logo-image {
@@ -618,121 +481,68 @@ footer .footer {
   }
 }
 
-@media (max-height: 500px) {
-
+/* Phones (≤480px) */
+@media (max-width: 480px) {
   header {
-    padding: 16px 8px;
-    min-height: 10vh; /* taller header */
+    padding: 10px 8px;
   }
 
   header .logo img {
-    height: 12vw;        /* scale up more on tiny screens */
-    max-height: 80px;   /* keep it clean */
+    height: 16vw;
+    max-height: 90px;
   }
 
-  #fullpage-menu {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+  #menu-button {
+    font-size: 7vw;
+    padding: 15px 8px;
   }
 
-  .menu-container {
-    flex-direction: column !important;
-    height: auto;
-    min-height: 100vh;
+  #menu-close {
+    font-size: 1.5rem;
+  }
+
+  #fullpage-menu h2 {
+    font-size: 6vw;
   }
 
   .menu-section,
   .contact-section {
-    flex: none;
-    min-height: 50vh;
-    height: auto;
-    padding: 2vh 4vw;
-    display: flex;
+    padding: 30px 10px;
+  }
+
+  .menu-section ul li a {
+    font-size: clamp(14px, 5vw, 20px);
+  }
+
+  .footer-section {
+    padding: 10px 15px;
+  }
+
+  .footer-grid {
     flex-direction: column;
-    justify-content: center;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .footer-column {
     align-items: center;
-    text-align: center;
+    gap: 8px;
   }
 
-  #fullpage-menu ul li a {
-    font-size: clamp(14px, 4vw, 18px);
+  .left-links a,
+  .right-links a {
+    font-size: 13px;
   }
 
-  .contact-section a {
-    font-size: clamp(13px, 3.5vw, 16px);
-    word-break: break-word;
-    text-align: center;
+  .logo-image {
+    width: 100px;
   }
 
-  #animated-word {
-    font-size: clamp(14px, 4vw, 20px);
-    max-width: 90%;
-    text-align: center;
-    white-space: normal;
-  }
-}
-
-
-@keyframes slideDownIn {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
+  .center-logo .line {
+    height: 50px;
   }
 
-  100% {
-    transform: translateY(0);
-    opacity: 1;
+  .footer {
+    font-size: 0.8em;
   }
-}
-
-@keyframes slideUpIn {
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideDownOut {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-}
-
-@keyframes slideUpOut {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-}
-
-#fullpage-menu.active .slide-down {
-  animation: slideDownIn 0.7s forwards ease-out;
-}
-
-#fullpage-menu.active .slide-up {
-  animation: slideUpIn 0.7s forwards ease-out;
-}
-
-#fullpage-menu.closing .slide-down {
-  animation: slideDownOut 0.7s forwards ease-in;
-}
-
-#fullpage-menu.closing .slide-up {
-  animation: slideUpOut 0.7s forwards ease-in;
 }
