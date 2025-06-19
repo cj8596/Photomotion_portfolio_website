@@ -1,3 +1,7 @@
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* Loader Styles */
 #loader {
   position: fixed;
@@ -41,13 +45,24 @@ body.loading {
   overflow: hidden;
 }
 
-body.loaded {
-  overflow: auto;
-}
-
 body.loaded #content {
   display: block;
   opacity: 1;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.image-wrapper {
+  margin-top: 180px;
+  position: relative;
+  display: inline-block;
+}
+
+.image-wrapper img {
+  display: block;
 }
 
 /* Section Scroll Reveal */
@@ -85,6 +100,15 @@ h2.section-title {
   font-size: 3em;
   letter-spacing: 3px;
   margin-bottom: 30px;
+  text-transform: uppercase;
+  user-select: none;
+  color: #ff9933;
+}
+
+.work h2 {
+  font-size: 3em;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
   text-transform: uppercase;
   user-select: none;
   color: #ff9933;
@@ -140,8 +164,8 @@ h2.section-title {
   cursor: pointer;
   overflow: hidden;
   border-radius: 12px;
-  /* box-shadow: 0 0 30px 5px rgba(255, 255, 255, 0.3); */
   background: #222;
+  margin-bottom: 50px;
 }
 
 .slice {
@@ -150,18 +174,20 @@ h2.section-title {
   z-index: 10;
   border-left: 1px solid #444;
   transition: background 0.3s, transform 0.3s, color 0.3s;
-  color: #ddd;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  font-weight: bold;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 60px;
   user-select: none;
   font-size: 22px;
-  text-shadow: 0 0 8px #000;
   background: transparent;
+  color: #ddd;
+  font-weight: 1000;
+  text-shadow:
+    0 0 2px rgba(0, 0, 0, 0.7),
+    0 0 1px rgba(255, 255, 255, 0.5);
 }
 
 .slice:first-child {
@@ -169,19 +195,20 @@ h2.section-title {
 }
 
 .slice:hover {
-  background: rgba(255, 255, 255, 0.15) !important;
-  transform: scale(1.05) !important;
-  color: white !important;
-  z-index: 9999 !important;
+  background: rgba(255, 255, 255, 0.05);
+  transform: scale(1.02);
+  color: #eee;
+  z-index: 5;
+
 }
 
 .slice.current-item {
-  background: rgba(255, 255, 255, 0.25);
-  color: white;
-  transform: scale(1.1);
+  background: transparent;
+  color: black;
+  transform: none;
   z-index: 20;
-  box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.4);
-  border-radius: 12px 0 0 12px;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 /* Overlay Images */
@@ -195,7 +222,6 @@ h2.section-title {
   border-radius: 12px;
   background: #111;
   pointer-events: auto;
-  /* or remove pointer-events */
 }
 
 .overlay-image {
@@ -225,29 +251,14 @@ h2.section-title {
   z-index: 6;
 }
 
-/* .overlay-image::after {
-  content: "© YOURNAME";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-45deg);
-  font-size: 3em;
-  color: rgba(255, 255, 255, 0.1);
-  pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
-  z-index: 10;
-} */
+
 
 .carousel-wrapper {
   width: 100vw;
   overflow: hidden;
-  /* This hides anything overflowing horizontally */
   position: relative;
   padding: 0;
-  /* optional, to tightly contain */
   margin: 0 auto;
-  /* center if needed */
 }
 
 .carousel-container {
@@ -257,7 +268,6 @@ h2.section-title {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  /* This allows full transform motion inside */
   position: relative;
 }
 
@@ -296,10 +306,6 @@ h2.section-title {
 
 /* Flip-out animation for header */
 header {
-  /* position: fixed;
-  transform-origin: top center;
-  transition: background 0.4s ease, transform 0.7s ease, opacity 0.4s ease;
-  backface-visibility: hidden; */
   position: fixed;
   top: 0;
   left: 0;
@@ -322,7 +328,7 @@ header.turn-page {
 .process {
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 2rem;
   max-width: 1000px;
   margin: auto;
 }
@@ -330,7 +336,7 @@ header.turn-page {
 .step {
   background: transparent;
   border-radius: 1.5rem;
-  padding: 3rem 1rem 2rem;
+  padding: 1.5rem 1rem;
   position: relative;
   overflow: hidden;
   transition: all 0.4s ease;
@@ -341,9 +347,7 @@ header.turn-page {
 .step:hover,
 .step.active {
   background: #666666;
-  /* original blue background */
   box-shadow: 0 8px 24px rgba(92, 92, 92, 0.05);
-  /* optional subtle shadow */
 }
 
 .step-content {
@@ -381,17 +385,6 @@ header.turn-page {
   object-fit: contain;
 }
 
-.icon-line-short {
-  height: 2px;
-  width: 100px;
-  /* Smaller initial line */
-  background: #ff9933;
-  margin-left: 10px;
-  transition: opacity 0.4s ease;
-  flex-grow: 0;
-}
-
-
 .icon-line-full {
   position: absolute;
   top: 65px;
@@ -409,7 +402,8 @@ header.turn-page {
   font-size: 1.6rem;
   font-weight: 700;
   text-align: center;
-  color: white;
+  color: #ff9933;
+  ;
 }
 
 .step .desc {
@@ -479,680 +473,199 @@ header.turn-page {
 }
 
 
-/* Responsive Design */
-/* @media (max-width: 768px) {
-  .big-rect {
-    width: 90vw;
-    aspect-ratio: 4 / 3;
-    flex-direction: row;
-    height: auto;
-    border-radius: 12px;
+/* ================== iPad Pro (≤1024px) ================== */
+@media (max-width: 1024px) {
+  #content {
+    padding-top: 100px;
   }
 
-  .slice {
-    font-size: 16px;
-    padding: 15px;
-    border-left: 1px solid #444;
-    border-top: 1px solid #444;
-    justify-content: center;
-  }
-
-  .slice:first-child {
-    border-top: none;
-  }
-
-  .slice.current-item {
-    border-radius: 12px 12px 0 0;
-    transform: scale(1.05);
-  }
-
-  .overlay-image {
-    border-radius: 12px;
-  }
-
-  h2.section-title {
-    font-size: 1.8em;
-    text-align: center;
-  }
-
-  header,
-  footer {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  header .logo img {
-    height: 30px;
-    margin-right: 5px;
-  }
-
-  nav a {
-    display: inline-block;
-    margin: 8px 5px;
-    font-size: 14px;
-  }
-
-  header nav a {
-    display: none;
-  }
-
-  .carousel-container {
-    height: 60vh;
-  }
-
-  .carousel-item img {
-    width: 200px;
-    height: 200px;
-    filter: blur(2px);
-    transform: scale(1);
-  }
-
-  .carousel-item img.zoomed-in-center {
-    transform: scale(1.2);
-    filter: blur(0);
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+  h2.section-title,
+  .why-us h2,
+  .work h2 {
+    font-size: 2.2em;
   }
 
   .carousel-track {
-    gap: 100px;
-  }
-
-
-  .why-us p.about {
-    font-size: 1.8em;
-    line-height: 1.5;
-    letter-spacing: normal;
-  }
-
-  .why-us h2 {
-    font-size: 1.8em;
-    letter-spacing: 3px;
-  }
-
-  
-  #loader video {
-    max-width: 90vw;
-    max-height: 70vh;
-  }
-}
-
-
-@media (max-width: 600px) {
-  body {
-    padding: 10px;
-  }
-
-  section h2 {
-    font-size: 1.4rem;
-  }
-
-  section p {
-    font-size: 1rem;
-  }
-
-  .logo img {
-    height: 24px;
-  }
-
-  .big-rect {
-    flex-direction: row;
-    height: auto;
-    width: 90vw;
-    aspect-ratio: 4 / 3;
-    border-radius: 12px;
-  }
-
-  .slice {
-    font-size: 8px;
-    padding: 15px;
-    border-left: 1px solid #444;
+    gap: 120px;
+    padding: 0 60px;
   }
 
   .carousel-container {
     height: 50vh;
-    padding: 0;
-  }
-
-  .carousel-track {
-    gap: 60px;
-    padding: 0 10px;
   }
 
   .carousel-item img {
-    width: 130px;
-    height: 130px;
-    transform: scale(1);
-    filter: blur(2px);
-  }
-
-  .carousel-item img.zoomed-in-center {
-    transform: scale(1.05);
-    filter: blur(0);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-  }
-
-  .why-us p.about {
-    font-size: 1em;
-    line-height: 1.4;
-    letter-spacing: normal;
-  }
-
-  .why-us h2 {
-    font-size: 1.4em;
-    letter-spacing: 0.5px;
-  }
-
-  footer {
-    font-size: 0.75em;
-  }
-
-  header {
-    flex-wrap: wrap;
-  }
-
-  header nav a {
-    display: block;
-    margin: 5px 0;
-    font-size: 14px;
-  }
-
-  #loader video {
-    max-width: 100vw;
-    max-height: 60vh;
-  }
-} */
-
-/* @media (max-width: 768px) {
-  .big-rect {
-    width: 90vw;
-    aspect-ratio: 4 / 3;
-    flex-direction: row;
-    height: auto;
-    border-radius: 12px;
-  }
-
-  .slice {
-    font-size: 16px;
-    padding: 15px;
-    border-left: 1px solid #444;
-    border-top: 1px solid #444;
-    justify-content: center;
-  }
-
-  .slice:first-child {
-    border-top: none;
-  }
-
-  .slice.current-item {
-    border-radius: 12px 12px 0 0;
-    transform: scale(1.05);
-  }
-
-  .overlay-image {
-    border-radius: 12px;
-  }
-
-  .carousel-container {
-    height: 60vh;
-    overflow-x: hidden;
-  }
-
-  .carousel-track {
-    gap: 80px;
-    padding: 0 10px;
-  }
-
-  .carousel-item img {
-    width: 200px;
-    height: 200px;
-    filter: blur(2px);
-    transform: scale(1);
-  }
-
-  .carousel-item img.zoomed-in-center {
-    transform: scale(1.2);
-    filter: blur(0);
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
-  }
-
-  h2.section-title {
-    font-size: 1.8em;
-    text-align: center;
-  }
-
-  .why-us p.about {
-    font-size: 1.4em;
-    line-height: 1.5;
-    padding: 0 15px;
-  }
-
-  .why-us h2 {
-    font-size: 1.8em;
-    letter-spacing: 3px;
-  }
-
-  footer {
-    font-size: 0.8rem;
-    padding: 10px 0;
-    text-align: center;
-  }
-
-  header .logo img {
-    height: 30px;
-  }
-
-  #loader video {
-    max-width: 90vw;
-    max-height: 70vh;
-  }
-} */
-
-/* ──────────────── GENERAL TABLETS ──────────────── */
-@media (min-width: 768px) and (max-width: 1199px) {
-
-  html,
-  body {
-    overflow-x: hidden;
+    max-width: 200px;
+    max-height: 200px;
   }
 
   .big-rect {
     width: 95vw;
-    max-width: 100%;
     height: auto;
-    transform: scale(0.92);
-    transform-origin: top center;
-    overflow: hidden;
+    min-height: 450px;
   }
 
   .slice {
-    flex: 1 1 25%;
-    font-size: 14px;
-    padding: 12px 6px;
-    min-width: 0;
-    box-sizing: border-box;
+    font-size: 1em;
   }
 
-  .slice.current-item {
-    transform: scale(1.03);
-    border-radius: 12px 12px 0 0;
+  .why-us p.about {
+    font-size: 1.2em;
+    line-height: 1.5;
+  }
+
+  .step .title {
+    font-size: 1.4rem;
+  }
+
+  .step .desc {
+    font-size: 1.1rem;
+  }
+}
+
+
+/* ================== Tablets (≤768px) ================== */
+@media (max-width: 768px) {
+  #content {
+    padding-top: 100px;
+  }
+
+  h2.section-title,
+  .why-us h2,
+  .work h2 {
+    font-size: 1.5em;
+    letter-spacing: 1px;
+  }
+
+  .image-wrapper {
+    margin-top: 80px;
+    padding: 0 8px;
+  }
+
+  .why-us p.about {
+    font-size: 1em;
+    padding: 0 10px;
+    line-height: 1.5;
+    text-align: justify;
+    text-align-last: left;
+  }
+
+  .big-rect {
+    width: 90vw;
+    min-height: 300px;
+  }
+
+  .slice {
+    font-size: 0.9em;
+    padding: 20px 8px;
   }
 
   .overlay-image {
-    border-radius: 12px;
-    background-size: contain;
+    background-size: cover;
+    filter: brightness(0.9);
   }
 
   .carousel-container {
-    height: 55vh;
-    overflow: hidden;
+    height: 40vh;
   }
 
   .carousel-track {
-    gap: 90px;
+    gap: 100px;
     padding: 0 20px;
   }
 
   .carousel-item img {
-    width: 220px;
-    height: 220px;
-    filter: blur(2px);
-    transform: scale(1);
+    width: 35vw;
+    height: 35vw;
+    max-width: 140px;
+    max-height: 140px;
   }
 
   .carousel-item img.zoomed-in-center {
-    transform: scale(1.25);
-    filter: blur(0);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    transform: scale(1.3);
   }
-
-  h2.section-title {
-    font-size: 2rem;
-    letter-spacing: 2px;
-  }
-
-  .why-us h2 {
-    font-size: 2rem;
-    letter-spacing: 2px;
-  }
-
-  .why-us p.about {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    padding: 0 20px;
-    text-align: justify;
-    text-align-last: center;
-  }
-
-  footer {
-    font-size: 0.85rem;
-    text-align: center;
-    padding: 15px 0;
-  }
-
-  header .logo img {
-    height: 42px;
-  }
-
-  #menu-button {
-    font-size: 24px;
-    background: transparent;
-    border: none;
-    margin: 0;
-  }
-
-  #loader video {
-    max-width: 85vw;
-    max-height: 70vh;
-  }
-
 
   .process {
-    gap: 4rem;
-    padding: 0 2rem;
-  }
-
-  .step {
-    padding: 2.5rem 1.2rem 1.8rem;
+    padding: 0 10px;
   }
 
   .step .title {
-    font-size: 1.3rem;
-    margin-top: 1.8rem;
+    font-size: 1.1rem;
   }
 
   .step .desc {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 0.95rem;
   }
 
   .icon-wrapper {
-    width: 46px;
-    height: 46px;
-  }
-
-  .icon-line-short {
-    width: 45px;
-  }
-
-  .icon-line-full {
-    top: 60px;
-  }
-}
-
-/* ──────────────── PORTRAIT TABLETS (OVERRIDE) ──────────────── */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-
-  html,
-  body {
-    overflow-x: hidden;
-  }
-
-  body .big-rect {
-    width: 100% !important;
-    transform: scale(0.75) !important;
-    transform-origin: top center;
-    overflow: hidden;
-  }
-
-  body .slice {
-    font-size: 13px !important;
-    padding: 10px 4px !important;
-  }
-
-  body .slice.current-item {
-    transform: scale(1.01) !important;
-  }
-
-  body .overlay-image {
-    background-size: contain !important;
-  }
-
-  body h2.section-title,
-  body .why-us h2 {
-    font-size: 1.5rem !important;
-    letter-spacing: 1.5px !important;
-  }
-
-  body .why-us p.about {
-    font-size: 1.05rem !important;
-    padding: 0 12px !important;
-    line-height: 1.5 !important;
-    text-align: justify;
-    text-align-last: center;
-  }
-
-  body .carousel-item img {
-    width: 160px !important;
-    height: 160px !important;
-  }
-
-  body footer {
-    font-size: 0.75rem !important;
-  }
-
-  body header .logo img {
-    height: 38px !important;
-  }
-
-  body #menu-button {
-    font-size: 24px !important;
+    width: 36px;
+    height: 36px;
   }
 }
 
 
-@media (max-width: 768px) {
-  .big-rect {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    border-radius: 12px;
-    overflow: hidden;
+/* ================== Mobiles (≤480px) ================== */
+@media (max-width: 480px) {
+  #content {
+    padding-top: 90px;
   }
 
-  .slice {
-    flex: 1 1 25%;
-    min-width: 0;
-    font-size: 14px;
-    padding: 12px 5px;
-    box-sizing: border-box;
+  h2.section-title,
+  .why-us h2,
+  .work h2 {
+    font-size: 1.3em;
     text-align: center;
   }
 
-  .slice:first-child {
-    border-top: none;
+  .image-wrapper {
+    margin-top: 40px;
+    padding: 0 6px;
   }
 
-  .slice.current-item {
-    border-radius: 12px 12px 0 0;
-    transform: scale(1.02);
-    /* was 1.05 — toned down to prevent overflow */
+  .why-us p.about {
+    font-size: 0.95em;
+    line-height: 1.4;
   }
 
-  .overlay-image {
-    border-radius: 12px;
+  .big-rect {
+    width: 95vw;
+    min-height: 250px;
+    margin-bottom: 20px;
   }
 
-  .carousel-container {
-    height: 60vh;
-    overflow-x: hidden;
+  .slice {
+    font-size: 0.75em;
+    padding: 15px 5px;
   }
 
   .carousel-track {
-    gap: 80px;
+    gap: 40px;
     padding: 0 10px;
   }
 
   .carousel-item img {
-    width: 200px;
-    height: 200px;
-    filter: blur(2px);
-    transform: scale(1);
+    max-width: 120px;
+    max-height: 120px;
   }
 
   .carousel-item img.zoomed-in-center {
     transform: scale(1.2);
-    filter: blur(0);
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
   }
 
-  h2.section-title {
-    font-size: 1.8em;
-    text-align: center;
+  .step .title {
+    font-size: 1rem;
   }
 
-  .why-us p.about {
-    font-size: 1.4em;
-    line-height: 1.5;
-    padding: 0 15px;
+  .step .desc {
+    font-size: 0.9rem;
   }
 
-  .why-us h2 {
-    font-size: 1.8em;
-    letter-spacing: 3px;
-  }
-
-  footer {
-    font-size: 0.8rem;
-    padding: 10px 0;
-    text-align: center;
-  }
-
-  header .logo img {
+  .icon-wrapper {
+    width: 30px;
     height: 30px;
   }
 
-  #loader video {
-    max-width: 90vw;
-    max-height: 70vh;
+  .logo-image {
+    width: 100px;
   }
-
-  .process {
-        gap: 3rem;
-        padding: 0 1rem;
-      }
-
-      .step {
-        padding: 2rem 1rem 1.5rem;
-      }
-
-      .step .title {
-        font-size: 1.2rem;
-        margin-top: 1.5rem;
-      }
-
-      .step .desc {
-        font-size: 0.95rem;
-        line-height: 1.5;
-      }
-
-      .icon-wrapper {
-        width: 42px;
-        height: 42px;
-      }
-
-      .icon-line-short {
-        width: 40px;
-      }
-
-      .icon-line-full {
-        top: 53px;
-      }
-}
-
-
-@media (max-width: 600px) {
-  .big-rect {
-    flex-direction: row;
-    height: auto;
-    width: 90vw;
-    aspect-ratio: 4 / 3;
-    border-radius: 12px;
-  }
-
-  .slice {
-    font-size: 8px;
-    padding: 15px;
-    border-left: 1px solid #444;
-  }
-
-  .carousel-container {
-    height: 50vh;
-  }
-
-  .carousel-item img {
-    width: 140px;
-    height: 140px;
-  }
-
-  .carousel-item img.zoomed-in-center {
-    transform: scale(1.05);
-    filter: blur(0);
-  }
-
-  .why-us p.about {
-    font-size: 1.1em;
-    line-height: 1.4;
-  }
-
-  .why-us h2 {
-    font-size: 1.4em;
-  }
-
-  footer {
-    font-size: 0.75em;
-  }
-
-  .step {
-        padding: 1.5rem 1rem;
-      }
-
-      .step .title {
-        font-size: 1.1rem;
-      }
-
-      .step .desc {
-        font-size: 0.9rem;
-      }
-
-      .icon-wrapper {
-        width: 38px;
-        height: 38px;
-      }
-
-      .icon-line-short {
-        width: 30px;
-      }
-
-      .icon-line-full {
-        top: 48px;
-      }
-    }
-
-    @media (max-width: 500px) {
-      h2 {
-        font-size: 1.6rem;
-      }
-      
-      .step .title {
-        font-size: 1rem;
-      }
-
-      .step .desc {
-        font-size: 0.85rem;
-      }
-
-      .icon-wrapper {
-        width: 34px;
-        height: 34px;
-      }
-
-      .icon-line-short {
-        width: 25px;
-      }
-
-      .icon-line-full {
-        top: 44px;
-      }
 }

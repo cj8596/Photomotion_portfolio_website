@@ -1,0 +1,154 @@
+.service-section {
+  background-color: #000;
+  color: #fff;
+  padding: 150px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.service-container {
+  max-width: 1000px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}
+
+.service-container h2,h3 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 600;
+  color: #ff9933;
+  margin-bottom: 30px;
+}
+
+.custom-bullet-list {
+  list-style: none;
+  padding-left: 0;
+  max-width: 800px;
+  margin: auto;
+  margin-bottom: 100px;
+}
+
+.custom-bullet-list li {
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  line-height: 1.6;
+}
+
+.custom-bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 24px;
+  height: 24px;
+  background-image: url('../images/icons/custom_bullet.png'); 
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+.sub-details {
+  display: block;
+  margin-top: 4px;
+  font-size: 1rem;
+  color: #ff9933;
+  font-style: italic;
+}
+
+/* 1024px — Large Tablets / iPad Pro */
+@media (max-width: 1024px) {
+  .service-section {
+    padding: 120px 20px;
+  }
+
+  .service-container h2, 
+  .service-container h3 {
+    font-size: 2rem;
+  }
+
+  .custom-bullet-list {
+    max-width: 90%;
+  }
+
+  .custom-bullet-list li {
+    font-size: 1.5rem;
+    padding-left: 36px;
+  }
+
+  .custom-bullet-list li::before {
+    width: 20px;
+    height: 20px;
+    top: 5px;
+  }
+
+  .sub-details {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* 768px — Standard Tablets */
+@media (max-width: 768px) {
+  .service-section {
+    padding: 100px 16px;
+  }
+
+  .service-container h2, 
+  .service-container h3 {
+    font-size: 2rem;
+  }
+
+  .custom-bullet-list {
+    max-width: 100%;
+  }
+
+  .custom-bullet-list li {
+    font-size: 1.3rem;
+    padding-left: 32px;
+  }
+
+  .custom-bullet-list li::before {
+    width: 18px;
+    height: 18px;
+    top: 4px;
+  }
+
+  .sub-details {
+    font-size: 0.85rem;
+  }
+}
+
+
+/* 480px — Mobile Phones */
+@media (max-width: 480px) {
+  .service-section {
+    padding: 80px 12px;
+  }
+
+  .service-container h2, 
+  .service-container h3 {
+    font-size: 1.7rem;
+  }
+
+  .custom-bullet-list li {
+    font-size: 1.1rem;
+    padding-left: 28px;
+    margin-bottom: 16px;
+  }
+
+  .custom-bullet-list li::before {
+    width: 16px;
+    height: 16px;
+    top: 4px;
+  }
+
+  .sub-details {
+    font-size: 0.75rem;
+  }
+}

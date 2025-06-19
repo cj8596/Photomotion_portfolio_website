@@ -3,37 +3,39 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>PhotoMotion Media Production</title>
+  <link rel="icon" href="images/icon.png" type="image/png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="styles/shared_styles.css" />
   <link rel="stylesheet" href="styles/index_styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 
 <body class="loading">
-  <!-- Loader with your 3-second intro video -->
+  <!-- Loader -->
   <div id="loader">
     <img src="images/logo-animation-2.gif" alt="logo" />
   </div>
-  <!-- Your main page content -->
+
+  <!-- Main Content -->
   <div id="content">
     <header id="main-header">
       <nav>
         <button id="menu-button" aria-label="Open menu">☰</button>
       </nav>
       <div class="logo">
-        <img src="images/logo.png" alt="Logo" />
-        <!-- <h1>PhotoMotion Media Production</h1> -->
+        <img src="images/header_resized_249x173.png" alt="Logo" />
       </div>
-      <!-- Full page dropdown menu -->
+
+      <!-- Full Page Menu -->
       <div id="fullpage-menu" aria-hidden="true">
         <button id="menu-close" aria-label="Close menu">x</button>
         <div class="menu-container">
           <div class="menu-section slide-down">
             <h2>Menu</h2>
             <ul>
-              <br>
+              <br />
               <li><a href="index.html" tabindex="-1">Home</a></li>
               <li><a href="portfolio.html" tabindex="-1">Our Work</a></li>
               <li><a href="services.html" tabindex="-1">Our Service</a></li>
@@ -43,7 +45,7 @@
           <div class="contact-section slide-up">
             <ul>
               <li>
-                <h2><span id="animated-word">Start a Conversation</span></h2><br>
+                <h2><span id="animated-word">Start a Conversation</span></h2><br />
               </li>
               <li>Email: <a href="mailto:contact@samplephoto.com" tabindex="-1">contact@samplephoto.com</a></li>
               <li>Phone: <a href="tel:+1234567890" tabindex="-1">+1 234 567 890</a></li>
@@ -52,14 +54,132 @@
         </div>
       </div>
     </header>
-    <div><br><br></div>
+
+    <!-- Hero Image -->
     <section>
       <div class="image-wrapper" style="position:relative;">
         <img src="images/grid.webp" alt="Sample Photo 1" loading="lazy" />
-        <div style="position:absolute; top:0; left:0; right:0; bottom:0;pointer-events:none;"></div>
+        <div style="position:absolute; top:0; left:0; right:0; bottom:0; pointer-events:none;"></div>
       </div>
     </section>
 
+    <!-- Why Choose Us -->
+    <section class="why-us">
+      <h2>Why choose us?</h2>
+      <p class="about">
+        We’re a Mumbai-based creative studio specializing in commercial photography and product styling. With a focus on
+        bold concepts and clean aesthetics, we craft visuals that not only look beautiful but also communicate your
+        brand story effectively.
+        <br /><br />
+        Our fully equipped studio features a wide range of curated props, textured backdrops, and professional
+        lighting—allowing us to manage every part of the shoot, from styling to execution.
+        <br /><br />
+        Whether you're launching a new product or need consistent content for your brand, we offer tailored visual
+        solutions that align with your goals. Backed by years of experience, industry-grade gear, and a deep
+        understanding of branding, we help your products stand out in today’s crowded digital space.
+        <br /><br />
+        Serving clients across India, we make high-quality, scroll-stopping visuals simple and accessible.
+      </p>
+    </section>
+
+    <!-- Carousel -->
+    <section class="carousel-wrapper">
+      <div class="carousel-container" id="carousel-container">
+        <div class="carousel-track" id="carousel-track">
+          <div class="carousel-item"><img src="images/watch.jpeg" /></div>
+          <div class="carousel-item"><img src="images/food1.jpeg" /></div>
+          <div class="carousel-item"><img src="images/perfume.jpeg" /></div>
+          <div class="carousel-item"><img src="images/perfume2.jpeg" /></div>
+          <div class="carousel-item"><img src="images/drink.jpeg" /></div>
+          <div class="carousel-item"><img src="images/drink2.jpeg" /></div>
+          <div class="carousel-item"><img src="images/cream.jpeg" /></div>
+          <div class="carousel-item"><img src="images/cream2.jpeg" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Work Process -->
+    <section class="work">
+      <h2>Our Work Process</h2>
+      <div class="process">
+        <!-- Step 1 -->
+        <div class="step">
+          <div class="step-content">
+            <div class="icon-container">
+              <div class="icon-wrapper">
+                <img class="icon-img" src="images/icons/requirements.png" alt="Requirements Icon" />
+              </div>
+              <div class="icon-line-short"></div>
+              <div class="icon-line-full"></div>
+            </div>
+            <div class="title">Share Your Project Requirements</div>
+            <div class="desc">
+              We start by understanding your vision. Share your project brief, goals, and any references you have in
+              mind. Once we have all the details, we'll provide you with a custom quote along with available shoot
+              dates.
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step">
+          <div class="step-content">
+            <div class="icon-container">
+              <div class="icon-wrapper">
+                <img class="icon-img" src="images/icons/moodboard_.png" alt="Moodboard Icon" />
+              </div>
+              <div class="icon-line-full"></div>
+            </div>
+            <div class="title">Mood Boarding & Pre-Production</div>
+            <div class="desc">
+              Once the project is confirmed, we move into pre-production. This includes building a custom mood board
+              aligned with your brand aesthetic and planning the visual direction. We also handle sourcing of props,
+              backgrounds, and any perishables or custom items required for the shoot.
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step">
+          <div class="step-content">
+            <div class="icon-container">
+              <div class="icon-wrapper">
+                <img class="icon-img" src="images/icons/camera.png" alt="Production Icon" />
+              </div>
+              <div class="icon-line-short"></div>
+              <div class="icon-line-full"></div>
+            </div>
+            <div class="title">Shoot Day</div>
+            <div class="desc">
+              On the scheduled shoot day, you’re welcome to join us at our studio in Mumbai—or simply ship your products
+              to us from anywhere in the world. Our team works with precision and creativity to ensure every shot meets
+              the highest standard and reflects your brand essence.
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step">
+          <div class="step-content">
+            <div class="icon-container">
+              <div class="icon-wrapper">
+                <img class="icon-img" src="images/icons/magic-wand.png" alt="Post-Production Icon" />
+              </div>
+              <div class="icon-line-short"></div>
+              <div class="icon-line-full"></div>
+            </div>
+            <div class="title">Post-Production</div>
+            <div class="desc">
+              In the final phase, our in-house editing team meticulously enhances each image through color correction,
+              retouching, and product refinement. The result? Visually polished assets ready to captivate your audience
+              across digital and print platforms.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shoots by Category -->
     <div class="centered-section">
       <h2 class="section-title">SHOOTS BY CATEGORY</h2>
       <div class="big-rect">
@@ -67,148 +187,50 @@
         <div class="slice" data-index="1">Jewellery</div>
         <div class="slice" data-index="2">Food</div>
         <div class="slice" data-index="3">Fashion</div>
-        <!-- <div class="slice" data-index="4">Interior</div> -->
 
         <div class="overlay-images">
           <div class="overlay-image current-item animate__animated animate__fadeIn"
-            style="background-image:url('images/product2.webp');"></div>
-          <div class="overlay-image" style="background-image:url('images/jewellery.webp');"></div>
-          <div class="overlay-image" style="background-image:url('images/food.webp');"></div>
-          <div class="overlay-image" style="background-image:url('images/fashion.webp');"></div>
-          <!-- <div class="overlay-image" style="background-image:url('images/interior.jpeg');"></div> -->
+            style="background-image:url('images/ShootsbyCategory/product2.webp');"></div>
+          <div class="overlay-image" style="background-image:url('images/ShootsbyCategory/jewellery.webp');"></div>
+          <div class="overlay-image" style="background-image:url('images/ShootsbyCategory/food_1.webp');"></div>
+          <div class="overlay-image" style="background-image:url('images/ShootsbyCategory/fashion.webp');"></div>
         </div>
       </div>
     </div>
 
-    <section class="why-us">
-      <h2>Why choose us?</h2>
-      <p class="about">
-        We’re a Mumbai-based creative studio specializing in commercial photography and product styling. With a focus on
-        bold concepts and clean aesthetics, we craft visuals that not only look beautiful but also communicate your
-        brand story effectively.
-        <br><br>
-        Our fully equipped studio features a wide range of curated props, textured backdrops, and professional
-        lighting—allowing us to manage every part of the shoot, from styling to execution.
-        <br><br>
-        Whether you're launching a new product or need consistent content for your brand, we offer tailored visual
-        solutions that align with your goals. Backed by years of experience, industry-grade gear, and a deep
-        understanding of branding, we help your products stand out in today’s crowded digital space.
-        <br><br>
-        Serving clients across India, we make high-quality, scroll-stopping visuals simple and accessible.
-      </p>
-    </section>
+    <footer class="footer-section">
+      <div class="footer-grid">
 
-    <section class="carousel-wrapper"></section>
-    <div class="carousel-container" id="carousel-container">
-      <div class="carousel-track" id="carousel-track">
-        <div class="carousel-item"><img src="images/watch.jpeg" /></div>
-        <div class="carousel-item"><img src="images/food1.jpeg" /></div>
-        <div class="carousel-item"><img src="images/perfume.jpeg" /></div>
-        <div class="carousel-item"><img src="images/perfume2.jpeg" /></div>
-        <div class="carousel-item"><img src="images/drink.jpeg" /></div>
-        <div class="carousel-item"><img src="images/drink2.jpeg" /></div>
-        <div class="carousel-item"><img src="images/cream.jpeg" /></div>
-        <div class="carousel-item"><img src="images/cream2.jpeg" /></div>
-      </div>
-    </div>
-    </section>
-    <br>
-    <br>
-    <section>
-      <h2>Our Work Process</h2>
-      <div class="process">
-        <div class="step">
-          <div class="step-content">
-            <div class="icon-container">
-              <div class="icon-wrapper">
-                <img class="icon-img" src="images/icons/requirements.png" alt="Requirements Icon">
-              </div>
-              <div class="icon-line-short"></div>
-              <div class="icon-line-full"></div>
-            </div>
-            <div class="title">Share Your Project Requirements</div>
-            <div class="desc">We start by understanding your vision. Share your project brief, goals, and any references
-              you have in mind. Once we have all the details, we'll provide you with a custom quote along with available
-              shoot dates.</div>
-          </div>
+        <!-- Left Text Links -->
+        <div class="footer-column left-links">
+          <a href="about_us.html">ABOUT US</a>
+          <a href="#">VIDEO GALLERY</a>
+          <a href="#">CONTACT</a>
+          <a href="#">IMAGE GALLERY</a>
         </div>
 
-        <div class="step">
-          <div class="step-content">
-            <div class="icon-container">
-              <div class="icon-wrapper">
-                <img class="icon-img" src="images/icons/moodboard.png"  alt="Moodboard Icon">
-              </div>
-              <div class="icon-line-short"></div>
-              <div class="icon-line-full"></div>
-            </div>
-            <div class="title">Mood Boarding & Pre-Production</div>
-            <div class="desc">Once the project is confirmed, we move into pre-production. This includes building a
-              custom mood board aligned with your brand aesthetic and planning the visual direction. We also handle
-              sourcing of props, backgrounds, and any perishables or custom items required for the shoot.</div>
-          </div>
+        <!-- Center Logo with Line -->
+        <div class="footer-column center-logo">
+          <div class="line"></div>
+          <img src="images/logo.png" alt="Logo" class="logo-image" />
         </div>
 
-        <div class="step">
-          <div class="step-content">
-            <div class="icon-container">
-              <div class="icon-wrapper">
-                <img class="icon-img" src="images/icons/camera.png"
-                  alt="Production Icon">
-              </div>
-              <div class="icon-line-short"></div>
-              <div class="icon-line-full"></div>
-            </div>
-            <div class="title">Shoot Day</div>
-            <div class="desc">On the scheduled shoot day, you’re welcome to join us at our studio in Mumbai—or simply
-              ship your products to us from anywhere in the world. Our team works with precision and creativity to
-              ensure every shot meets the highest standard and reflects your brand essence.</div>
-          </div>
+        <!-- Right Social Links -->
+        <div class="footer-column right-links">
+          <a href="#"><img src="images/icons/instagram.png" alt="Instagram" />INSTAGRAM</a>
+          <a href="#"><img src="images/icons/threads.png" alt="Threads" />THREADS</a>
+          <a href="#"><img src="images/icons/linkedin.png" alt="LinkedIn" />LINKEDIN</a>
+          <a href="#"><img src="images/icons/pinterest.png" alt="Pinterest" />PINTEREST</a>
         </div>
-
-        <div class="step">
-          <div class="step-content">
-            <div class="icon-container">
-              <div class="icon-wrapper">
-                <img class="icon-img" src="images/icons/magic-wand.png"
-                  alt="Production Icon">
-              </div>
-              <div class="icon-line-short"></div>
-              <div class="icon-line-full"></div>
-            </div>
-            <div class="title">Post-Production</div>
-            <div class="desc">In the final phase, our in-house editing team meticulously enhances each image through
-              color correction, retouching, and product refinement. The result? Visually polished assets ready to
-              captivate your audience across digital and print platforms.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="social-icons">
-        <a href="#" target="_blank" title="Instagram">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#E4405F" viewBox="0 0 24 24">
-            <path
-              d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5zm8.75 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
-          </svg>
-        </a>
-        <a href="#" target="_blank" title="Threads" style="display:inline-block; width:24px; height:24px;">
-          <img src="images/icons/threads icon.png" alt="Threads Icon"
-            style="width: 24px; height: 24px; display: block;" />
-        </a>
-        <a href="#" target="_blank" title="LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#0077B5" viewBox="0 0 24 24">
-            <path
-              d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3V9zm7 0h3.6v1.7h.1a3.95 3.95 0 0 1 3.55-2c3.8 0 4.5 2.5 4.5 5.7V21H17v-5.5c0-1.3-.03-3-1.8-3s-2 1.3-2 2.9V21H9V9z" />
-          </svg>
-        </a>
       </div>
       <div class="footer">&copy; 2025 PhotoMotion. All rights reserved.</div>
     </footer>
-    <button id="contact-float-btn" title="Contact Us">Book an appointment with us!</button>
 
+    <!-- Contact Button -->
+    <button id="contact-float-btn" title="Contact Us">Book a session!</button>
   </div>
+
+  <!-- Scripts -->
   <script src="scripts/shared_script.js"></script>
   <script src="scripts/index_script.js"></script>
 </body>

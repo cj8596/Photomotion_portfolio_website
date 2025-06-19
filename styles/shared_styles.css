@@ -4,11 +4,14 @@ html {
   font-size: 16px;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
-body, html {
+body,
+html {
   overflow-x: hidden;
 }
 
@@ -29,20 +32,6 @@ body.menu-active {
   height: 100% !important;
   background-color: rgba(0, 0, 0, 0.8);
   transition: background-color 0.5s ease;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-.image-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.image-wrapper img {
-  display: block;
 }
 
 #content {
@@ -78,17 +67,11 @@ header .logo {
 }
 
 header .logo img {
-  height: 8vw;
-  max-height: 80px;
+  height: 15vw;
+  max-height: 150px;
   margin-right: 10px;
   display: block;
 }
-
-/* header .logo h1 {
-  font-size: 1em;
-  margin: 0;
-  color: #ff9933;
-} */
 
 header nav a,
 nav a {
@@ -109,8 +92,7 @@ nav a:hover {
   font-size: clamp(20px, 6vw, 32px);
   color: #ff9933;
   cursor: pointer;
-  padding: 10px 15px;
-  /* font-weight: bold; */
+  padding: 50px 15px;
   line-height: -1;
 }
 
@@ -168,18 +150,18 @@ nav a:hover {
 
 #fullpage-menu ul li {
   margin: 1vh 0;
-  font-size: clamp(14px, 4vw, 20px); /* ✅ Scales with screen size */
+  font-size: clamp(14px, 4vw, 20px);
 }
 
 #fullpage-menu ul li a {
   color: white;
-  font-size: clamp(16px, 5vw, 24px); /* ✅ Scales down on smaller screens */
+  font-size: clamp(16px, 5vw, 24px);
   text-decoration: none;
   font-weight: 700;
   transition: color 0.3s;
   display: inline-block;
-  max-width: 90vw;         /* ✅ Prevents long text overflow */
-  word-break: break-word;  /* ✅ Ensures it wraps if needed */
+  max-width: 90vw;
+  word-break: break-word;
 }
 
 #fullpage-menu ul li a:hover {
@@ -255,171 +237,233 @@ nav a:hover {
   transform: scale(1.05);
 }
 
-footer {
-  background: #000;
-  color: #000000;
+.footer-section {
+  background-color: #0000;
   padding: 20px 40px;
-  text-align: center;
-  font-size: 0.8em;
+  color: #ff9933;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-bottom: 0;
   border-top: 2px solid #ff9933;
 }
 
-footer .social-icons {
-  margin-bottom: 10px;
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-transform: uppercase;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 
-footer .social-icons a {
-  color: #ff9933;
-  margin: 0 8px;
-  font-size: 1.2em;
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.left-links a,
+.right-links a {
   text-decoration: none;
+  color: #f5f5f5;
+  font-size: 18px;
+  letter-spacing: 2px;
+  display: inline-block;
+  transition: 0.3s;
 }
 
-footer .social-icons a:hover {
+.left-links a:hover,
+.right-links a:hover {
   color: #ff9933;
 }
 
-footer .footer {
+.right-links a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.right-links img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.center-logo {
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: -20px;
+}
+
+.center-logo .line {
+  width: 1px;
+  height: 100px;
+  background-color: #ff9933;
+}
+
+.logo-image {
+  width: 150px;
+  height: auto;
+}
+
+.footer {
+  margin-top: 20px;
   color: #fff;
+  text-align: center;
+  font-size: 1em;
 }
 
-/* @media (max-width: 768px) {
-  header .logo h1 {
-    font-size: 4vw;
+
+/* === Responsive Adjustments for Shared Styles === */
+
+/* iPad Pro and smaller tablets */
+@media (max-width: 1024px) {
+  header {
+    padding: 20px 16px;
+  }
+
+  header .logo img {
+    height: 12vw;
+    max-height: 120px;
   }
 
   #menu-button {
-    font-size: 6vw;
-    top: 20px;
-    left: 20px;
+    font-size: 5vw;
+    padding: 30px 10px;
   }
-
-  #menu-close {
-    font-size: 2.5rem;
-    top: 30px;
-    left: 50px;
-  }
-
-  #fullpage-menu {
-  height: 100vh;
-  overflow: hidden;
-}
 
   #fullpage-menu h2 {
-    font-size: 6vw;
-  }
-
-.menu-container {
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
+    font-size: 4.5vw;
   }
 
   .menu-section,
   .contact-section {
-    flex: 1 1 50%;
-    height: 50%;
-    padding: 2vh 4vw; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    text-align: center;
+    padding: 50px 30px;
   }
 
-  .menu-section h2,
-  .contact-section h2,
-  #animated-word {
-    font-size: clamp(1.2rem, 4.5vw, 1.8rem);
-    margin-bottom: 1vh;
+  .footer-section {
+    padding: 20px 30px;
   }
 
-  .menu-section ul li,
-  .contact-section li {
-    font-size: clamp(1rem, 4vw, 1.5rem);
-    margin-bottom: 1vh;
+  .footer-grid {
+    gap: 30px;
   }
 
-  .contact-section a,
-  .contact-section p {
-    font-size: clamp(0.9rem, 3.5vw, 1.3rem);
-    word-break: break-word;
-    text-align: center;
+  .left-links a,
+  .right-links a {
+    font-size: 16px;
   }
 
-  #animated-word {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 90%;
-    white-space: normal;
+  .logo-image {
+    width: 140px;
+  }
+
+  .center-logo .line {
+    height: 90px;
   }
 }
 
-@media (max-height: 500px) {
-  #fullpage-menu {
-    overflow-y: auto; 
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .menu-container {
-    flex-direction: column !important; 
-    height: auto;
-    min-height: 100vh;
-  }
-
-  .menu-section,
-  .contact-section {
-    flex: none;
-    min-height: 50vh;
-    height: auto;
-    padding: 2vh 4vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-
-  #fullpage-menu ul li a {
-    font-size: clamp(14px, 4vw, 18px);
-  }
-
-  .contact-section a {
-    font-size: clamp(13px, 3.5vw, 16px);
-    word-break: break-word;
-    text-align: center;
-  }
-
-  #animated-word {
-    font-size: clamp(14px, 4vw, 20px);
-    max-width: 90%;
-    text-align: center;
-    white-space: normal;
-  }
-} */
-
+/* Tablets (≤768px) */
 @media (max-width: 768px) {
-  header .logo h1 {
-    font-size: 4vw;
+  header {
+    padding: 16px 10px;
   }
 
-  
+  header .logo img {
+    height: 14vw;
+    max-height: 100px;
+  }
+
   #menu-button {
-    font-size: 4vw;
-    top: 20px;
-    left: 20px;
+    font-size: 6vw;
+    padding: 20px 10px;
+  }
+
+  .menu-section,
+  .contact-section {
+    padding: 40px 20px;
+  }
+
+  #fullpage-menu h2 {
+    font-size: 5.5vw;
+  }
+
+  .menu-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-section ul li,
+  .contact-section li {
+    font-size: 1.1rem;
+    flex: 1 1 auto;
+    width: 100%;
+    height: auto;
+  }
+
+  .contact-section a {
+    font-size: 1rem;
+  }
+
+  .footer-section {
+    padding: 20px 20px;
+  }
+
+  .footer-grid {
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-column {
+    gap: 10px;
+    align-items: center;
+  }
+
+  .left-links a,
+  .right-links a {
+    font-size: 14px;
+  }
+
+  .logo-image {
+    width: 120px;
+  }
+
+  .center-logo .line {
+    height: 70px;
+  }
+
+  .footer {
+    font-size: 0.9em;
+  }
+}
+
+/* Phones (≤480px) */
+@media (max-width: 480px) {
+  header {
+    padding: 10px 8px;
+  }
+
+  header .logo img {
+    height: 16vw;
+    max-height: 90px;
+  }
+
+  #menu-button {
+    font-size: 7vw;
+    padding: 15px 8px;
   }
 
   #menu-close {
-    font-size: 2.5rem;
-    top: 30px;
-    left: 50px;
-  }
-
-  #fullpage-menu {
-    height: 100vh;
-    overflow: hidden;
+    font-size: 1.5rem;
   }
 
   #fullpage-menu h2 {
@@ -428,151 +472,50 @@ footer .footer {
 
   .menu-container {
     flex-direction: column;
-    width: 100vw;
-    height: 100vh;
+    align-items: center;
   }
 
   .menu-section,
   .contact-section {
-    flex: 1 1 50%;
-    height: 50%;
-    padding: 2vh 4vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    text-align: center;
-  }
-
-  .menu-section h2,
-  .contact-section h2,
-  #animated-word {
-    font-size: clamp(1.2rem, 4.5vw, 1.8rem);
-    margin-bottom: 1vh;
-  }
-
-  .menu-section ul li,
-  .contact-section li {
-    font-size: clamp(1rem, 4vw, 1.5rem);
-    margin-bottom: 1vh;
-  }
-
-  .contact-section a,
-  .contact-section p {
-    font-size: clamp(0.9rem, 3.5vw, 1.3rem);
-    word-break: break-word;
-    text-align: center;
-  }
-
-  #animated-word {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 90%;
-    white-space: normal;
-  }
-}
-
-@media (max-height: 500px) {
-  #fullpage-menu {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .menu-container {
-    flex-direction: column !important;
+    flex: 1 1 auto;
+    width: 100%;
     height: auto;
-    min-height: 100vh;
+    padding: 20px 10px;
   }
 
-  .menu-section,
-  .contact-section {
-    flex: none;
-    min-height: 50vh;
-    height: auto;
-    padding: 2vh 4vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .menu-section ul li a {
+    font-size: clamp(14px, 5vw, 20px);
+  }
+
+  .footer-section {
+    padding: 20px 10px;
+  }
+
+  .footer-grid {
+    flex-direction: row;
+    gap: 5px;
+    text-align: center;
+  }
+
+  .footer-column {
     align-items: center;
-    text-align: center;
+    gap: 8px;
   }
 
-  #fullpage-menu ul li a {
-    font-size: clamp(14px, 4vw, 18px);
+  .left-links a,
+  .right-links a {
+    font-size: 8px;
   }
 
-  .contact-section a {
-    font-size: clamp(13px, 3.5vw, 16px);
-    word-break: break-word;
-    text-align: center;
+  .logo-image {
+    width: 100px;
   }
 
-  #animated-word {
-    font-size: clamp(14px, 4vw, 20px);
-    max-width: 90%;
-    text-align: center;
-    white-space: normal;
+  .center-logo .line {
+    height: 50px;
   }
-}
 
-
-@keyframes slideDownIn {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
+  .footer {
+    font-size: 0.8em;
   }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideUpIn {
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideDownOut {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-}
-
-@keyframes slideUpOut {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-}
-
-#fullpage-menu.active .slide-down {
-  animation: slideDownIn 0.7s forwards ease-out;
-}
-
-#fullpage-menu.active .slide-up {
-  animation: slideUpIn 0.7s forwards ease-out;
-}
-
-#fullpage-menu.closing .slide-down {
-  animation: slideDownOut 0.7s forwards ease-in;
-}
-
-#fullpage-menu.closing .slide-up {
-  animation: slideUpOut 0.7s forwards ease-in;
 }
