@@ -1,5 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
   initAboutHeaderFlip();
+  initMenuToggle();
+  initWordAnimator();
 });
 
 
