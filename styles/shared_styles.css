@@ -439,9 +439,17 @@ footer .footer {
     font-size: 5.5vw;
   }
 
+  .menu-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .menu-section ul li,
   .contact-section li {
     font-size: 1.1rem;
+    flex: 1 1 auto;
+    width: 100%;
+    height: auto;
   }
 
   .contact-section a {
@@ -453,7 +461,7 @@ footer .footer {
   }
 
   .footer-grid {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     text-align: center;
   }
@@ -505,9 +513,17 @@ footer .footer {
     font-size: 6vw;
   }
 
+  .menu-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .menu-section,
   .contact-section {
-    padding: 30px 10px;
+    flex: 1 1 auto;
+    width: 100%;
+    height: auto;
+    padding: 20px 10px;
   }
 
   .menu-section ul li a {
@@ -515,11 +531,11 @@ footer .footer {
   }
 
   .footer-section {
-    padding: 10px 15px;
+    padding: 20px 15px;
   }
 
   .footer-grid {
-    flex-direction: column;
+    flex-direction: row;
     gap: 20px;
     text-align: center;
   }
