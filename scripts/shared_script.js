@@ -1,5 +1,3 @@
-// Common reusable functions for all pages
-
 // Menu toggle
 function initMenuToggle() {
   const menuButton = document.getElementById('menu-button');
@@ -66,32 +64,6 @@ function initWordAnimator() {
   typeWord();
 }
 
-// Floating contact button toggle
-// function initContactButton() {
-//   const contactBtn = document.getElementById('contact-float-btn');
-//   const contactSection = document.getElementById('contact');
-//   if (!(contactBtn && contactSection)) return;
-//   let isAtContact = false;
-
-//   contactBtn.addEventListener('click', () => {
-//     if (isAtContact) {
-//       window.scrollTo({ top: 0, behavior: 'smooth' });
-//     } else {
-//       contactSection.scrollIntoView({ behavior: 'smooth' });
-//     }
-//   });
-
-//   const observer = new IntersectionObserver(entries => {
-//     entries.forEach(entry => {
-//       contactBtn.textContent = entry.isIntersecting
-//         ? '⬆'
-//         : 'Book an Appointment with Us!';
-//       isAtContact = entry.isIntersecting;
-//     });
-//   }, { threshold: 0.5 });
-
-//   observer.observe(contactSection);
-// }
 
 function initContactButton() {
   const contactBtn = document.getElementById('contact-float-btn');
@@ -173,70 +145,6 @@ function initializeKeyboardProtection() {
   });
 }
 
-// function initSmartHeaderFlip() {
-//   const header = document.getElementById('main-header');
-//   const gridSection = document.querySelector('.image-wrapper') || document.getElementById('grid-section');
-//   if (!header || !gridSection) return;
-
-//   let pageTurned = false;
-
-//   function updateHeaderState() {
-//     const gridTop = gridSection.getBoundingClientRect().top;
-
-//     if (gridTop < 50 && gridTop > -window.innerHeight / 2) {
-//       header.classList.add('light-header');
-//       header.classList.remove('turn-page');
-//       pageTurned = false;
-//     } else if (gridTop <= -window.innerHeight * 0.05 && !pageTurned) {
-//       header.classList.remove('light-header');
-//       header.classList.add('turn-page');
-//       pageTurned = true;
-//     } else if (gridTop > 80) {
-//       header.classList.remove('light-header', 'turn-page');
-//       pageTurned = false;
-//     }
-//   }
-
-//   window.addEventListener('scroll', updateHeaderState);
-//   window.addEventListener('load', updateHeaderState);
-// }
-
-// function initSmartHeaderFlip() {
-//   const header = document.getElementById('main-header');
-//   const gridSection = document.querySelector('.image-wrapper');
-//   if (!header || !gridSection) return;
-
-//   let pageTurned = false;
-//   let hasScrolled = false;
-
-//   function updateHeaderState() {
-//     const gridTop = gridSection.getBoundingClientRect().top;
-//     const scrolled = window.scrollY > 0;
-
-//     if (scrolled) hasScrolled = true;
-
-//     // Allow turn-page ONLY if user has scrolled
-//     if (gridTop <= 5 && !pageTurned && hasScrolled) {
-//       header.classList.remove('light-header');
-//       header.classList.add('turn-page');
-//       pageTurned = true;
-//     } else if (gridTop > 0 && pageTurned) {
-//       header.classList.remove('turn-page');
-//       header.classList.add('light-header');
-//       pageTurned = false;
-//     }
-
-//     // Initial load condition — ensure header is visible
-//     if (!hasScrolled && gridTop <= 0) {
-//       header.classList.remove('turn-page');
-//       header.classList.add('light-header');
-//     }
-//   }
-
-//   window.addEventListener('scroll', updateHeaderState);
-//   window.addEventListener('load', updateHeaderState);
-// }
-
 function initSmartHeaderFlip() {
   const header = document.getElementById('main-header');
   const gridSection = document.querySelector('.image-wrapper');
@@ -275,3 +183,28 @@ function initSmartHeaderFlip() {
   window.addEventListener('load', updateHeaderState);
 }
 
+function initHeaderFlip() {
+  const header = document.getElementById('main-header');
+  if (!header) return;
+
+  let pageTurned = false;
+
+  function updateHeaderState() {
+    const scrollY = window.scrollY;
+
+    // Flip header when scrolling down beyond 80px
+    if (scrollY > 80 && !pageTurned) {
+      header.classList.add('turn-page');
+      pageTurned = true;
+    }
+
+    // Restore header when scrolling back up
+    if (scrollY <= 80 && pageTurned) {
+      header.classList.remove('turn-page');
+      pageTurned = false;
+    }
+  }
+
+  window.addEventListener('scroll', updateHeaderState);
+  window.addEventListener('load', updateHeaderState);
+}

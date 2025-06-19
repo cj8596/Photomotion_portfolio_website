@@ -1,16 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>StudioFrame | Services</title>
-  <link rel="stylesheet" href="styles/styles.css" />
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>PhotoMotion Media Production</title>
+  <link rel="icon" href="images/icon.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="styles/shared_styles.css" />
+  <link rel="stylesheet" href="styles/index_styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
 </head>
-<body>
-  <p style="color: white;">
-   WORK IN PROGRESS. GO BACK TO THE HOMEPAGE
-  </p>
+
+<body class="loaded">
+  <!-- Main Content -->
+  <div id="content">
+    <header id="main-header">
+      <nav>
+        <button id="menu-button" aria-label="Open menu">☰</button>
+      </nav>
+      <div class="logo">
+        <img src="images/header_resized_249x173.png" alt="Logo" />
+      </div>
+
+      <!-- Full Page Menu -->
+      <div id="fullpage-menu" aria-hidden="true">
+        <button id="menu-close" aria-label="Close menu">x</button>
+        <div class="menu-container">
+          <div class="menu-section slide-down">
+            <h2>Menu</h2>
+            <ul>
+              <br />
+              <li><a href="index.html" tabindex="-1">Home</a></li>
+              <li><a href="portfolio.html" tabindex="-1">Our Work</a></li>
+              <li><a href="services.html" tabindex="-1">Our Service</a></li>
+              <li><a href="about_us.html" tabindex="-1">About Us</a></li>
+            </ul>
+          </div>
+          <div class="contact-section slide-up">
+            <ul>
+              <li>
+                <h2><span id="animated-word">Start a Conversation</span></h2><br />
+              </li>
+              <li>Email: <a href="mailto:contact@samplephoto.com" tabindex="-1">contact@samplephoto.com</a></li>
+              <li>Phone: <a href="tel:+1234567890" tabindex="-1">+1 234 567 890</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <footer class="footer-section">
+      <div class="footer-grid">
+
+        <!-- Left Text Links -->
+        <div class="footer-column left-links">
+          <a href="about_us.html">ABOUT US</a>
+          <a href="#">VIDEO GALLERY</a>
+          <a href="#">CONTACT</a>
+          <a href="#">IMAGE GALLERY</a>
+        </div>
+
+        <!-- Center Logo with Line -->
+        <div class="footer-column center-logo">
+          <div class="line"></div>
+          <img src="images/logo.png" alt="Logo" class="logo-image" />
+        </div>
+
+        <!-- Right Social Links -->
+        <div class="footer-column right-links">
+          <a href="#"><img src="images/icons/instagram.png" alt="Instagram" />INSTAGRAM</a>
+          <a href="#"><img src="images/icons/threads.png" alt="Threads" />THREADS</a>
+          <a href="#"><img src="images/icons/linkedin.png" alt="LinkedIn" />LINKEDIN</a>
+          <a href="#"><img src="images/icons/pinterest.png" alt="Pinterest" />PINTEREST</a>
+        </div>
+      </div>
+      <div class="footer">&copy; 2025 PhotoMotion. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="scripts/shared_script.js"></script>
 </body>
+
 </html>

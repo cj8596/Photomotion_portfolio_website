@@ -45,10 +45,6 @@ body.loading {
   overflow: hidden;
 }
 
-/* body.loaded {
-  overflow: auto;
-} */
-
 body.loaded #content {
   display: block;
   opacity: 1;
@@ -168,7 +164,6 @@ h2.section-title {
   cursor: pointer;
   overflow: hidden;
   border-radius: 12px;
-  /* box-shadow: 0 0 30px 5px rgba(255, 255, 255, 0.3); */
   background: #222;
   margin-bottom: 50px;
 }
@@ -179,17 +174,14 @@ h2.section-title {
   z-index: 10;
   border-left: 1px solid #444;
   transition: background 0.3s, transform 0.3s, color 0.3s;
-  /* color: #ddd; */
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  /* font-weight: bold; */
   display: flex;
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 60px;
   user-select: none;
   font-size: 22px;
-  /* text-shadow: 0 0 8px #000; */
   background: transparent;
   color: #ddd;
   font-weight: 1000;
@@ -203,10 +195,6 @@ h2.section-title {
 }
 
 .slice:hover {
-  /* background: rgba(255, 255, 255, 0.15) !important;
-  transform: scale(1.05) !important;
-  color: white !important;
-  z-index: 9999 !important; */
   background: rgba(255, 255, 255, 0.05);
   transform: scale(1.02);
   color: #eee;
@@ -215,15 +203,11 @@ h2.section-title {
 }
 
 .slice.current-item {
-  /* background: rgba(255, 255, 255, 0.25); */
   background: transparent;
   color: black;
-  /* transform: scale(1.1); */
   transform: none;
   z-index: 20;
-  /* box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.4); */
   box-shadow: none;
-  /* border-radius: 12px 0 0 12px; */
   border-radius: 0;
 }
 
@@ -238,7 +222,6 @@ h2.section-title {
   border-radius: 12px;
   background: #111;
   pointer-events: auto;
-  /* or remove pointer-events */
 }
 
 .overlay-image {
@@ -268,29 +251,14 @@ h2.section-title {
   z-index: 6;
 }
 
-/* .overlay-image::after {
-  content: "© YOURNAME";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-45deg);
-  font-size: 3em;
-  color: rgba(255, 255, 255, 0.1);
-  pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
-  z-index: 10;
-} */
+
 
 .carousel-wrapper {
   width: 100vw;
   overflow: hidden;
-  /* This hides anything overflowing horizontally */
   position: relative;
   padding: 0;
-  /* optional, to tightly contain */
   margin: 0 auto;
-  /* center if needed */
 }
 
 .carousel-container {
@@ -300,7 +268,6 @@ h2.section-title {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  /* This allows full transform motion inside */
   position: relative;
 }
 
@@ -339,10 +306,6 @@ h2.section-title {
 
 /* Flip-out animation for header */
 header {
-  /* position: fixed;
-  transform-origin: top center;
-  transition: background 0.4s ease, transform 0.7s ease, opacity 0.4s ease;
-  backface-visibility: hidden; */
   position: fixed;
   top: 0;
   left: 0;
@@ -384,9 +347,7 @@ header.turn-page {
 .step:hover,
 .step.active {
   background: #666666;
-  /* original blue background */
   box-shadow: 0 8px 24px rgba(92, 92, 92, 0.05);
-  /* optional subtle shadow */
 }
 
 .step-content {
@@ -423,16 +384,6 @@ header.turn-page {
   height: 100%;
   object-fit: contain;
 }
-
-/* .icon-line-short {
-  height: 2px;
-  width: 100px; 
-  background: #ff9933;
-  margin-left: 10px;
-  transition: opacity 0.4s ease;
-  flex-grow: 0;
-} */
-
 
 .icon-line-full {
   position: absolute;
