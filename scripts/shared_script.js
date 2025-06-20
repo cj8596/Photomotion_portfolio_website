@@ -145,6 +145,44 @@ function initializeKeyboardProtection() {
   });
 }
 
+// function initSmartHeaderFlip() {
+//   const header = document.getElementById('main-header');
+//   const gridSection = document.querySelector('.image-wrapper');
+//   if (!header || !gridSection) return;
+
+//   let pageTurned = false;
+//   let hasScrolled = false;
+
+//   function updateHeaderState() {
+//     const gridTop = gridSection.getBoundingClientRect().top;
+//     const scrolled = window.scrollY > 0;
+
+//     if (scrolled) hasScrolled = true;
+
+//     // Flip header up as soon as image-wrapper is ~visible
+//     if (gridTop <= 120 && !pageTurned && hasScrolled) {
+//       header.classList.remove('light-header');
+//       header.classList.add('turn-page');
+//       pageTurned = true;
+//     } 
+//     // Bring it back if scrolling back up
+//     else if (gridTop > 100 && pageTurned) {
+//       header.classList.remove('turn-page');
+//       header.classList.add('light-header');
+//       pageTurned = false;
+//     }
+
+//     // Initial load: force header to be visible
+//     if (!hasScrolled) {
+//       header.classList.remove('turn-page');
+//       header.classList.add('light-header');
+//     }
+//   }
+
+//   window.addEventListener('scroll', updateHeaderState);
+//   window.addEventListener('load', updateHeaderState);
+// }
+
 function initSmartHeaderFlip() {
   const header = document.getElementById('main-header');
   const gridSection = document.querySelector('.image-wrapper');
@@ -152,21 +190,25 @@ function initSmartHeaderFlip() {
 
   let pageTurned = false;
   let hasScrolled = false;
+  let lastScrollY = window.scrollY;
 
   function updateHeaderState() {
     const gridTop = gridSection.getBoundingClientRect().top;
-    const scrolled = window.scrollY > 0;
+    const currentScrollY = window.scrollY;
+    const scrollingUp = currentScrollY < lastScrollY;
+    const scrolled = currentScrollY > 0;
 
     if (scrolled) hasScrolled = true;
 
-    // Flip header up as soon as image-wrapper is ~visible
-    if (gridTop <= 120 && !pageTurned && hasScrolled) {
+    // Flip header up when image-wrapper is visible AND scrolling down
+    if (gridTop <= 120 && !pageTurned && hasScrolled && !scrollingUp) {
       header.classList.remove('light-header');
       header.classList.add('turn-page');
       pageTurned = true;
-    } 
-    // Bring it back if scrolling back up
-    else if (gridTop > 100 && pageTurned) {
+    }
+
+    // Flip header back immediately if scrolling up
+    else if (scrollingUp && pageTurned) {
       header.classList.remove('turn-page');
       header.classList.add('light-header');
       pageTurned = false;
@@ -177,11 +219,14 @@ function initSmartHeaderFlip() {
       header.classList.remove('turn-page');
       header.classList.add('light-header');
     }
+
+    lastScrollY = currentScrollY;
   }
 
   window.addEventListener('scroll', updateHeaderState);
   window.addEventListener('load', updateHeaderState);
 }
+
 
 function initHeaderFlip() {
   const header = document.getElementById('main-header');
