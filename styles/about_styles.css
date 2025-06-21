@@ -12,21 +12,6 @@
   flex-wrap: wrap;
 }
 
-/* .about-page header {
-  position: absolute;
-  z-index: 1000;
-  width: 100%;
-  top: 0;
-  left: 0;
-}
-
-.about-page #menu-button,
-.about-page #menu-close {
-  color: #fff !important; /* ensure visibility */
-/*} */
-
-
-
 .about-page {
   background-image: url('../images/about_us_bg.webp');
   background-size: cover;
@@ -48,8 +33,6 @@
 }
 
 .about-us-section {
-  /* background-color: #000; */
-  /* background: linear-gradient(60deg, #000000, #2b2b2b); */
   background-color: rgba(0, 0, 0, 0);
   color: #fff;
   padding: 150px 5px;
@@ -90,14 +73,14 @@
   transition: background-color 0.3s ease, color 0.3s ease;
   max-width: 1200px;
   margin: 0 auto;
-  color: #ff9933; /* default text color */
+  color: #ff9933; 
   margin-bottom: 20px;
 }
 
 .about-card:hover,
 .about-card:active {
   background-color: #666666;
-  color: #000; /* changes text color inside */
+  color: #000;
 }
 
 .about-card:hover p,
@@ -118,27 +101,68 @@
 }
 
 /* Responsive tweaks */
-@media (max-width: 768px) {
+/* Medium screens (tablets, e.g. iPad Pro 1024px) */
+@media (max-width: 1024px) {
+  .about-us-section {
+    padding: 100px 15px;
+  }
+
+  .about-card {
+    padding: 25px;
+    margin: 0 15px 20px;
+  }
+
   .about-us-container h2 {
-    font-size: 2em;
+    font-size: 2.2em;
+  }
+
+  .about-us-container p {
+    font-size: 1.1em;
+    line-height: 1.6;
+  }
+}
+
+/* Small tablets and phones (e.g. 768px) */
+@media (max-width: 768px) {
+  .about-us-section {
+    flex-direction: column;
+    padding: 80px 10px;
+  }
+
+  .about-card {
+    padding: 20px;
+    margin: 0 10px 15px;
+  }
+
+  .about-us-container h2 {
+    font-size: 1.8em;
   }
 
   .about-us-container p {
     font-size: 1em;
-    padding: 0 10px;
-    text-align: justify;
-    text-align-last: left;
-    margin-bottom: 5px;
+    line-height: 1.5;
   }
 }
 
+/* Mobile devices (e.g. 480px and below) */
 @media (max-width: 480px) {
+  .about-us-section {
+    padding: 60px 8px;
+  }
+
+  .about-card {
+    padding: 18px;
+    margin: 0 5px 15px;
+  }
+
   .about-us-container h2 {
-    font-size: 1.6em;
+    font-size: 1.5em;
+    letter-spacing: 1px;
   }
 
   .about-us-container p {
     font-size: 0.95em;
-    line-height: 1.6;
+    line-height: 1.4;
   }
 }
+
