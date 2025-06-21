@@ -59,6 +59,7 @@ img {
   margin-top: 180px;
   position: relative;
   display: inline-block;
+  -webkit-touch-callout: none;
 }
 
 .image-wrapper img {
@@ -249,7 +250,7 @@ h2.section-title {
 .overlay-image.current-item {
   opacity: 1;
   z-index: 6;
-} */ 
+} */
 
 
 
@@ -667,5 +668,12 @@ header.turn-page {
 
   .logo-image {
     width: 100px;
+  }
+}
+
+
+@media print {
+  body {
+    display: none !important;
   }
 }
