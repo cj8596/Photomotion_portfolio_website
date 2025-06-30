@@ -5,14 +5,36 @@ function initMenuToggle() {
   const fullpageMenu = document.getElementById('fullpage-menu');
   const contactBtn = document.getElementById('contact-float-btn');
 
+  // function openMenu() {
+  //   fullpageMenu.classList.add('active');
+  //   document.body.classList.add('menu-active');
+  //   fullpageMenu.setAttribute('aria-hidden', 'false');
+  //   fullpageMenu.querySelectorAll('a').forEach(a => a.tabIndex = 0);
+  //   fullpageMenu.style.display = 'flex';
+  //   if (contactBtn) contactBtn.style.display = 'none';
+  // }
+
   function openMenu() {
-    fullpageMenu.classList.add('active');
+    fullpageMenu.classList.remove('closing'); // Ensure clean state
+    fullpageMenu.style.display = 'flex';
+    fullpageMenu.classList.add('animating-in');
+
+    requestAnimationFrame(() => {
+      fullpageMenu.classList.add('active');
+
+      setTimeout(() => {
+        fullpageMenu.classList.remove('animating-in');
+      }, 700);
+    });
+
     document.body.classList.add('menu-active');
     fullpageMenu.setAttribute('aria-hidden', 'false');
     fullpageMenu.querySelectorAll('a').forEach(a => a.tabIndex = 0);
-    fullpageMenu.style.display = 'flex';
     if (contactBtn) contactBtn.style.display = 'none';
   }
+
+
+
 
   function closeMenu() {
     fullpageMenu.classList.remove('active');

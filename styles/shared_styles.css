@@ -36,7 +36,7 @@ body.menu-active {
 
 #content {
   transition: opacity 1s ease;
-  padding: 5vw;
+  padding: 0;
   font-family: Arial, sans-serif;
   background: #000;
   min-height: 100vh;
@@ -321,6 +321,44 @@ nav a:hover {
   font-size: 1em;
 }
 
+.menu-section,
+.contact-section {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.7s ease, opacity 0.7s ease;
+}
+
+#fullpage-menu.animating-in .menu-section {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+#fullpage-menu.active.animating-in .menu-section {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#fullpage-menu.animating-in .contact-section {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+#fullpage-menu.active.animating-in .contact-section {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#fullpage-menu.closing .menu-section {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+#fullpage-menu.closing .contact-section {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+
 
 /* === Responsive Adjustments for Shared Styles === */
 
@@ -517,5 +555,16 @@ nav a:hover {
 
   .footer {
     font-size: 0.8em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .footer-grid {
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+
+  .footer-column {
+    align-items: flex-start !important;
   }
 }
