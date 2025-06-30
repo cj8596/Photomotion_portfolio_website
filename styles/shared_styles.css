@@ -567,4 +567,8 @@ nav a:hover {
   .footer-column {
     align-items: flex-start !important;
   }
+
+  .center-logo .line {
+    margin: 0 auto;
+  }
 }
