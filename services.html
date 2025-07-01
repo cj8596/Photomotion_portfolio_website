@@ -121,7 +121,9 @@
             <details>
               <summary>Food Photography & Videography</summary>
               <div class="detail-content">
-                <p>Food isn’t just about taste—it’s about presentation, mood, and story. Our food photography and videography services are designed to make your dishes look irresistible, whether it’s for restaurants, cafes, cloud kitchens, food brands, or delivery platforms.</p>
+                <p>Food isn’t just about taste—it’s about presentation, mood, and story. Our food photography and
+                  videography services are designed to make your dishes look irresistible, whether it’s for restaurants,
+                  cafes, cloud kitchens, food brands, or delivery platforms.</p>
               </div>
             </details>
           </li>
@@ -130,7 +132,9 @@
             <details>
               <summary>Fashion Photography & Videography</summary>
               <div class="detail-content">
-                <p>Fashion is more than clothing, it's an attitude, identity, and an emotion. Our fashion photography and videography services are designed to capture the essence of your brand, whether it’s for lookbooks, campaigns, ecommerce, editorials, or social media.</p>
+                <p>Fashion is more than clothing, it's an attitude, identity, and an emotion. Our fashion photography
+                  and videography services are designed to capture the essence of your brand, whether it’s for
+                  lookbooks, campaigns, ecommerce, editorials, or social media.</p>
               </div>
             </details>
           </li>
@@ -139,7 +143,9 @@
             <details>
               <summary>Interior & Architectural <br>Photography & Videography</summary>
               <div class="detail-content">
-                <p>Architecture and interior design are visual arts—and showcasing them demands expert composition, lighting, and perspective. Our services highlight the form, function, and atmosphere of a space, whether it’s residential, commercial, hospitality, or retail.</p>
+                <p>Architecture and interior design are visual arts—and showcasing them demands expert composition,
+                  lighting, and perspective. Our services highlight the form, function, and atmosphere of a space,
+                  whether it’s residential, commercial, hospitality, or retail.</p>
               </div>
             </details>
           </li>
@@ -148,7 +154,9 @@
             <details>
               <summary>Photo Retouching & Editing</summary>
               <div class="detail-content">
-                <p>Photo retouching and editing is the final and crucial step in the visual storytelling process. It enhances images by adjusting colors, removing distractions, correcting lighting, and refining details to match your brand’s aesthetic and quality standards.</p>
+                <p>Photo retouching and editing is the final and crucial step in the visual storytelling process. It
+                  enhances images by adjusting colors, removing distractions, correcting lighting, and refining details
+                  to match your brand’s aesthetic and quality standards.</p>
               </div>
             </details>
           </li>
@@ -157,7 +165,9 @@
             <details>
               <summary>StopMotion</summary>
               <div class="detail-content">
-                <p>Stop motion is a unique animation technique where products are brought to life through a series of carefully styled and captured frames—resulting in short, snappy videos that are fun, engaging, and perfect for social media.</p>
+                <p>Stop motion is a unique animation technique where products are brought to life through a series of
+                  carefully styled and captured frames—resulting in short, snappy videos that are fun, engaging, and
+                  perfect for social media.</p>
               </div>
             </details>
           </li>
@@ -166,7 +176,10 @@
             <details>
               <summary>Ad Shoots</summary>
               <div class="detail-content">
-                <p>Ad shoots are designed to create high-impact visuals tailored specifically for advertising campaigns, whether for print, digital, outdoor, or social media. These shoots combine creative direction, styling, and expert execution to highlight your product, service, or brand in the most compelling way.</p>
+                <p>Ad shoots are designed to create high-impact visuals tailored specifically for advertising campaigns,
+                  whether for print, digital, outdoor, or social media. These shoots combine creative direction,
+                  styling, and expert execution to highlight your product, service, or brand in the most compelling way.
+                </p>
               </div>
             </details>
           </li>
@@ -175,7 +188,9 @@
             <details>
               <summary>Graphic Designing</summary>
               <div class="detail-content">
-                <p>Graphic design is all about creating visually compelling content that communicates your message clearly and creatively. From social media creatives to packaging, banners, logos, and brand collaterals—we design with purpose and precision.</p>
+                <p>Graphic design is all about creating visually compelling content that communicates your message
+                  clearly and creatively. From social media creatives to packaging, banners, logos, and brand
+                  collaterals—we design with purpose and precision.</p>
               </div>
             </details>
           </li>
@@ -224,100 +239,31 @@
   <script src="scripts/shared_script.js"></script>
   <script src="scripts/index_script.js"></script>
   <script src="scripts/services_script.js"></script>
-  <!-- <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const allDetails = document.querySelectorAll("details");
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const allDetails = document.querySelectorAll("details");
 
-    allDetails.forEach((detail) => {
-      detail.addEventListener("toggle", () => {
-        if (detail.open) {
-          allDetails.forEach((other) => {
-            if (other !== detail && other.open) {
-              other.removeAttribute("open");
-            }
+      allDetails.forEach((detail) => {
+        const summary = detail.querySelector("summary");
+
+        summary.addEventListener("click", (e) => {
+          e.preventDefault(); // Stop browser's default toggle
+
+          const isOpen = detail.hasAttribute("open");
+
+          // Close all other open details
+          allDetails.forEach((el) => {
+            el.removeAttribute("open");
           });
-        }
-      });
-    });
-  });
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const detailsElements = document.querySelectorAll("details");
 
-  detailsElements.forEach((detail) => {
-    const summary = detail.querySelector("summary");
-
-    summary.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      const isOpen = detail.hasAttribute("open");
-
-      if (isOpen) {
-        // Smooth close
-        detail.classList.add("closing");
-        const duration = 600;
-        setTimeout(() => {
-          detail.removeAttribute("open");
-          detail.classList.remove("closing");
-        }, duration);
-      } else {
-        // Close others
-        detailsElements.forEach((d) => {
-          if (d !== detail && d.hasAttribute("open")) {
-            d.removeAttribute("open");
+          // If the clicked one wasn't open, open it manually
+          if (!isOpen) {
+            detail.setAttribute("open", "");
           }
         });
-        detail.setAttribute("open", "");
-      }
-    });
-  });
-});
-</script> -->
-<!-- <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const detailsList = document.querySelectorAll(".expandable-bullet-list details");
-
-  detailsList.forEach((detail) => {
-    detail.addEventListener("toggle", () => {
-      if (detail.open) {
-        // Close all others
-        detailsList.forEach((el) => {
-          if (el !== detail && el.open) {
-            el.open = false;
-          }
-        });
-      }
-    });
-  });
-});
-</script> -->
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const allDetails = document.querySelectorAll("details");
-
-  allDetails.forEach((detail) => {
-    const summary = detail.querySelector("summary");
-
-    summary.addEventListener("click", (e) => {
-      e.preventDefault(); // Stop browser's default toggle
-
-      const isOpen = detail.hasAttribute("open");
-
-      // Close all other open details
-      allDetails.forEach((el) => {
-        el.removeAttribute("open");
       });
-
-      // If the clicked one wasn't open, open it manually
-      if (!isOpen) {
-        detail.setAttribute("open", "");
-      }
     });
-  });
-});
-</script>
+  </script>
 
 
 </body>

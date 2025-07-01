@@ -145,17 +145,19 @@
   line-height: 1.6;
 }
 
+/* ✅ Bullet icon sized and aligned with text */
 .custom-bullet-list li::before,
 .expandable-bullet-list li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 6px;
-  width: 24px;
-  height: 24px;
+  top: 0.30em;
+  width: 1.5em;
+  height: 1em;
   background-image: url('../images/icons/custom_bullet.png');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .sub-details {
@@ -173,26 +175,32 @@
   padding-right: 30px;
   color: #fff;
   list-style: none;
+  font-size: 1em;
 }
 
+/* ✅ Arrow image: ↘ by default, ↗ on open */
 .expandable-bullet-list summary::after {
-  content: '↘';
+  content: '';
   position: absolute;
   right: 0;
-  top: 4px;
-  font-size: 2rem;
-  color: #ff9933;
+  top: 0.25em;
+  width: 1em;
+  height: 1em;
+  background-image: url('../images/icons/arrow.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotate(90deg);
+  /* ↘ using ↗ image */
   transition: transform 0.3s ease;
 }
 
 .expandable-bullet-list details[open] summary::after {
-  content: '↗';
+  transform: rotate(0deg);
+  /* ↗ (original image orientation) */
 }
 
-/* Hide default disclosure arrow */
-.expandable-bullet-list summary::-webkit-details-marker {
-  display: none;
-}
+.expandable-bullet-list summary::-webkit-details-marker,
 .expandable-bullet-list summary::marker {
   display: none;
 }
@@ -202,8 +210,8 @@
 }
 
 .detail-content {
-  background-color: #000;
-  border: 1px solid #333;
+  background-color: #666666;
+  border: 1px solid #444;
   border-radius: 12px;
   font-size: 1.2rem;
   color: #ccc;
@@ -252,36 +260,7 @@ details[open] .detail-content:focus-within {
     font-size: 1em;
   }
 
-  .service-section {
-    padding: 120px 20px;
-  }
 
-  .service-container h2,
-  .service-container h3 {
-    font-size: 2rem;
-  }
-
-  .custom-bullet-list,
-  .expandable-bullet-list {
-    max-width: 90%;
-  }
-
-  .custom-bullet-list li,
-  .expandable-bullet-list li {
-    font-size: 1.5rem;
-    padding-left: 36px;
-  }
-
-  .custom-bullet-list li::before,
-  .expandable-bullet-list li::before {
-    width: 20px;
-    height: 20px;
-    top: 5px;
-  }
-
-  .sub-details {
-    font-size: 0.9rem;
-  }
 }
 
 @media (max-width: 768px) {
@@ -300,36 +279,7 @@ details[open] .detail-content:focus-within {
     filter: brightness(0.9);
   }
 
-  .service-section {
-    padding: 100px 16px;
-  }
 
-  .service-container h2,
-  .service-container h3 {
-    font-size: 2rem;
-  }
-
-  .custom-bullet-list,
-  .expandable-bullet-list {
-    max-width: 100%;
-  }
-
-  .custom-bullet-list li,
-  .expandable-bullet-list li {
-    font-size: 1.3rem;
-    padding-left: 32px;
-  }
-
-  .custom-bullet-list li::before,
-  .expandable-bullet-list li::before {
-    width: 18px;
-    height: 18px;
-    top: 4px;
-  }
-
-  .sub-details {
-    font-size: 0.85rem;
-  }
 }
 
 @media (max-width: 480px) {
@@ -344,32 +294,6 @@ details[open] .detail-content:focus-within {
     padding: 15px 5px;
   }
 
-  .service-section {
-    padding: 80px 12px;
-  }
-
-  .service-container h2,
-  .service-container h3 {
-    font-size: 1.7rem;
-  }
-
-  .custom-bullet-list li,
-  .expandable-bullet-list li {
-    font-size: 1.1rem;
-    padding-left: 28px;
-    margin-bottom: 16px;
-  }
-
-  .custom-bullet-list li::before,
-  .expandable-bullet-list li::before {
-    width: 16px;
-    height: 16px;
-    top: 4px;
-  }
-
-  .sub-details {
-    font-size: 0.75rem;
-  }
 }
 
 @media print {
