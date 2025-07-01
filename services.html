@@ -264,38 +264,6 @@
       });
     });
   </script>
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const allDetails = document.querySelectorAll("details");
-
-    allDetails.forEach((detail) => {
-      const summary = detail.querySelector("summary");
-
-      // Open on click (existing logic)
-      summary.addEventListener("click", (e) => {
-        e.preventDefault();
-        const isOpen = detail.hasAttribute("open");
-        allDetails.forEach((el) => el.removeAttribute("open"));
-        if (!isOpen) detail.setAttribute("open", "");
-      });
-
-      // 🔥 Add: Open on hover
-      summary.addEventListener("mouseenter", () => {
-        const isOpen = detail.hasAttribute("open");
-        if (!isOpen) {
-          allDetails.forEach((el) => el.removeAttribute("open"));
-          detail.setAttribute("open", "");
-        }
-      });
-
-      // 🔥 Add: Close when mouse leaves the entire <details>
-      detail.addEventListener("mouseleave", () => {
-        detail.removeAttribute("open");
-      });
-    });
-  });
-</script>
-
 
 
 </body>
