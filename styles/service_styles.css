@@ -62,7 +62,10 @@
 /* === Overlay Image Section === */
 .overlay-images {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 5;
   border-radius: 12px;
   background: #111;
@@ -313,7 +316,7 @@ details.is-open .detail-content:focus-within {
   .sub-details {
     font-size: 0.85rem;
   }
-  
+
   .detail-content {
     font-size: 1rem;
     padding: 18px;
@@ -324,6 +327,19 @@ details.is-open .detail-content:focus-within {
     border-color: #ff9933;
     background-color: #666666;
     box-shadow: 0 0 10px rgba(93, 89, 84, 0.4);
+  }
+
+  .service-container {
+    padding: 0 5vw;
+  }
+
+  .detail-content {
+    padding: 16px 12px;
+  }
+
+  .custom-bullet-list li,
+  .expandable-bullet-list li {
+    padding-left: 28px;
   }
 }
 
@@ -374,6 +390,19 @@ details.is-open .detail-content:focus-within {
     border-color: #ff9933;
     background-color: #666666;
     box-shadow: 0 0 10px rgba(255, 153, 51, 0.4);
+  }
+
+  .service-container {
+    padding: 0 4vw;
+  }
+
+  .detail-content {
+    padding: 14px 10px;
+  }
+
+  .custom-bullet-list li,
+  .expandable-bullet-list li {
+    padding-left: 26px;
   }
 }
 
