@@ -239,32 +239,70 @@
   <script src="scripts/shared_script.js"></script>
   <script src="scripts/index_script.js"></script>
   <script src="scripts/services_script.js"></script>
-  <script>
+  <!-- <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const allDetails = document.querySelectorAll("details");
+      const detailsElements = document.querySelectorAll(".expandable-bullet-list details");
 
-      allDetails.forEach((detail) => {
-        const summary = detail.querySelector("summary");
+      detailsElements.forEach((details) => {
+        const summary = details.querySelector("summary");
+        const content = details.querySelector(".detail-content");
+
+        // Close all initially
+        if (!details.hasAttribute("open")) {
+          content.style.maxHeight = "0px";
+          content.style.opacity = "0";
+          details.classList.remove("is-open");
+        }
 
         summary.addEventListener("click", (e) => {
-          e.preventDefault(); // Stop browser's default toggle
+          e.preventDefault();
+          const isOpen = details.hasAttribute("open");
 
-          const isOpen = detail.hasAttribute("open");
-
-          // Close all other open details
-          allDetails.forEach((el) => {
-            el.removeAttribute("open");
+          // Close all others
+          detailsElements.forEach((el) => {
+            if (el !== details) {
+              el.removeAttribute("open");
+              el.classList.remove("is-open", "closing");
+              const otherContent = el.querySelector(".detail-content");
+              otherContent.style.maxHeight = "0px";
+              otherContent.style.opacity = "0";
+            }
           });
 
-          // If the clicked one wasn't open, open it manually
-          if (!isOpen) {
-            detail.setAttribute("open", "");
+          if (isOpen) {
+            details.classList.add("closing");
+            content.style.maxHeight = content.scrollHeight + "px";
+
+            requestAnimationFrame(() => {
+              content.style.maxHeight = "0px";
+              content.style.opacity = "0";
+            });
+
+            setTimeout(() => {
+              details.classList.remove("closing", "is-open");
+              details.removeAttribute("open");
+            }, 600);
+          } else {
+            details.setAttribute("open", "");
+            details.classList.add("is-open");
+            content.style.maxHeight = "0px";
+            content.style.opacity = "0";
+
+            requestAnimationFrame(() => {
+              content.style.maxHeight = content.scrollHeight + "px";
+              content.style.opacity = "1";
+            });
+
+            setTimeout(() => {
+              content.style.maxHeight = "none";
+            }, 600);
           }
         });
       });
     });
+
   </script>
-  
+ -->
 </body>
 
 </html>
