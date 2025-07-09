@@ -141,14 +141,15 @@
   position: absolute;
   right: 0;
   top: 0.3em;
-  width: 1.5em;
-  height: 1.5em;
+  width: 1.2em;
+  height: 1.2em;
   background-image: url('../images/icons/arrow_icon.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   transform: rotate(0deg);
   transition: transform 0.3s ease;
+  padding-left: 6px;
 }
 
 .accordion-item.open .accordion-summary::after {
@@ -192,6 +193,64 @@
   margin-top: 0;
 }
 
+.accordion-content:hover {
+  border-color: #ff9933;
+  background-color: #666;
+  box-shadow: 0 0 10px rgba(255, 153, 51, 0.4);
+  transition: all 0.3s ease;
+}
+/* === Booking / Session Styling Fix === */
+.service-container {
+  text-align: center;
+}
+
+.service-container h2,
+.service-container h3 {
+  font-weight: 750;
+  font-size: 3rem;
+  color: #ff9933;
+  text-align: center;
+}
+
+.service-container .custom-bullet-list {
+  list-style: none;
+  padding-left: 0;
+  max-width: 800px;
+  margin: auto auto 100px;
+}
+
+.service-container .custom-bullet-list li {
+  position: relative;
+  padding-left: 60px;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  line-height: 1.6;
+  text-align: center;
+  color: #FFF;
+  font-weight: 550;
+}
+
+.service-container .custom-bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  width: 1.5em;
+  height: 1em;
+  background-image: url('../images/icons/custom_bullet.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.service-container .sub-details {
+  display: block;
+  margin-top: 4px;
+  font-size: 1rem;
+  color: #ff9933;
+  font-style: italic;
+  text-align: center;
+}
 
 
 
