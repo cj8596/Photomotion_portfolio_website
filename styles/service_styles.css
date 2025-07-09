@@ -96,8 +96,109 @@
   z-index: 6;
 }
 
+/* === Accordion Styles with Bullet Icon === */
+.accordion-list {
+  list-style: none;
+  padding-left: 0;
+  max-width: 800px;
+  margin: auto auto 100px;
+}
+
+.accordion-list li {
+  position: relative;
+  padding-left: 60px; /* increased space */
+  margin-bottom: 20px;
+  font-size: 2rem;
+  line-height: 1.6;
+}
+
+
+.accordion-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  width: 1.5em;
+  height: 1em;
+  background-image: url('../images/icons/custom_bullet.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.accordion-summary {
+  position: relative;
+  font-weight: 600;
+  cursor: pointer;
+  padding-right: 30px;
+  color: #fff;
+  font-size: 1em;
+  display: block;
+}
+
+.accordion-summary::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0.3em;
+  width: 1.5em;
+  height: 1.5em;
+  background-image: url('../images/icons/arrow_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.accordion-item.open .accordion-summary::after {
+  transform: rotate(-90deg);
+}
+
+.accordion-content {
+  background-color: #666;
+  border: 1px solid #444;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  color: #ccc;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.4s ease,
+    max-height 0.4s ease,
+    transform 0.4s ease,
+    padding 0.4s ease;
+  padding: 0 20px;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.accordion-item.open .accordion-content {
+  opacity: 1;
+  max-height: 1000px;
+  transform: translateY(0);
+  margin-top: 12px;
+  padding: 20px;
+}
+
+.accordion-item.closing .accordion-content {
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(-10px);
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+}
+
+
+
+
+
+
 /* === Services Section === */
-.service-section {
+/* .service-section {
   background-color: #000;
   color: #fff;
   padding: 70px 5px;
@@ -120,10 +221,10 @@
   font-weight: 600;
   color: #ff9933;
   margin-bottom: 40px;
-}
+} */
 
 /* === Bullet List Styles === */
-.custom-bullet-list,
+/* .custom-bullet-list,
 .expandable-bullet-list {
   list-style: none;
   padding-left: 0;
@@ -160,10 +261,10 @@
   font-size: 1rem;
   color: #ff9933;
   font-style: italic;
-}
+} */
 
 /* === Expandable Summary & Arrow === */
-.expandable-bullet-list summary {
+/* .expandable-bullet-list summary {
   position: relative;
   font-weight: 600;
   cursor: pointer;
@@ -171,10 +272,10 @@
   color: #fff;
   font-size: 1em;
   list-style: none;
-}
+} */
 
 /* Base arrow */
-.expandable-bullet-list summary::after {
+/* .expandable-bullet-list summary::after {
   content: '';
   position: absolute;
   right: 0;
@@ -186,23 +287,23 @@
   background-repeat: no-repeat;
   background-position: center;
   transform: rotate(0deg);
-  transition: transform 0.3s ease;
-}
+  transition: transform 0.3s ease; */
+/* } */
 
 /* Rotate immediately when opening or closing */
-.expandable-bullet-list details.is-open summary::after,
+/* .expandable-bullet-list details.is-open summary::after,
 .expandable-bullet-list details.closing summary::after {
   transform: rotate(-90deg);
-}
+} */
 
 
-.expandable-bullet-list summary::-webkit-details-marker,
+/* .expandable-bullet-list summary::-webkit-details-marker,
 .expandable-bullet-list summary::marker {
   display: none;
-}
+} */
 
 /* === Expandable Detail Content === */
-.detail-content {
+/* .detail-content {
   background-color: #666;
   border: 1px solid #444;
   border-radius: 12px;
@@ -220,21 +321,55 @@
   padding: 0 20px;
   margin-top: 0;
   will-change: max-height, opacity, transform;
-}
+} */
 
-details.is-open .detail-content {
+/* details.is-open .detail-content {
   opacity: 1;
   max-height: 800px;
   transform: translateY(0) scale(1);
   margin-top: 12px;
   padding: 20px;
-}
+} */
 
-details.is-open .detail-content:hover,
+/* details.is-open .detail-content:hover,
 details.is-open .detail-content:focus-within {
   border-color: #ff9933;
   box-shadow: 0 0 10px rgba(255, 153, 51, 0.4);
-}
+} */
+
+/* === Smooth Dropdown Animation === */
+/* .detail-content {
+  background-color: #666;
+  border: 1px solid #444;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  color: #ccc;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 20px;
+  margin-top: 0;
+  will-change: transform, opacity, max-height;
+} */
+
+/* details.is-open .detail-content {
+  opacity: 1;
+  max-height: 1000px; 
+  transform: translateY(0);
+  margin-top: 12px;
+  padding: 20px;
+} */
+
+/* Arrow animation */
+/* .expandable-bullet-list summary::after {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+} */
 
 /* === Responsive Breakpoints === */
 @media (max-width: 1024px) {

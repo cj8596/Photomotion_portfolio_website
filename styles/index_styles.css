@@ -36,7 +36,7 @@
   opacity: 0;
   transition: opacity 1s ease;
   padding: 0;
-  background: #000;
+  background: #212121;
   min-height: 100vh;
   padding-top: 80px;
 }
@@ -124,6 +124,7 @@ h2.section-title {
   min-height: 50vh;
   padding: 40px 2vw;
   /* Smaller padding on all sides */
+  margin-bottom: 0;
 }
 
 .why-us h2 {
@@ -148,111 +149,6 @@ h2.section-title {
   text-align-last: center;
 }
 
-/* Vertical Slice Layout */
-/* .centered-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.big-rect {
-  position: relative;
-  width: 1200px;
-  height: 600px;
-  display: flex;
-  cursor: pointer;
-  overflow: hidden;
-  border-radius: 12px;
-  background: #222;
-  margin-bottom: 50px;
-}
-
-.slice {
-  flex: 1;
-  position: relative;
-  z-index: 10;
-  border-left: 1px solid #444;
-  transition: background 0.3s, transform 0.3s, color 0.3s;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 60px;
-  user-select: none;
-  font-size: 22px;
-  background: transparent;
-  color: #ddd;
-  font-weight: 1000;
-  text-shadow:
-    0 0 2px rgba(0, 0, 0, 0.7),
-    0 0 1px rgba(255, 255, 255, 0.5);
-}
-
-.slice:first-child {
-  border-left: none;
-}
-
-.slice:hover {
-  background: rgba(255, 255, 255, 0.05);
-  transform: scale(1.02);
-  color: #eee;
-  z-index: 5;
-
-}
-
-.slice.current-item {
-  background: transparent;
-  color: black;
-  transform: none;
-  z-index: 20;
-  box-shadow: none;
-  border-radius: 0;
-}
-
-/* Overlay Images */
-/* .overlay-images {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 5;
-  border-radius: 12px;
-  background: #111;
-  pointer-events: auto;
-}
-
-.overlay-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-  border-radius: 12px;
-  filter: brightness(0.85);
-}
-
-.overlay-image.animate__animated.animate__fadeIn {
-  animation-duration: 0.8s;
-  animation-fill-mode: both;
-}
-
-.overlay-image.current-item {
-  opacity: 1;
-  z-index: 6;
-} */
-
-
 
 .carousel-wrapper {
   width: 100vw;
@@ -263,7 +159,7 @@ h2.section-title {
 }
 
 .carousel-container {
-  height: 60vh;
+  height: 70vh;
   width: 100%;
   display: flex;
   justify-content: center;
