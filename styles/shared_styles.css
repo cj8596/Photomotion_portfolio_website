@@ -169,7 +169,7 @@ nav a:hover {
   color: #ff9933;
 }
 
-.right-menu li a{
+.left-menu li a{
   color: white;
   font-size: clamp(32px, 8vw, 46px);
   text-decoration: none;
@@ -180,7 +180,7 @@ nav a:hover {
   word-break: break-word;
 }
 
-.left-menu li a{
+.right-menu li a{
   color: rgb(235, 231, 231);
   font-size: clamp(22px, 5vw, 32px);
   text-decoration: none;
@@ -229,12 +229,12 @@ nav a:hover {
   overflow-x: hidden;
   word-break: break-word;
   text-align: center;
-  padding: 60px 40px;
+  padding: 30px 40px;
 }
 
 #fullpage-menu h2 {
   font-size: 4vw;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #ff9933;
 }
 
