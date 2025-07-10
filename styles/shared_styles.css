@@ -142,7 +142,7 @@ nav a:hover {
 
 #fullpage-menu ul {
   list-style: none;
-  padding: 15px;
+  padding: 30px;
   margin:0;
   margin-top: 100px;
   width: 100%;
@@ -154,7 +154,7 @@ nav a:hover {
   font-size: clamp(14px, 4vw, 20px);
 }
 
-#fullpage-menu ul li a {
+/* #fullpage-menu ul li a {
   color: white;
   font-size: clamp(24px, 5vw, 36px);
   text-decoration: none;
@@ -163,11 +163,34 @@ nav a:hover {
   display: inline-block;
   max-width: 90vw;
   word-break: break-word;
-}
+} */
 
 #fullpage-menu ul li a:hover {
   color: #ff9933;
 }
+
+.right-menu li a{
+  color: white;
+  font-size: clamp(32px, 8vw, 46px);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.3s;
+  display: inline-block;
+  max-width: 90vw;
+  word-break: break-word;
+}
+
+.left-menu li a{
+  color: rgb(235, 231, 231);
+  font-size: clamp(22px, 5vw, 32px);
+  text-decoration: none;
+  font-weight: 300;
+  transition: color 0.3s;
+  display: inline-block;
+  max-width: 90vw;
+  word-break: break-word;
+}
+
 
 .menu-container {
   display: flex;
@@ -217,14 +240,14 @@ nav a:hover {
 
 #contact-float-btn {
   position: fixed;
-  bottom: 10px;
-  right: 20px;
+  bottom: 20px;
+  right: 30px;
   background-color: #ff9933;
   color: white;
   border: none;
   border-radius: 30px;
   padding: 10px 20px;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   cursor: pointer;
   z-index: 10000;
@@ -235,7 +258,7 @@ nav a:hover {
 
 #contact-float-btn:hover {
   background-color: #ff9933;
-  transform: scale(1.2);
+  transform: scale(1.3);
 }
 
 .footer-section {
