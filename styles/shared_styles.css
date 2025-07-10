@@ -217,14 +217,14 @@ nav a:hover {
 
 #contact-float-btn {
   position: fixed;
-  bottom: 20px;
+  bottom: 10px;
   right: 20px;
   background-color: #ff9933;
   color: white;
   border: none;
   border-radius: 30px;
   padding: 10px 20px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   z-index: 10000;
@@ -235,7 +235,7 @@ nav a:hover {
 
 #contact-float-btn:hover {
   background-color: #ff9933;
-  transform: scale(1.05);
+  transform: scale(1.2);
 }
 
 .footer-section {
@@ -290,8 +290,8 @@ nav a:hover {
 }
 
 .right-links img {
-  width: 16px;
-  height: 16px;
+  width: 35px;
+  height: 35px;
   object-fit: contain;
 }
 
