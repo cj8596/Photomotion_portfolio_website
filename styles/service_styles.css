@@ -1,7 +1,266 @@
-.service-section {
+/* === Layout: Shoots by Category === */
+.centered-section {
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.big-rect {
+  position: relative;
+  width: 1200px;
+  height: 600px;
+  display: flex;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #222;
+}
+
+.slice {
+  flex: 1;
+  position: relative;
+  z-index: 10;
+  border-left: 1px solid #444;
+  transition: background 0.3s, transform 0.3s, color 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 60px;
+  font-size: 22px;
+  font-weight: 1000;
+  color: #ddd;
+  background: transparent;
+  user-select: none;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.7), 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.slice:first-child {
+  border-left: none;
+}
+
+.slice:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: scale(1.02);
+  color: #eee;
+  z-index: 5;
+}
+
+.slice.current-item {
+  background: transparent;
+  color: black;
+  transform: none;
+  z-index: 20;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* === Overlay Image Section === */
+.overlay-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  border-radius: 12px;
+  background: #111;
+  pointer-events: auto;
+}
+
+.overlay-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  border-radius: 12px;
+  filter: brightness(0.85);
+}
+
+.overlay-image.animate__animated.animate__fadeIn {
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+
+.overlay-image.current-item {
+  opacity: 1;
+  z-index: 6;
+}
+
+/* === Accordion Styles with Bullet Icon === */
+.accordion-list {
+  list-style: none;
+  padding-left: 0;
+  max-width: 800px;
+  margin: auto auto 100px;
+}
+
+.accordion-list li {
+  position: relative;
+  padding-left: 60px; /* increased space */
+  margin-bottom: 20px;
+  font-size: 2rem;
+  line-height: 1.6;
+}
+
+
+.accordion-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  width: 1.5em;
+  height: 1em;
+  background-image: url('../images/icons/custom_bullet.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.accordion-summary {
+  position: relative;
+  font-weight: 600;
+  cursor: pointer;
+  padding-right: 30px;
+  color: #fff;
+  font-size: 1em;
+  display: block;
+}
+
+.accordion-summary::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0.3em;
+  width: 1.2em;
+  height: 1.2em;
+  background-image: url('../images/icons/arrow_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+  padding-left: 6px;
+}
+
+.accordion-item.open .accordion-summary::after {
+  transform: rotate(-90deg);
+}
+
+.accordion-content {
+  background-color: #666;
+  border: 1px solid #444;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  color: #ccc;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.4s ease,
+    max-height 0.4s ease,
+    transform 0.4s ease,
+    padding 0.4s ease;
+  padding: 0 20px;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.accordion-item.open .accordion-content {
+  opacity: 1;
+  max-height: 1000px;
+  transform: translateY(0);
+  margin-top: 12px;
+  padding: 20px;
+}
+
+.accordion-item.closing .accordion-content {
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(-10px);
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+}
+
+.accordion-content:hover {
+  border-color: #ff9933;
+  background-color: #666;
+  box-shadow: 0 0 10px rgba(255, 153, 51, 0.4);
+  transition: all 0.3s ease;
+}
+/* === Booking / Session Styling Fix === */
+.service-container {
+  text-align: center;
+}
+
+.service-container h2,
+.service-container h3 {
+  font-weight: 750;
+  font-size: 3rem;
+  color: #ff9933;
+  text-align: center;
+}
+
+.service-container .custom-bullet-list {
+  list-style: none;
+  padding-left: 0;
+  max-width: 800px;
+  margin: auto auto 100px;
+}
+
+.service-container .custom-bullet-list li {
+  position: relative;
+  padding-left: 60px;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  line-height: 1.6;
+  text-align: center;
+  color: #FFF;
+  font-weight: 550;
+}
+
+.service-container .custom-bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  width: 1.5em;
+  height: 1em;
+  background-image: url('../images/icons/custom_bullet.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.service-container .sub-details {
+  display: block;
+  margin-top: 4px;
+  font-size: 1rem;
+  color: #ff9933;
+  font-style: italic;
+  text-align: center;
+}
+
+
+
+
+
+/* === Services Section === */
+/* .service-section {
   background-color: #000;
   color: #fff;
-  padding: 150px 5px;
+  padding: 70px 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,24 +274,25 @@
   font-family: 'Playfair Display', serif;
 }
 
-.service-container h2,h3 {
+.service-container h2,
+.service-container h3 {
   font-size: 3rem;
-  margin-bottom: 30px;
-  text-align: center;
   font-weight: 600;
   color: #ff9933;
-  margin-bottom: 30px;
-}
+  margin-bottom: 40px;
+} */
 
-.custom-bullet-list {
+/* === Bullet List Styles === */
+/* .custom-bullet-list,
+.expandable-bullet-list {
   list-style: none;
   padding-left: 0;
   max-width: 800px;
-  margin: auto;
-  margin-bottom: 100px;
+  margin: auto auto 100px;
 }
 
-.custom-bullet-list li {
+.custom-bullet-list li,
+.expandable-bullet-list li {
   position: relative;
   padding-left: 40px;
   margin-bottom: 20px;
@@ -40,18 +300,19 @@
   line-height: 1.6;
 }
 
-.custom-bullet-list li::before {
+.custom-bullet-list li::before,
+.expandable-bullet-list li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 6px;
-  width: 24px;
-  height: 24px;
-  background-image: url('../images/icons/custom_bullet.png'); 
+  top: 0.3em;
+  width: 1.5em;
+  height: 1em;
+  background-image: url('../images/icons/custom_bullet.png');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center;
 }
-
 
 .sub-details {
   display: block;
@@ -59,96 +320,288 @@
   font-size: 1rem;
   color: #ff9933;
   font-style: italic;
-}
+} */
 
-/* 1024px — Large Tablets / iPad Pro */
+/* === Expandable Summary & Arrow === */
+/* .expandable-bullet-list summary {
+  position: relative;
+  font-weight: 600;
+  cursor: pointer;
+  padding-right: 30px;
+  color: #fff;
+  font-size: 1em;
+  list-style: none;
+} */
+
+/* Base arrow */
+/* .expandable-bullet-list summary::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0.3em;
+  width: 1.5em;
+  height: 1.5em;
+  background-image: url('../images/icons/arrow_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease; */
+/* } */
+
+/* Rotate immediately when opening or closing */
+/* .expandable-bullet-list details.is-open summary::after,
+.expandable-bullet-list details.closing summary::after {
+  transform: rotate(-90deg);
+} */
+
+
+/* .expandable-bullet-list summary::-webkit-details-marker,
+.expandable-bullet-list summary::marker {
+  display: none;
+} */
+
+/* === Expandable Detail Content === */
+/* .detail-content {
+  background-color: #666;
+  border: 1px solid #444;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  color: #ccc;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-12px) scale(0.98);
+  transition:
+    opacity 0.6s ease-in-out,
+    max-height 0.6s ease-in-out,
+    transform 0.6s ease-in-out;
+  padding: 0 20px;
+  margin-top: 0;
+  will-change: max-height, opacity, transform;
+} */
+
+/* details.is-open .detail-content {
+  opacity: 1;
+  max-height: 800px;
+  transform: translateY(0) scale(1);
+  margin-top: 12px;
+  padding: 20px;
+} */
+
+/* details.is-open .detail-content:hover,
+details.is-open .detail-content:focus-within {
+  border-color: #ff9933;
+  box-shadow: 0 0 10px rgba(255, 153, 51, 0.4);
+} */
+
+/* === Smooth Dropdown Animation === */
+/* .detail-content {
+  background-color: #666;
+  border: 1px solid #444;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  color: #ccc;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 20px;
+  margin-top: 0;
+  will-change: transform, opacity, max-height;
+} */
+
+/* details.is-open .detail-content {
+  opacity: 1;
+  max-height: 1000px; 
+  transform: translateY(0);
+  margin-top: 12px;
+  padding: 20px;
+} */
+
+/* Arrow animation */
+/* .expandable-bullet-list summary::after {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+} */
+
+/* === Responsive Breakpoints === */
 @media (max-width: 1024px) {
-  .service-section {
-    padding: 120px 20px;
+  .centered-section {
+    margin-top: 80px;
   }
 
-  .service-container h2, 
+  .big-rect {
+    width: 95vw;
+    height: auto;
+    min-height: 450px;
+  }
+
+  .slice {
+    font-size: 1em;
+  }
+
+  .service-container h2,
   .service-container h3 {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
-  .custom-bullet-list {
-    max-width: 90%;
+  .expandable-bullet-list summary {
+    font-size: 1rem;
   }
 
-  .custom-bullet-list li {
-    font-size: 1.5rem;
-    padding-left: 36px;
-  }
-
-  .custom-bullet-list li::before {
-    width: 20px;
-    height: 20px;
-    top: 5px;
+  .custom-bullet-list li,
+  .expandable-bullet-list li {
+    font-size: 1.6rem;
   }
 
   .sub-details {
     font-size: 0.9rem;
   }
+
+  .detail-content {
+    font-size: 1.1rem;
+    padding: 20px;
+  }
+
+  /* ✅ Highlight .detail-content on tablet and below */
+  details.is-open .detail-content {
+    border-color: #ff9933;
+    background-color: #666666;
+    box-shadow: 0 0 10px rgba(255, 153, 51, 0.4);
+  }
 }
 
-
-/* 768px — Standard Tablets */
 @media (max-width: 768px) {
-  .service-section {
-    padding: 100px 16px;
+  .big-rect {
+    width: 90vw;
+    min-height: 300px;
   }
 
-  .service-container h2, 
+  .slice {
+    font-size: 0.9em;
+    padding: 20px 8px;
+  }
+
+  .overlay-image {
+    background-size: cover;
+    filter: brightness(0.9);
+  }
+
+  .service-container h2,
   .service-container h3 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
-  .custom-bullet-list {
-    max-width: 100%;
+  .expandable-bullet-list summary {
+    font-size: 0.95rem;
   }
 
-  .custom-bullet-list li {
-    font-size: 1.3rem;
-    padding-left: 32px;
-  }
-
-  .custom-bullet-list li::before {
-    width: 18px;
-    height: 18px;
-    top: 4px;
+  .custom-bullet-list li,
+  .expandable-bullet-list li {
+    font-size: 1.4rem;
   }
 
   .sub-details {
     font-size: 0.85rem;
   }
+
+  .detail-content {
+    font-size: 1rem;
+    padding: 18px;
+  }
+
+  /* ✅ Repeat for safety on smaller devices */
+  details.is-open .detail-content {
+    border-color: #ff9933;
+    background-color: #666666;
+    box-shadow: 0 0 10px rgba(93, 89, 84, 0.4);
+  }
+
+  .service-container {
+    padding: 0 5vw;
+  }
+
+  .detail-content {
+    padding: 16px 12px;
+  }
+
+  .custom-bullet-list li,
+  .expandable-bullet-list li {
+    padding-left: 28px;
+  }
 }
 
-
-/* 480px — Mobile Phones */
 @media (max-width: 480px) {
-  .service-section {
-    padding: 80px 12px;
+  .big-rect {
+    width: 95vw;
+    min-height: 250px;
+    margin-bottom: 20px;
   }
 
-  .service-container h2, 
+  .slice {
+    font-size: 0.75em;
+    padding: 15px 5px;
+  }
+
+  .service-container h2,
   .service-container h3 {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
 
-  .custom-bullet-list li {
-    font-size: 1.1rem;
-    padding-left: 28px;
-    margin-bottom: 16px;
+  .expandable-bullet-list summary {
+    font-size: 0.9rem;
   }
 
-  .custom-bullet-list li::before {
-    width: 16px;
-    height: 16px;
-    top: 4px;
+  .custom-bullet-list li,
+  .expandable-bullet-list li {
+    font-size: 1.2rem;
+    padding-left: 32px;
+  }
+
+  .custom-bullet-list li::before,
+  .expandable-bullet-list li::before {
+    width: 1.2em;
+    height: 0.8em;
   }
 
   .sub-details {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .detail-content {
+    font-size: 0.95rem;
+    padding: 14px;
+  }
+
+  /* ✅ Ensure consistency at mobile level */
+  details.is-open .detail-content {
+    border-color: #ff9933;
+    background-color: #666666;
+    box-shadow: 0 0 10px rgba(255, 153, 51, 0.4);
+  }
+
+  .service-container {
+    padding: 0 4vw;
+  }
+
+  .detail-content {
+    padding: 14px 10px;
+  }
+
+  .custom-bullet-list li,
+  .expandable-bullet-list li {
+    padding-left: 26px;
+  }
+}
+
+@media print {
+  body {
+    display: none !important;
   }
 }

@@ -5,14 +5,36 @@ function initMenuToggle() {
   const fullpageMenu = document.getElementById('fullpage-menu');
   const contactBtn = document.getElementById('contact-float-btn');
 
+  // function openMenu() {
+  //   fullpageMenu.classList.add('active');
+  //   document.body.classList.add('menu-active');
+  //   fullpageMenu.setAttribute('aria-hidden', 'false');
+  //   fullpageMenu.querySelectorAll('a').forEach(a => a.tabIndex = 0);
+  //   fullpageMenu.style.display = 'flex';
+  //   if (contactBtn) contactBtn.style.display = 'none';
+  // }
+
   function openMenu() {
-    fullpageMenu.classList.add('active');
+    fullpageMenu.classList.remove('closing'); // Ensure clean state
+    fullpageMenu.style.display = 'flex';
+    fullpageMenu.classList.add('animating-in');
+
+    requestAnimationFrame(() => {
+      fullpageMenu.classList.add('active');
+
+      setTimeout(() => {
+        fullpageMenu.classList.remove('animating-in');
+      }, 700);
+    });
+
     document.body.classList.add('menu-active');
     fullpageMenu.setAttribute('aria-hidden', 'false');
     fullpageMenu.querySelectorAll('a').forEach(a => a.tabIndex = 0);
-    fullpageMenu.style.display = 'flex';
     if (contactBtn) contactBtn.style.display = 'none';
   }
+
+
+
 
   function closeMenu() {
     fullpageMenu.classList.remove('active');
@@ -86,10 +108,10 @@ function initContactButton() {
 
     if (scrollProgress > 0.6 && !isInBackToTopMode) {
       isInBackToTopMode = true;
-      contactBtn.textContent = '⌂';
+      contactBtn.innerHTML = '<i class="fas fa-home"></i>';
     } else if (scrollProgress <= 0.6 && isInBackToTopMode) {
       isInBackToTopMode = false;
-      contactBtn.textContent = 'Book a Session!';
+      contactBtn.innerHTML = '<i class="fas fa-phone"></i>';
     }
   });
 }
@@ -152,21 +174,25 @@ function initSmartHeaderFlip() {
 
   let pageTurned = false;
   let hasScrolled = false;
+  let lastScrollY = window.scrollY;
 
   function updateHeaderState() {
     const gridTop = gridSection.getBoundingClientRect().top;
-    const scrolled = window.scrollY > 0;
+    const currentScrollY = window.scrollY;
+    const scrollingUp = currentScrollY < lastScrollY;
+    const scrolled = currentScrollY > 0;
 
     if (scrolled) hasScrolled = true;
 
-    // Flip header up as soon as image-wrapper is ~visible
-    if (gridTop <= 120 && !pageTurned && hasScrolled) {
+    // Flip header up when image-wrapper is visible AND scrolling down
+    if (gridTop <= 120 && !pageTurned && hasScrolled && !scrollingUp) {
       header.classList.remove('light-header');
       header.classList.add('turn-page');
       pageTurned = true;
-    } 
-    // Bring it back if scrolling back up
-    else if (gridTop > 100 && pageTurned) {
+    }
+
+    // Flip header back immediately if scrolling up
+    else if (scrollingUp && pageTurned) {
       header.classList.remove('turn-page');
       header.classList.add('light-header');
       pageTurned = false;
@@ -177,11 +203,14 @@ function initSmartHeaderFlip() {
       header.classList.remove('turn-page');
       header.classList.add('light-header');
     }
+
+    lastScrollY = currentScrollY;
   }
 
   window.addEventListener('scroll', updateHeaderState);
   window.addEventListener('load', updateHeaderState);
 }
+
 
 function initHeaderFlip() {
   const header = document.getElementById('main-header');

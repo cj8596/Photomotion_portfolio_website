@@ -10,6 +10,18 @@
   <link rel="stylesheet" href="styles/shared_styles.css" />
   <link rel="stylesheet" href="styles/index_styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- In your <head> -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "PhotoMotion Media Production",
+  "url": "https://www.photomotion-mp.com",
+  "logo": "https://www.photomotion-mp.com/images/icon.png"
+}
+</script>
 </head>
 
 <body class="loading">
@@ -33,8 +45,7 @@
         <button id="menu-close" aria-label="Close menu">x</button>
         <div class="menu-container">
           <div class="menu-section slide-down">
-            <h2>Menu</h2>
-            <ul>
+            <ul class="left-menu">
               <br />
               <li><a href="index.html" tabindex="-1">Home</a></li>
               <li><a href="portfolio.html" tabindex="-1">Our Work</a></li>
@@ -43,12 +54,14 @@
             </ul>
           </div>
           <div class="contact-section slide-up">
-            <ul>
+            <ul class="right-menu">
               <li>
-                <h2><span id="animated-word">Start a Conversation</span></h2><br />
+                <h2><span id="animated-word">Start a Conversation</span></h2>
               </li>
-              <li>Email: <a href="mailto:contact@samplephoto.com" tabindex="-1">contact@samplephoto.com</a></li>
-              <li>Phone: <a href="tel:+1234567890" tabindex="-1">+1 234 567 890</a></li>
+              <li><a href="mailto:hello@photomotion-mp.com" tabindex="-1">
+                <i class="fas fa-envelope" style="margin-right: 12px;"></i>
+                hello@photomotion-mp.com</a></li>
+              <li><a href="contact.html" class="menu-contact-button">Contact us</a></li>
             </ul>
           </div>
         </div>
@@ -57,8 +70,8 @@
 
     <!-- Hero Image -->
     <section>
-      <div class="image-wrapper" style="position:relative;">
-        <img src="images/grid.webp" alt="Sample Photo 1" loading="lazy" />
+      <div class="image-wrapper responsive-image" style="position:relative;">
+        <img src="images/grid.webp" alt="Grid" loading="lazy" />
         <div style="position:absolute; top:0; left:0; right:0; bottom:0; pointer-events:none;"></div>
       </div>
     </section>
@@ -67,18 +80,14 @@
     <section class="why-us">
       <h2>Why choose us?</h2>
       <p class="about">
-        We’re a Mumbai-based creative studio specializing in commercial photography and product styling. With a focus on
-        bold concepts and clean aesthetics, we craft visuals that not only look beautiful but also communicate your
-        brand story effectively.
-        <br /><br />
-        Our fully equipped studio features a wide range of curated props, textured backdrops, and professional
-        lighting—allowing us to manage every part of the shoot, from styling to execution.
-        <br /><br />
-        Whether you're launching a new product or need consistent content for your brand, we offer tailored visual
-        solutions that align with your goals. Backed by years of experience, industry-grade gear, and a deep
-        understanding of branding, we help your products stand out in today’s crowded digital space.
-        <br /><br />
-        Serving clients across India, we make high-quality, scroll-stopping visuals simple and accessible.
+        At our Mumbai-based creative studio, we blend bold concepts with clean, high-end aesthetics to deliver stunning
+        visuals that tell your brand story with impact. With a fully equipped studio, curated props, and expert styling,
+        we manage every aspect of your shoot—from concept to execution.
+        <br><br>
+        What sets us apart is our deep understanding of branding, years of industry experience, and commitment to
+        creating scroll-stopping content that helps your product stand out in a saturated digital market. Whether you're
+        launching a new product or building a cohesive content library, we offer tailored visual solutions that are as
+        strategic as they are beautiful
       </p>
     </section>
 
@@ -179,34 +188,16 @@
       </div>
     </section>
 
-    <!-- Shoots by Category -->
-    <div class="centered-section">
-      <h2 class="section-title">SHOOTS BY CATEGORY</h2>
-      <div class="big-rect">
-        <div class="slice current-item" data-index="0">Product</div>
-        <div class="slice" data-index="1">Jewellery</div>
-        <div class="slice" data-index="2">Food</div>
-        <div class="slice" data-index="3">Fashion</div>
-
-        <div class="overlay-images">
-          <div class="overlay-image current-item animate__animated animate__fadeIn"
-            style="background-image:url('images/ShootsbyCategory/product2.webp');"></div>
-          <div class="overlay-image" style="background-image:url('images/ShootsbyCategory/jewellery.webp');"></div>
-          <div class="overlay-image" style="background-image:url('images/ShootsbyCategory/food_1.webp');"></div>
-          <div class="overlay-image" style="background-image:url('images/ShootsbyCategory/fashion.webp');"></div>
-        </div>
-      </div>
-    </div>
-
     <footer class="footer-section">
       <div class="footer-grid">
 
         <!-- Left Text Links -->
         <div class="footer-column left-links">
           <a href="about_us.html">ABOUT US</a>
-          <a href="#">VIDEO GALLERY</a>
-          <a href="#">CONTACT</a>
-          <a href="#">IMAGE GALLERY</a>
+          <a href="contact.html">CONTACT</a>
+          <a href="#">DO's & DONT's</a>
+          <a href="#">PRIVACY POLICY</a>
+          <a href="#">T&C</a>
         </div>
 
         <!-- Center Logo with Line -->
@@ -217,22 +208,23 @@
 
         <!-- Right Social Links -->
         <div class="footer-column right-links">
-          <a href="#"><img src="images/icons/instagram.png" alt="Instagram" />INSTAGRAM</a>
-          <a href="#"><img src="images/icons/threads.png" alt="Threads" />THREADS</a>
-          <a href="#"><img src="images/icons/linkedin.png" alt="LinkedIn" />LINKEDIN</a>
-          <a href="#"><img src="images/icons/pinterest.png" alt="Pinterest" />PINTEREST</a>
+          <a href="#"><img src="images/icons/instagram.png" alt="Instagram" /></a>
+          <a href="#"><img src="images/icons/threads.png" alt="Threads" /></a>
+          <a href="#"><img src="images/icons/linkedin.png" alt="LinkedIn" /></a>
+          <a href="#"><img src="images/icons/pinterest.png" alt="Pinterest" /></a>
         </div>
       </div>
       <div class="footer">&copy; 2025 PhotoMotion. All rights reserved.</div>
     </footer>
 
     <!-- Contact Button -->
-    <button id="contact-float-btn" title="Contact Us">Book a session!</button>
+    <button id="contact-float-btn" title="Contact Us"><i class="fas fa-phone"></i></button>
   </div>
 
   <!-- Scripts -->
   <script src="scripts/shared_script.js"></script>
   <script src="scripts/index_script.js"></script>
+  <script src="scripts/carousel_script.js"></script>
 </body>
 
 </html>
