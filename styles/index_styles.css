@@ -707,6 +707,7 @@ header.turn-page {
     justify-content: center;
     align-items: center;
     overflow: visible !important;
+    margin-top: 30px;
   }
 
   .image-wrapper img {
@@ -718,5 +719,30 @@ header.turn-page {
   }
 }
 
+@media (max-width: 768px) {
+  .carousel-wrapper {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .carousel-container {
+    height: 45vh; /* or 50vh — shrink height */
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 468px) {
+  .carousel-wrapper {
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+
+  .carousel-container {
+    height: 42vh; /* or adjust for tighter screens */
+  }
+}
 
 

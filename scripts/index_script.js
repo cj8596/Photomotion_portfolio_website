@@ -67,7 +67,7 @@ img.addEventListener('touchstart', (e) => {
     if (isTouching) {
       img.style.filter = 'grayscale(0%) brightness(100%)';
     }
-  }, 100); // short delay to ensure it’s a tap, not a scroll
+  }); // short delay to ensure it’s a tap, not a scroll
 });
 
 // Touch end: revert
