@@ -143,7 +143,7 @@ nav a:hover {
 #fullpage-menu ul {
   list-style: none;
   padding: 30px;
-  margin:0;
+  margin: 0;
   margin-top: 100px;
   width: 100%;
   text-align: left;
@@ -158,7 +158,7 @@ nav a:hover {
   color: #ff9933;
 }
 
-.left-menu li a{
+.left-menu li a {
   color: white;
   font-size: clamp(32px, 8vw, 46px);
   text-decoration: none;
@@ -169,11 +169,12 @@ nav a:hover {
   word-break: break-word;
 }
 
-.right-menu li a{
+.right-menu li a {
   color: rgb(235, 231, 231);
-  font-size: clamp(22px, 5vw, 32px);
+  font-size: clamp(26px, 6vw, 38px);
+  font-family: 'Roboto', sans-serif;
   text-decoration: none;
-  font-weight: 300;
+  font-weight: 100;
   transition: color 0.3s;
   display: inline-block;
   max-width: 90vw;
@@ -226,6 +227,57 @@ nav a:hover {
   color: #ff9933;
 }
 
+.menu-contact-button {
+  position: relative;
+  display: inline-block;
+  margin: 20px auto 0;
+  padding: 10px 28px;
+  border-radius: 999px;
+  border: 4px solid #ff9933;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: transparent;
+  color: white;
+  font-size: clamp(20px, 5vw, 30px);
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 1px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.menu-contact-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ff9933;
+  z-index: -1;
+  /* ✅ This ensures it stays behind */
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  border-radius: 999px;
+}
+
+.menu-contact-button:hover::before {
+  opacity: 1;
+}
+
+.menu-contact-button:hover {
+  color: white;
+  /* ✅ Force white text */
+}
+
+#fullpage-menu .menu-contact-button:hover,
+#fullpage-menu .menu-contact-button:focus,
+#fullpage-menu .menu-contact-button:active {
+  color: #ffffff !important;
+  /* force white text */
+}
+
+
 #contact-float-btn {
   position: fixed;
   bottom: 20px;
@@ -236,7 +288,7 @@ nav a:hover {
   border-radius: 30px;
   padding: 10px 20px;
   font-size: 24px;
-  font-weight: bold;
+  /* font-weight: bold; */
   cursor: pointer;
   z-index: 10000;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
@@ -272,12 +324,23 @@ nav a:hover {
   flex-wrap: wrap;
 }
 
+/* .footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+} */
+
 .footer-column {
   display: flex;
   flex-direction: column;
   gap: 14px;
   margin-top: 20px;
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
 }
+
 
 .left-links a,
 .right-links a {
@@ -301,10 +364,22 @@ nav a:hover {
 }
 
 .right-links img {
-  width: 35px;
-  height: 35px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
 }
+
+.right-links {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /* changed from flex-end */
+  align-items: center;
+}
+
+
 
 .center-logo {
   align-items: center;
@@ -312,22 +387,26 @@ nav a:hover {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-top: -20px;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
 .center-logo .line {
   width: 1px;
-  height: 100px;
+  height: 80px;
   background-color: #ff9933;
 }
 
 .logo-image {
-  width: 150px;
+  width: 250px;
   height: auto;
+  max-height: 250px;
+  object-fit: contain;
 }
 
+
 .footer {
-  margin-top: 20px;
+  margin-top: 10px;
   color: #fff;
   text-align: center;
   font-size: 1em;
@@ -584,6 +663,7 @@ nav a:hover {
     margin: 0 auto;
   }
 }
+
 @media (max-width: 768px) {
   #contact-float-btn {
     padding: 8px 16px;
