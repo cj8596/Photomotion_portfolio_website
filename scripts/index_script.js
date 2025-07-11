@@ -47,15 +47,43 @@ function initCameraHover() {
   });
 
   // Mobile touch support
-  ['touchstart', 'touchend', 'touchcancel'].forEach(eventType => {
-    img.addEventListener(eventType, e => {
-      e.preventDefault();
-      const isActive = eventType === 'touchstart';
-      img.style.filter = isActive
-        ? 'grayscale(0%) brightness(100%)'
-        : 'grayscale(100%) brightness(30%)';
-    });
-  });
+  // ['touchstart', 'touchend', 'touchcancel'].forEach(eventType => {
+  //   img.addEventListener(eventType, e => {
+  //     e.preventDefault();
+  //     const isActive = eventType === 'touchstart';
+  //     img.style.filter = isActive
+  //       ? 'grayscale(0%) brightness(100%)'
+  //       : 'grayscale(100%) brightness(30%)';
+  //   });
+  // });
+
+  let isTouching = false;
+let touchTimeout;
+
+// Touch start: Wait a bit before triggering to avoid interfering with scroll
+img.addEventListener('touchstart', (e) => {
+  isTouching = true;
+  touchTimeout = setTimeout(() => {
+    if (isTouching) {
+      img.style.filter = 'grayscale(0%) brightness(100%)';
+    }
+  }, 100); // short delay to ensure it’s a tap, not a scroll
+});
+
+// Touch end: revert
+img.addEventListener('touchend', () => {
+  isTouching = false;
+  clearTimeout(touchTimeout);
+  img.style.filter = 'grayscale(100%) brightness(30%)';
+});
+
+// Touch cancel (e.g., scroll interrupted it)
+img.addEventListener('touchcancel', () => {
+  isTouching = false;
+  clearTimeout(touchTimeout);
+  img.style.filter = 'grayscale(100%) brightness(30%)';
+});
+
 }
 
 // Overlay image transition on slice hover
