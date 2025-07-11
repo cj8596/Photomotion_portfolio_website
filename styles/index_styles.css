@@ -696,3 +696,27 @@ header.turn-page {
     margin-top: 25px;
   }
 }
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .image-wrapper {
+    width: 100vw;
+    height: auto;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible !important;
+  }
+
+  .image-wrapper img {
+    content: url('../images/vertical_grid.webp');
+    width: 95vw;               /* wider but not touching screen edges */
+    height: auto;              /* maintain aspect ratio */
+    object-fit: contain;       /* show full image without cropping */
+    display: block;
+  }
+}
+
+
+

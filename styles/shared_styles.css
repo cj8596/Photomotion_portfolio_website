@@ -154,17 +154,6 @@ nav a:hover {
   font-size: clamp(14px, 4vw, 20px);
 }
 
-/* #fullpage-menu ul li a {
-  color: white;
-  font-size: clamp(24px, 5vw, 36px);
-  text-decoration: none;
-  font-weight: 700;
-  transition: color 0.3s;
-  display: inline-block;
-  max-width: 90vw;
-  word-break: break-word;
-} */
-
 #fullpage-menu ul li a:hover {
   color: #ff9933;
 }
@@ -190,7 +179,6 @@ nav a:hover {
   max-width: 90vw;
   word-break: break-word;
 }
-
 
 .menu-container {
   display: flex;
