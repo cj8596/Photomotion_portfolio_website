@@ -303,7 +303,7 @@ nav a:hover {
 
 .footer-section {
   background-color: #0000;
-  padding: 20px 40px;
+  padding: 0px 40px;
   color: #ff9933;
   font-family: 'Segoe UI', sans-serif;
   position: relative;
@@ -379,21 +379,24 @@ nav a:hover {
   align-items: center;
 }
 
-
-
 .center-logo {
   align-items: center;
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  margin-top: -10px;
-  margin-bottom: 10px;
+  gap: 4px;
+  /* Tighter space between line & image */
+  padding: 0;
+  margin: 0;
+  /* Removes outer vertical spacing */
+  line-height: 1;
+  /* Ensures no extra space from font line-height */
 }
 
+
 .center-logo .line {
-  width: 1px;
-  height: 80px;
+  width: 2px;
+  height: 100px;
   background-color: #ff9933;
 }
 
@@ -406,7 +409,7 @@ nav a:hover {
 
 
 .footer {
-  margin-top: 10px;
+  margin-top: 5px;
   color: #fff;
   text-align: center;
   font-size: 1em;
@@ -449,235 +452,296 @@ nav a:hover {
   opacity: 0;
 }
 
-
-
-/* === Responsive Adjustments for Shared Styles === */
-
-/* iPad Pro and smaller tablets */
 @media (max-width: 1024px) {
-  header {
-    padding: 20px 16px;
+  #menu-button {
+    padding: 30px 10px;
+    font-size: 5vw;
+  }
+
+  header .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
   }
 
   header .logo img {
-    height: 12vw;
     max-height: 120px;
-  }
-
-  #menu-button {
-    font-size: 5vw;
-    padding: 30px 10px;
-  }
-
-  #fullpage-menu h2 {
-    font-size: 4.5vw;
+    height: 12vw;
+    margin: 0 auto;
   }
 
   .menu-section,
   .contact-section {
-    padding: 50px 30px;
+    padding: 40px 30px;
   }
 
-  .footer-section {
-    padding: 20px 30px;
+  .left-menu li a {
+    font-size: clamp(26px, 6vw, 38px);
+  }
+
+  .right-menu li a {
+    font-size: clamp(22px, 5vw, 32px);
+  }
+
+  .menu-contact-button {
+    font-size: clamp(18px, 4.5vw, 28px);
+    padding: 10px 22px;
   }
 
   .footer-grid {
     gap: 30px;
   }
 
-  .left-links a,
-  .right-links a {
-    font-size: 16px;
-  }
-
   .logo-image {
-    width: 140px;
+    width: 200px;
   }
 
   .center-logo .line {
-    height: 90px;
+    height: 80px;
+  }
+
+  #contact-float-btn {
+    font-size: 22px;
+    padding: 8px 16px;
   }
 }
 
-/* Tablets (≤768px) */
 @media (max-width: 768px) {
   header {
     padding: 16px 10px;
   }
 
+  header .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+
   header .logo img {
     height: 14vw;
     max-height: 100px;
+    margin: 0 auto;
   }
 
   #menu-button {
     font-size: 6vw;
-    padding: 20px 10px;
+    padding: 20px 8px;
+  }
+
+  .menu-container {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+  }
+
+  #fullpage-menu ul {
+    margin-top: 20px;
+    padding: 10px;
   }
 
   .menu-section,
   .contact-section {
-    padding: 40px 20px;
-  }
-
-  #fullpage-menu h2 {
-    font-size: 5.5vw;
-  }
-
-  .menu-container {
+    display: flex;
     flex-direction: column;
-    align-items: center;
-  }
-
-  .menu-section ul li,
-  .contact-section li {
-    font-size: 1.1rem;
-    flex: 1 1 auto;
-    width: 100%;
-    height: auto;
+    justify-content: center;   /* Vertically center */
+    align-items: flex-start;   /* Align content to left */
+    text-align: left;
+    padding: 20px;             /* Optional: adjust as needed */
+    height: 100%;
+    flex: 1 1 50% !important;
+    max-height: 100vh !important;
+    overflow-y: auto !important;
   }
 
   .contact-section a {
     font-size: 1rem;
   }
 
+  #fullpage-menu {
+    overflow-y: auto !important;
+  }
+
+  #fullpage-menu h2 {
+    font-size: 8vw;
+  }
+
+  .left-menu li a {
+    font-size: clamp(20px, 6vw, 36px);
+  }
+
+  .right-menu li a {
+    font-size: clamp(24px, 6vw, 42px);
+  }
+
+  .menu-contact-button {
+    font-size: clamp(14px, 3.5vw, 18px);
+    padding: 8px 12px;
+  }
+
   .footer-section {
-    padding: 20px 20px;
-  }
-
-  .footer-grid {
-    flex-direction: row;
-    align-items: center;
-    text-align: center;
-  }
-
-  .footer-column {
-    gap: 10px;
-    align-items: center;
+    padding: 0px;
   }
 
   .left-links a,
   .right-links a {
+    font-size: 12px;
+  }
+
+  .logo-image {
+    width: 160px;
+  }
+
+  .right-links img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .left-links {
+    gap: 6px;
+    /* Reduced from 14px */
+  }
+
+  .footer {
+    font-size: 0.9em;
+  }
+
+  #contact-float-btn {
+    font-size: 18px;
+    padding: 6px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  header .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  header .logo img {
+    max-height: 80px;
+    height: 16vw;
+    margin: 0 auto;
+  }
+
+  #menu-button {
+    padding: 15px 8px;
+    font-size: 7vw;
+  }
+
+  .left-menu li a{
+    font-size: clamp(24px, 5vw, 32px);
+  }
+
+  .right-menu li a {
+    font-size: clamp(14px, 5vw, 20px);
+  }
+
+  .menu-contact-button {
+    font-size: clamp(12px, 4vw, 18px);
+    padding: 6px 12px;
+  }
+
+  .left-links a,
+  .right-links a {
+    font-size: 10px;
+  }
+
+  .logo-image {
+    width: 140px;
+  }
+
+  .right-links img {
+    width: 28px;
+    height: 28px;
+  }
+
+  #contact-float-btn {
+    font-size: 16px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 360px) {
+
+  .left-menu li a{
+    font-size: clamp(18px, 4.5vw, 22px);
+  }
+
+  .right-menu li a {
+    font-size: clamp(12px, 4.5vw, 18px);
+  }
+
+
+  .menu-contact-button {
     font-size: 14px;
+    padding: 6px 10px;
   }
 
   .logo-image {
     width: 120px;
   }
 
-  .center-logo .line {
-    height: 70px;
+  .right-links img {
+    width: 24px;
+    height: 24px;
   }
 
-  .footer {
-    font-size: 0.9em;
+  #contact-float-btn {
+    font-size: 14px;
+    padding: 4px 10px;
   }
 }
 
-/* Phones (≤480px) */
-@media (max-width: 480px) {
-  header {
-    padding: 10px 8px;
-  }
-
-  header .logo img {
-    height: 16vw;
-    max-height: 90px;
-  }
-
-  #menu-button {
-    font-size: 7vw;
-    padding: 15px 8px;
-  }
-
-  #menu-close {
-    font-size: 1.5rem;
-  }
-
-  #fullpage-menu h2 {
-    font-size: 6vw;
-  }
-
-  .menu-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .menu-section,
-  .contact-section {
-    flex: 1 1 auto;
-    width: 100%;
-    height: auto;
-    padding: 20px 10px;
-  }
-
-  .menu-section ul li a {
-    font-size: clamp(14px, 5vw, 20px);
-  }
-
-  .footer-section {
-    padding: 20px 10px;
-  }
-
+@media (max-width: 768px),
+(max-width: 480px),
+(max-width: 360px) {
   .footer-grid {
-    flex-direction: row;
-    gap: 5px;
-    text-align: center;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    text-align: left !important;
   }
 
   .footer-column {
-    align-items: center;
-    gap: 8px;
+    flex: 1 1 33% !important;
+    max-width: 33% !important;
+    min-width: 0 !important;
+    padding: 0 5px;
+    align-items: center !important;
+    text-align: center !important;
   }
 
   .left-links a,
   .right-links a {
-    font-size: 8px;
+    font-size: 10px !important;
+    letter-spacing: 1px !important;
+  }
+
+  .right-links img {
+    width: 24px !important;
+    height: 24px !important;
   }
 
   .logo-image {
-    width: 100px;
+    width: 80px !important;
   }
 
   .center-logo .line {
-    height: 50px;
+    height: 50px !important;
   }
 
   .footer {
-    font-size: 0.8em;
-  }
-}
-
-@media (max-width: 1024px) {
-  .footer-grid {
-    text-align: left !important;
-    align-items: flex-start !important;
-  }
-
-  .footer-column {
-    align-items: flex-start !important;
-  }
-
-  .center-logo .line {
-    margin: 0 auto;
-  }
-}
-
-@media (max-width: 768px) {
-  #contact-float-btn {
-    padding: 8px 16px;
-    font-size: 18px;
-    bottom: 15px;
-    right: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  #contact-float-btn {
-    padding: 6px 12px;
-    font-size: 16px;
-    bottom: 10px;
-    right: 15px;
+    font-size: 0.7em !important;
   }
 }
