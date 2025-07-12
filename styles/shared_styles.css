@@ -287,7 +287,7 @@ nav a:hover {
   border: none;
   border-radius: 30px;
   padding: 10px 20px;
-  font-size: 24px;
+  font-size: 28px;
   /* font-weight: bold; */
   cursor: pointer;
   z-index: 10000;
@@ -338,7 +338,7 @@ nav a:hover {
   margin-top: 20px;
   flex: 1;
   min-width: 200px;
-  max-width: 300px;
+  max-width: 400px;
 }
 
 
@@ -360,12 +360,13 @@ nav a:hover {
 .right-links a {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
+  margin-top: 50px;
 }
 
 .right-links img {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   object-fit: contain;
 }
 
@@ -743,5 +744,11 @@ nav a:hover {
 
   .footer {
     font-size: 0.7em !important;
+  }
+}
+
+@media print {
+  body {
+    display: none !important;
   }
 }
