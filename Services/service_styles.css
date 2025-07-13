@@ -1,0 +1,488 @@
+/* === Layout: Shoots by Category === */
+.centered-section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.big-rect {
+  position: relative;
+  width: 1200px;
+  height: 600px;
+  display: flex;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #222;
+}
+
+.slice {
+  flex: 1;
+  position: relative;
+  z-index: 10;
+  border-left: 1px solid #444;
+  transition: background 0.3s, transform 0.3s, color 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 60px;
+  font-size: 22px;
+  font-weight: 1000;
+  color: #ddd;
+  background: transparent;
+  user-select: none;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.7), 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.slice:first-child {
+  border-left: none;
+}
+
+.slice:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: scale(1.02);
+  color: #eee;
+  z-index: 5;
+}
+
+.slice.current-item {
+  background: transparent;
+  color: black;
+  transform: none;
+  z-index: 20;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* === Overlay Image Section === */
+.overlay-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  border-radius: 12px;
+  background: #111;
+  pointer-events: auto;
+}
+
+.overlay-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  border-radius: 12px;
+  filter: brightness(0.85);
+}
+
+.overlay-image.animate__animated.animate__fadeIn {
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+
+.overlay-image.current-item {
+  opacity: 1;
+  z-index: 6;
+}
+
+/* === Accordion Styles with Bullet Icon === */
+.accordion-list {
+  list-style: none;
+  padding-left: 0;
+  max-width: 800px;
+  margin: auto auto 100px;
+}
+
+.accordion-list li {
+  position: relative;
+  padding-left: 60px;
+  /* increased space */
+  margin-bottom: 20px;
+  font-size: 2rem;
+  line-height: 1.6;
+}
+
+
+.accordion-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  width: 1.5em;
+  height: 1em;
+  background-image: url('../images/icons/custom_bullet.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.accordion-summary {
+  position: relative;
+  font-weight: 600;
+  cursor: pointer;
+  padding-right: 30px;
+  color: #fff;
+  font-size: 1em;
+  display: block;
+}
+
+.accordion-summary::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0.3em;
+  width: 1.2em;
+  height: 1.2em;
+  background-image: url('../images/icons/arrow_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+  padding-left: 6px;
+}
+
+.accordion-item.open .accordion-summary::after {
+  transform: rotate(-90deg);
+}
+
+.accordion-content {
+  background-color: #666;
+  border: 1px solid #444;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.4s ease,
+    max-height 0.4s ease,
+    transform 0.4s ease,
+    padding 0.4s ease;
+  padding: 0 20px;
+  opacity: 0;
+  margin-top: 0;
+  margin-right: 40px;
+}
+
+.accordion-item.open .accordion-content {
+  opacity: 1;
+  max-height: 1000px;
+  transform: translateY(0);
+  margin-top: 12px;
+  padding: 20px;
+}
+
+.accordion-item.closing .accordion-content {
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(-10px);
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+}
+
+.accordion-content:hover {
+  border-color: #ff9933;
+  background-color: #666;
+  box-shadow: 0 0 10px rgba(255, 153, 51, 0.4);
+  transition: all 0.3s ease;
+}
+
+.service-container {
+  text-align: center;
+}
+
+.service-container h2,
+.service-container h3 {
+  font-weight: 750;
+  font-size: 3rem;
+  color: #ff9933;
+  text-align: center;
+}
+
+.service-container .custom-bullet-list {
+  list-style: none;
+  padding-left: 0;
+  max-width: 800px;
+  margin: auto auto 100px;
+}
+
+.service-container .custom-bullet-list li {
+  position: relative;
+  padding-left: 60px;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  line-height: 1.6;
+  text-align: center;
+  color: #FFF;
+  font-weight: 550;
+}
+
+.service-container .custom-bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  width: 1.5em;
+  height: 1em;
+  background-image: url('../images/icons/custom_bullet.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.service-container .sub-details {
+  display: block;
+  margin-top: 4px;
+  font-size: 1rem;
+  color: #ff9933;
+  font-style: italic;
+  text-align: center;
+}
+
+
+@media (max-width: 1024px) {
+  .centered-section {
+    margin-top: 50px;
+  }
+
+  .big-rect {
+    width: 95vw;
+    height: auto;
+    min-height: 450px;
+  }
+
+  .slice {
+    font-size: 1em;
+  }
+
+  .service-container h2 {
+    font-size: 2.5rem;
+  }
+
+  .accordion-list li {
+    font-size: 2rem;
+    padding-left: 60px;
+  }
+
+  .accordion-list li::before {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5em;
+    height: 0.9em;
+  }
+
+
+  .accordion-summary {
+    font-size: 1.8rem;
+    padding-right: 36px;
+  }
+
+  .accordion-summary::after {
+    width: 1.5em;
+    /* enlarged arrow */
+    height: 1.5em;
+    right: 0;
+  }
+
+  .accordion-content {
+    font-size: 1.15rem;
+    padding: 18px 20px;
+    margin-right: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .centered-section {
+    margin-top: 5px;
+  }
+
+  .big-rect {
+    width: 90vw;
+    min-height: 300px;
+  }
+
+  .slice {
+    font-size: 0.9em;
+    padding: 20px 8px;
+  }
+
+  .overlay-image {
+    background-size: cover;
+    filter: brightness(0.9);
+  }
+
+  .service-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .accordion-list li {
+    font-size: 1.5rem;
+    padding-left: 60px;
+  }
+
+  .accordion-list li::before {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.2em;
+    height: 0.8em;
+  }
+
+  .accordion-summary {
+    font-size: 1.2rem;
+    padding-right: 34px;
+  }
+
+  .accordion-summary::after {
+    width: 1.4em;
+    height: 1.4em;
+    right: 0;
+  }
+
+  .accordion-content {
+    font-size: 1.05rem;
+    padding: 16px 18px;
+    margin-right: 30px;
+  }
+
+  .service-container h3 {
+    font-size: 1.4rem;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .custom-bullet-list {
+    padding: 0 12px;
+  }
+
+  .service-container .custom-bullet-list li {
+    font-size: 1rem;
+    font-weight: 500;
+    /* Lighter for smaller screens */
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  .custom-bullet-list li::before {
+    content: '';
+    width: 0.9em;
+    height: 0.6em;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url('../images/icons/custom_bullet.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .sub-details {
+    font-size: 0.75rem;
+    margin-top: 4px;
+    display: block;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .big-rect {
+    width: 95vw;
+    min-height: 250px;
+    margin-bottom: 20px;
+  }
+
+  .slice {
+    font-size: 0.75em;
+    padding: 15px 5px;
+  }
+
+  .service-container h2 {
+    font-size: 1.7rem;
+  }
+
+  .accordion-list li {
+    font-size: 1.3rem;
+    padding-left: 60px;
+  }
+
+  .accordion-list li::before {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.1em;
+    height: 0.7em;
+  }
+
+  .accordion-summary {
+    font-size: 1.1rem;
+    padding-right: 32px;
+  }
+
+  .accordion-summary::after {
+    width: 1.3em;
+    /* bigger arrow on small screen */
+    height: 1.3em;
+    right: 0;
+  }
+
+  .accordion-content {
+    font-size: 0.95rem;
+    padding: 14px 16px;
+    margin-right: 20px;
+  }
+
+  .service-container h3 {
+    font-size: 1.3rem;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .custom-bullet-list {
+    padding: 0 10px;
+  }
+
+  .service-container .custom-bullet-list li {
+    font-size: 1.5rem;
+    font-weight: 500;
+    /* Lighter for smaller screens */
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .custom-bullet-list li::before {
+    content: '';
+    width: 0.8em;
+    height: 0.5em;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url('../images/icons/custom_bullet.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .sub-details {
+    font-size: 0.7rem;
+    margin-top: 4px;
+    display: block;
+    text-align: left;
+  }
+}
