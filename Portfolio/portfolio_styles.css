@@ -13,16 +13,6 @@ body {
   overflow-x: hidden;
 }
 
-header {
-  border: none !important;
-}
-
-header nav {
-  position: absolute;
-  top: 10px;
-  left: 20px;
-}
-
 main {
   display: flex;
   flex-direction: column;
