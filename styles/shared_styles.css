@@ -729,6 +729,13 @@ nav a:hover {
     letter-spacing: 1px !important;
   }
 
+  .right-links {
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    justify-content: center !important;
+    padding-right: 10px !important; /* 👈 Added right padding */
+  }
+
   .right-links img {
     width: 24px !important;
     height: 24px !important;
@@ -746,6 +753,8 @@ nav a:hover {
     font-size: 0.7em !important;
   }
 }
+
+
 
 @media print {
   body {
