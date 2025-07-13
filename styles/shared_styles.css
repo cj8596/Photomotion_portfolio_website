@@ -696,7 +696,7 @@ nav a:hover {
 
   .left-links a,
   .right-links a {
-    font-size: 15px !important;
+    font-size: 10px !important;
     letter-spacing: 1px !important;
   }
 
@@ -722,8 +722,6 @@ nav a:hover {
     padding: 2px !important;
     max-width: 100% !important;
   }
-
-
 
   .right-links img {
     width: 50px !important;
@@ -807,7 +805,7 @@ nav a:hover {
 
   .left-links a,
   .right-links a {
-    font-size: 13px !important;
+    font-size: 8px !important;
     letter-spacing: 1px !important;
   }
 
@@ -902,7 +900,7 @@ nav a:hover {
 
   .left-links a,
   .right-links a {
-    font-size: 15px !important;
+    font-size: 8px !important;
     letter-spacing: 1px !important;
   }
 
