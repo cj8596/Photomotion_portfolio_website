@@ -87,23 +87,62 @@ img.addEventListener('touchcancel', () => {
 }
 
 // Overlay image transition on slice hover
+// function initSliceOverlay() {
+//   const slices = document.querySelectorAll('.slice');
+//   const overlayImages = document.querySelectorAll('.overlay-image');
+//   slices.forEach(slice => {
+//     slice.addEventListener('mouseenter', () => {
+//       const index = slice.dataset.index;
+//       slices.forEach(s => s.classList.remove('current-item'));
+//       overlayImages.forEach(img => {
+//         img.classList.remove('current-item', 'animate__fadeIn', 'animate__animated');
+//         void img.offsetWidth; // force reflow
+//       });
+//       slice.classList.add('current-item');
+//       const targetImg = overlayImages[index];
+//       targetImg.classList.add('current-item', 'animate__animated', 'animate__fadeIn');
+//     });
+//   });
+// }
+
 function initSliceOverlay() {
   const slices = document.querySelectorAll('.slice');
   const overlayImages = document.querySelectorAll('.overlay-image');
+
   slices.forEach(slice => {
+    const index = slice.dataset.index;
+
+    // Desktop Hover
     slice.addEventListener('mouseenter', () => {
-      const index = slice.dataset.index;
-      slices.forEach(s => s.classList.remove('current-item'));
-      overlayImages.forEach(img => {
-        img.classList.remove('current-item', 'animate__fadeIn', 'animate__animated');
-        void img.offsetWidth; // force reflow
-      });
-      slice.classList.add('current-item');
-      const targetImg = overlayImages[index];
-      targetImg.classList.add('current-item', 'animate__animated', 'animate__fadeIn');
+      if (window.innerWidth > 1024) {
+        updateOverlay(index);
+      }
+    });
+
+    // Mobile Tap
+    slice.addEventListener('click', () => {
+      if (window.innerWidth <= 1024) {
+        updateOverlay(index);
+      }
     });
   });
+
+  function updateOverlay(index) {
+    // Apply current-item to all slices
+    slices.forEach(s => s.classList.add('current-item'));
+
+    // Reset all overlay images
+    overlayImages.forEach(img => {
+      img.classList.remove('current-item', 'animate__animated', 'animate__fadeIn');
+      void img.offsetWidth; // force reflow to allow re-animation
+    });
+
+    // Show only selected overlay image
+    const targetImg = overlayImages[index];
+    targetImg.classList.add('current-item', 'animate__animated', 'animate__fadeIn');
+  }
 }
+
 
 // Reveal sections on scroll with animation
 function initSectionReveal() {
