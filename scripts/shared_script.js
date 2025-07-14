@@ -204,6 +204,13 @@ function initSmartHeaderFlip() {
       header.classList.add('light-header');
     }
 
+    if (window.scrollY <= 0) {
+      header.classList.remove('turn-page');
+      header.classList.add('light-header');
+      pageTurned = false;
+    }
+
+
     lastScrollY = currentScrollY;
   }
 
