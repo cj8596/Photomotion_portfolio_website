@@ -178,8 +178,23 @@
     }
 
     @media (max-width: 768px) {
+
+      header h1 {
+        font-size: 2rem;
+      }
+
       .portfolio-grid {
         grid-template-columns: repeat(3, 1fr);
+      }
+
+      .custom-caption {
+        top: unset;
+        bottom: 20px;
+        left: 10px;
+        right: 10px;
+        font-size: 1.1rem;
+        text-align: center;
+        max-width: calc(100% - 20px);
       }
     }
   </style>
@@ -257,42 +272,52 @@
       },
       on: {
         ready: (fancybox) => {
-          const fullscreenBtn = fancybox.$container.querySelector("#customFullscreenBtn");
-          const fullscreenIcon = fancybox.$container.querySelector("#fullscreenIcon");
-          const zoomBtn = fancybox.$container.querySelector(".fancybox__button[title='Zoom']");
-          const closeBtn = fancybox.$container.querySelector(".fancybox__button[title='Close']");
+          const container = fancybox.$container;
 
-          let isFullscreen = false;
-
+          // --- Create custom nav arrows ---
           const navContainer = document.createElement("div");
           navContainer.className = "custom-nav-buttons";
 
           const prevBtn = document.createElement("button");
           prevBtn.className = "custom-arrow prev";
-          prevBtn.innerHTML = `<img src="/images/icons/left-arrow.png" alt="Prev" />`;
-          prevBtn.addEventListener("click", () => {
-            fancybox.prev(); // ✅ use the current instance
-          });
+          prevBtn.innerHTML = `<img src="/images/icons/left-arrow.png" alt="Previous">`;
 
           const nextBtn = document.createElement("button");
           nextBtn.className = "custom-arrow next";
-          nextBtn.innerHTML = `<img src="/images/icons/right-arrow.png" alt="Next" />`;
-          nextBtn.addEventListener("click", () => {
-            fancybox.next(); // ✅ use the current instance
+          nextBtn.innerHTML = `<img src="/images/icons/right-arrow.png" alt="Next">`;
+
+          // Use fancybox.getInstance() to get current instance on click
+          prevBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); // ✅ prevents Fancybox from thinking it's a close click
+            const instance = Fancybox.getInstance();
+            if (instance) instance.prev();
+          });
+          nextBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); // ✅ same here
+            const instance = Fancybox.getInstance();
+            if (instance) instance.next();
           });
 
           navContainer.appendChild(prevBtn);
           navContainer.appendChild(nextBtn);
-          requestAnimationFrame(() => {
-            fancybox.$container.appendChild(navContainer);
+          container.appendChild(navContainer);
+
+          // --- Clean up when fancybox closes ---
+          fancybox.on("closing", () => {
+            navContainer.remove();
           });
 
+          // --- Set up toolbar buttons like fullscreen/zoom ---
+          const fullscreenBtn = container.querySelector("#customFullscreenBtn");
+          const fullscreenIcon = container.querySelector("#fullscreenIcon");
+
           fullscreenBtn?.addEventListener("click", () => {
-            fancybox.toggleFullscreen(); // ✅ this will now work
+            const instance = Fancybox.getInstance();
+            if (instance) instance.toggleFullscreen();
           });
 
           document.addEventListener("fullscreenchange", () => {
-            isFullscreen = !!document.fullscreenElement;
+            const isFullscreen = !!document.fullscreenElement;
             if (fullscreenIcon) {
               fullscreenIcon.src = isFullscreen
                 ? "/images/icons/fullscreen_exit.png"
@@ -301,16 +326,19 @@
             }
           });
 
+          const zoomBtn = container.querySelector(".fancybox__button[title='Zoom']");
           zoomBtn?.addEventListener("click", () => {
-            fancybox.toggleZoom(); // ✅ also works
+            const instance = Fancybox.getInstance();
+            if (instance) instance.toggleZoom();
           });
 
+          const closeBtn = container.querySelector(".fancybox__button[title='Close']");
           closeBtn?.addEventListener("click", () => {
-            fancybox.close(); // ✅ correct
+            const instance = Fancybox.getInstance();
+            if (instance) instance.close();
           });
         }
       }
-
     });
 
   </script>
