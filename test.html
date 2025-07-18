@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fashion Photography</title>
+  <title>PhotoMotion</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
   <style>
     * {
@@ -188,7 +188,7 @@
 <body>
 
   <header>
-    <h1>FASHION PHOTOGRAPHY</h1>
+    <h1>PRODUCT PHOTOGRAPHY</h1>
   </header>
 
   <!-- <nav class="portfolio-nav">
@@ -210,7 +210,7 @@
   <div class="portfolio-grid" id="portfolioGrid"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
-  <script src="/images/image.js"></script>
+  <script src="/images/image_p.js"></script>
 
   <script>
     const container = document.getElementById("portfolioGrid");
@@ -270,15 +270,16 @@
           const prevBtn = document.createElement("button");
           prevBtn.className = "custom-arrow prev";
           prevBtn.innerHTML = `<img src="/images/icons/left-arrow.png" alt="Prev" />`;
-          // prevBtn.addEventListener("click", () => fancybox.prev());
-          prevBtn.addEventListener("click", () => Fancybox.getInstance().prev());
+          prevBtn.addEventListener("click", () => {
+            fancybox.prev(); // ✅ use the current instance
+          });
 
           const nextBtn = document.createElement("button");
           nextBtn.className = "custom-arrow next";
           nextBtn.innerHTML = `<img src="/images/icons/right-arrow.png" alt="Next" />`;
-          // nextBtn.addEventListener("click", () => fancybox.next());
-          nextBtn.addEventListener("click", () => Fancybox.getInstance().next());
-
+          nextBtn.addEventListener("click", () => {
+            fancybox.next(); // ✅ use the current instance
+          });
 
           navContainer.appendChild(prevBtn);
           navContainer.appendChild(nextBtn);
@@ -286,23 +287,12 @@
             fancybox.$container.appendChild(navContainer);
           });
 
-          prevBtn.addEventListener("click", () => {
-            console.log("Prev clicked");
-            Fancybox.getInstance()?.prev();
-          });
-
-          nextBtn.addEventListener("click", () => {
-            console.log("Next clicked");
-            Fancybox.getInstance()?.next();
-          });
-
           fullscreenBtn?.addEventListener("click", () => {
-            fancybox.toggleFullscreen();
+            fancybox.toggleFullscreen(); // ✅ this will now work
           });
 
           document.addEventListener("fullscreenchange", () => {
             isFullscreen = !!document.fullscreenElement;
-
             if (fullscreenIcon) {
               fullscreenIcon.src = isFullscreen
                 ? "/images/icons/fullscreen_exit.png"
@@ -312,16 +302,17 @@
           });
 
           zoomBtn?.addEventListener("click", () => {
-            fancybox.toggleZoom();
+            fancybox.toggleZoom(); // ✅ also works
           });
 
           closeBtn?.addEventListener("click", () => {
-            fancybox.close();
+            fancybox.close(); // ✅ correct
           });
         }
       }
+
     });
-    
+
   </script>
 
 </body>
