@@ -41,7 +41,7 @@ main {
 .fixed-heading h1 {
   font-size: 8em;
   margin-bottom: 20px;
-  background: linear-gradient(to right,#ff9933, #ffc266, #ff9933, #cc6600,#ff9933,#ffc266,#ff9933); /* light → mid → dark orange */
+  background: linear-gradient(to right,#ff9933, #ffd194, #ff9933, #f89b1f,#ff9933,#ffd194,#ff9933); /* light → mid → dark orange */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text; /* For Firefox */

@@ -1,0 +1,329 @@
+<!-- Paste this entire code into your HTML file -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fashion Photography</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #fff;
+    }
+
+    header {
+      background: linear-gradient(to bottom, #000, #1e1e1e);
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    nav.portfolio-nav {
+      background-color: #1e1e1e;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+      padding: 1rem 0;
+    }
+
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 500;
+      padding-bottom: 4px;
+      transition: all 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #fff;
+      border-bottom: 2px solid #ffa726;
+    }
+
+    .breadcrumb {
+      text-align: left;
+      font-size: 0.9rem;
+      color: #bbb;
+      padding: 1.5rem 2rem 0;
+    }
+
+    .breadcrumb span {
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .description {
+      max-width: 900px;
+      margin: 1rem auto 2rem;
+      text-align: center;
+      font-style: italic;
+      color: #ddd;
+      line-height: 1.6;
+      font-size: 1.1rem;
+      padding: 0 1rem;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      max-width: 100%;
+    }
+
+    .portfolio-item {
+      display: block;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .custom-caption {
+      position: absolute;
+      top: 200px;
+      left: 60px;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      z-index: 10000;
+      pointer-events: none;
+      max-width: 80%;
+    }
+
+    .fancybox__button.custom-icon-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0 5px;
+    }
+
+    .fancybox__button.custom-icon-btn img {
+      width: 24px;
+      height: 24px;
+      filter: brightness(0) saturate(100%) invert(66%) sepia(66%) saturate(805%) hue-rotate(359deg) brightness(101%) contrast(101%);
+      transition: filter 0.3s ease;
+    }
+
+    .fancybox__button.custom-icon-btn:hover img {
+      filter: brightness(1.5);
+    }
+
+    .fancybox__nav {
+      display: none !important;
+    }
+
+    .custom-nav-buttons {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transform: translateY(-50%);
+      padding: 0 40px;
+    }
+
+    .custom-arrow {
+      background: none;
+      border: none;
+      pointer-events: all;
+      cursor: pointer;
+      width: 60px;
+      height: 60px;
+      transition: transform 0.3s ease;
+    }
+
+    .custom-arrow img {
+      width: 100%;
+      height: auto;
+      filter: brightness(0) saturate(100%) invert(66%) sepia(66%) saturate(805%) hue-rotate(359deg) brightness(101%) contrast(101%);
+    }
+
+    .custom-arrow:hover {
+      transform: scale(1.1);
+    }
+
+    .custom-arrow:hover img {
+      filter: brightness(1.5);
+    }
+
+    @media (max-width: 768px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>FASHION PHOTOGRAPHY</h1>
+  </header>
+
+  <!-- <nav class="portfolio-nav">
+    <ul>
+      <li><a href="#" class="active">Portfolio</a></li>
+      <li><a href="#">Drinks</a></li>
+      <li><a href="#">Food</a></li>
+      <li><a href="#">Liquid / Smoke</a></li>
+      <li><a href="#">Watches</a></li>
+      <li><a href="#">Jewellery</a></li>
+      <li><a href="#">Fashion</a></li>
+      <li><a href="#">Cosmetics</a></li>
+      <li><a href="#">Artwork</a></li>
+      <li><a href="#">Other Products</a></li>
+      <li><a href="#">Services</a></li>
+    </ul>
+  </nav> -->
+
+  <div class="portfolio-grid" id="portfolioGrid"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+  <script src="/images/image.js"></script>
+
+  <script>
+    const container = document.getElementById("portfolioGrid");
+
+    portfolioImages.forEach((img) => {
+      const full = `https://drive.google.com/thumbnail?id=${img.id}&sz=w2048`;
+      const item = document.createElement("a");
+      item.className = "portfolio-item";
+      item.href = full;
+      item.setAttribute("data-fancybox", "gallery");
+      item.setAttribute("data-caption", img.title);
+      item.innerHTML = `<img src="${full}" alt="${img.title}" loading="lazy" />`;
+      container.appendChild(item);
+    });
+
+    Fancybox.bind("[data-fancybox='gallery']", {
+      closeButton: false,
+      Thumbs: false,
+      caption: (fancybox, carousel, slide) => {
+        return `<div class="custom-caption">${slide.caption || ""}</div>`;
+      },
+      Toolbar: {
+        display: [
+          {
+            id: "zoom",
+            html: `<button class="fancybox__button custom-icon-btn" title="Zoom">
+              <img src="/images/icons/zoom.png" alt="Zoom" />
+            </button>`
+          },
+          {
+            id: "fullscreen",
+            html: `<button class="fancybox__button custom-icon-btn" id="customFullscreenBtn" title="Fullscreen">
+              <img id="fullscreenIcon" src="/images/icons/fullscreen_enter.png" alt="Enter Fullscreen" />
+            </button>`
+          },
+          {
+            id: "grid-close",
+            html: `<button class="fancybox__button custom-icon-btn" title="Close">
+              <img src="/images/icons/grid.png" alt="Grid/Close" />
+            </button>`,
+            position: "right"
+          }
+        ]
+      },
+      on: {
+        ready: (fancybox) => {
+          const fullscreenBtn = fancybox.$container.querySelector("#customFullscreenBtn");
+          const fullscreenIcon = fancybox.$container.querySelector("#fullscreenIcon");
+          const zoomBtn = fancybox.$container.querySelector(".fancybox__button[title='Zoom']");
+          const closeBtn = fancybox.$container.querySelector(".fancybox__button[title='Close']");
+
+          let isFullscreen = false;
+
+          const navContainer = document.createElement("div");
+          navContainer.className = "custom-nav-buttons";
+
+          const prevBtn = document.createElement("button");
+          prevBtn.className = "custom-arrow prev";
+          prevBtn.innerHTML = `<img src="/images/icons/left-arrow.png" alt="Prev" />`;
+          // prevBtn.addEventListener("click", () => fancybox.prev());
+          prevBtn.addEventListener("click", () => Fancybox.getInstance().prev());
+
+          const nextBtn = document.createElement("button");
+          nextBtn.className = "custom-arrow next";
+          nextBtn.innerHTML = `<img src="/images/icons/right-arrow.png" alt="Next" />`;
+          // nextBtn.addEventListener("click", () => fancybox.next());
+          nextBtn.addEventListener("click", () => Fancybox.getInstance().next());
+
+
+          navContainer.appendChild(prevBtn);
+          navContainer.appendChild(nextBtn);
+          requestAnimationFrame(() => {
+            fancybox.$container.appendChild(navContainer);
+          });
+
+          prevBtn.addEventListener("click", () => {
+            console.log("Prev clicked");
+            Fancybox.getInstance()?.prev();
+          });
+
+          nextBtn.addEventListener("click", () => {
+            console.log("Next clicked");
+            Fancybox.getInstance()?.next();
+          });
+
+          fullscreenBtn?.addEventListener("click", () => {
+            fancybox.toggleFullscreen();
+          });
+
+          document.addEventListener("fullscreenchange", () => {
+            isFullscreen = !!document.fullscreenElement;
+
+            if (fullscreenIcon) {
+              fullscreenIcon.src = isFullscreen
+                ? "/images/icons/fullscreen_exit.png"
+                : "/images/icons/fullscreen_enter.png";
+              fullscreenIcon.alt = isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen";
+            }
+          });
+
+          zoomBtn?.addEventListener("click", () => {
+            fancybox.toggleZoom();
+          });
+
+          closeBtn?.addEventListener("click", () => {
+            fancybox.close();
+          });
+        }
+      }
+    });
+    
+  </script>
+
+</body>
+
+</html>
