@@ -1,0 +1,171 @@
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #212121;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  padding: 80px 0 100px 0;
+}
+
+header {
+  position: relative;
+  background: #212121;
+  color: #ff9933;
+  padding: 10px 20px;
+  border-bottom: none;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.fixed-heading {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: #212121;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 5px; /* Optional: prevent overlap with header nav */
+}
+
+
+.fixed-heading-inner {
+  text-align: center;
+}
+
+.fixed-heading h1 {
+  font-size: 10em;
+  margin-bottom: 20px;
+  background: linear-gradient(to right,#ff9933, #ffd194, #ff9933, #f89b1f,#ff9933,#ffd194,#ff9933); /* light → mid → dark orange */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* For Firefox */
+  color: transparent;
+  text-shadow: none;;
+}
+
+.fixed-heading p {
+  font-size: 2em;
+  margin-bottom: 20px;
+  background: linear-gradient(to right,#ff9933, #ffd194, #ff9933, #f89b1f,#ff9933,#ffd194,#ff9933); /* light → mid → dark orange */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* For Firefox */
+  color: transparent;
+  text-shadow: none;;
+}
+
+/* === Section Layout === */
+.content-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 20px 0;
+  gap: 60px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  min-height: 600px;
+}
+
+.content-section.active {
+  opacity: 1;
+}
+
+/* === Pinhole Zoom Animation === */
+.side-image {
+  width: 500px;
+  height: 600px;
+  object-fit: cover;
+  transition: transform 1.5s ease, opacity 0.8s ease;
+  opacity: 0;
+  transform: scale(0); /* start from 0 — pinhole */
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(164, 164, 164, 0.3);
+}
+
+.content-section.active .side-image {
+  transform: scale(1);  /* grow to normal */
+  opacity: 1;
+}
+
+/* === Center Content (slide-up fade) === */
+.center-content {
+  text-align: center;
+  max-width: 300px;
+  opacity: 0;
+  transform: translateY(30px) scale(0.8);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.content-section.active .center-content {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.center-content h2 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  color: #ff9933;
+}
+
+.menu-button {
+  padding: 10px 20px;
+  font-size: clamp(14px, 5vw, 20px);
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  border-radius: 999px;
+  border: 4px solid #ff9933;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: transparent;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+}
+
+.menu-button:hover {
+  background: #ffa94d;
+}
+
+/* .menu-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ff9933;
+  z-index: -1;
+  /* ✅ This ensures it stays behind */
+  /* transition: opacity 0.3s ease;
+  opacity: 0;
+  border-radius: 999px; */
+/*} */
+
+.menu-button:hover::before {
+  opacity: 1;
+}
+
+.menu-button:hover {
+  color: white;
+  /* ✅ Force white text */
+}
+

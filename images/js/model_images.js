@@ -1,0 +1,17 @@
+const portfolioImages = [
+  { id: "1No6F0PJxkSKbguK6zCTEWg90PNT6wEau", title: "Fashion 1" },
+  { id: "1FOMT1EmcpVpCg6TYhhwsB1sXdGujvsHh", title: "Fashion 2" },
+  { id: "1rAwDt8Xj66fRiON8kRFdWdkKb7of4VXn", title: "Fashion 3" },
+  { id: "1twX2aTuITJ5xiArQCGNclvbswbWJAFzM", title: "Fashion 4" },
+  { id: "1U41o64_NBnECcPdYgdo6GbFroAovfLLf", title: "Fashion 5" },
+  { id: "1ApOsKjSXSfB3j4OgAQbeMTkd48HwKr8C", title: "Fashion 6" },
+  { id: "1WKo5culIO_RhnxqqzGNR2Zps7LOb6tjW", title: "Fashion 7" },
+  { id: "1OL40nw4GnQIzYh_yt5IMzmI1SpGXrWVq", title: "Fashion 8" },
+  { id: "108dh9cQs2UTVbyVVMQzTcobpCw4pmhWy", title: "Fashion 9" },
+  { id: "1M5EGhXHuvMvCW0WHbWv7rX8assTiJpW2", title: "Fashion 10" },
+  { id: "1TwQ2E5KC8TZMo7GhV6gK5CC4AHdnE03a", title: "Fashion 11" },
+  { id: "1S4JNZE1zaz7eO2ueGZUIuyLwZRrYBxBk", title: "Fashion 12" },
+  { id: "1i2KwYtY3MK7Z2dagPX9IYYmTnZYz1_HX", title: "Fashion 13" },
+  { id: "1RbUyKo0KRNkzzStbEBfS1JQvZ9570rQ-", title: "Fashion 14" },
+  { id: "1CruV2HNDqRlpqSd8BNSKWOHOI4QDoCO-", title: "Fashion 15" },
+];

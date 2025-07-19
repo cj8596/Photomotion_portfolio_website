@@ -1,5 +1,27 @@
 /* === Layout: Shoots by Category === */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transform-origin: top center;
+  transition: background 0.4s ease, transform 0.7s ease, opacity 0.4s ease;
+  backface-visibility: hidden;
+}
+
+header.light-header {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+header.turn-page {
+  transform: perspective(800px) rotateX(-90deg);
+  opacity: 0;
+}
+
+
 .centered-section {
+  padding-top: 160px;
   margin-top: 20px;
   display: flex;
   flex-direction: column;

@@ -10,6 +10,10 @@ html {
   box-sizing: inherit;
 }
 
+*{
+  cursor: url('/images/icons/camera_cursor.png') 16 16, auto;
+}
+
 body,
 html {
   overflow-x: hidden;
