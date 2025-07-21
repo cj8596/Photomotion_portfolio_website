@@ -2,22 +2,62 @@ window.addEventListener('DOMContentLoaded', () => {
   scrollContent();
 });
 
-function scrollContent(){
+// function scrollContent(){
+//   const sections = document.querySelectorAll(".content-section:not(.fixed-heading)");
+
+//   const observer = new IntersectionObserver(
+//     entries => {
+//       entries.forEach(entry => {
+//         entry.target.classList.toggle("active", entry.isIntersecting);
+//       });
+//     },
+//     {
+//       threshold: 0.15,
+//     }
+//   );
+
+//   sections.forEach(section => observer.observe(section));
+// }
+
+function scrollContent() {
   const sections = document.querySelectorAll(".content-section:not(.fixed-heading)");
+  let currentActive = null;
 
   const observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
-        entry.target.classList.toggle("active", entry.isIntersecting);
+        const section = entry.target;
+
+        if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+          if (currentActive !== section) {
+            if (currentActive) currentActive.classList.remove("active");
+            section.classList.add("active");
+            currentActive = section;
+          }
+        }
       });
     },
     {
-      threshold: 0.5,
+      threshold: [0.6], // Only trigger when 60% is in view
     }
   );
 
   sections.forEach(section => observer.observe(section));
+
+  // ✅ Manual check on load to activate first section if already in view
+  const firstSection = document.querySelector(".content-section:not(.fixed-heading)");
+  if (firstSection && !firstSection.classList.contains("active")) {
+    const rect = firstSection.getBoundingClientRect();
+    const visiblePixels = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+    const visibleRatio = visiblePixels / rect.height;
+
+    if (visibleRatio > 0.6) {
+      firstSection.classList.add("active");
+      currentActive = firstSection;
+    }
+  }
 }
+
 
 
 function initializeFancyboxGallery(images) {
