@@ -97,7 +97,7 @@ function initContactButton() {
     if (isInBackToTopMode) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      window.location.href = 'contact.html'; // Replace with actual contact page
+      window.location.href = '/test5.html'; // Replace with actual contact page
     }
   });
 

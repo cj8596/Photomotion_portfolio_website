@@ -1,193 +1,107 @@
-#content {
-  background: transparent;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.about-page header {
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: #000;
+  overflow-x: hidden;
   position: relative;
-  background: transparent !important;
-  color: #ff9933;
-  padding: 5px 10px;
-  border-bottom: 2px solid #ff9933;
-  text-align: center;
-  flex-wrap: wrap;
+  background: #000;
 }
 
-/* header {
+.background-layer {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  z-index: 1000;
-  transform-origin: top center;
-  transition: background 0.4s ease, transform 0.7s ease, opacity 0.4s ease;
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  /* smooth fade */
+  will-change: opacity;
   backface-visibility: hidden;
 }
 
-header.light-header {
-  background-color: rgba(0, 0, 0, 0.4) !important;
+#bg1 {
+  z-index: -2;
 }
 
-header.turn-page {
-  transform: perspective(800px) rotateX(-90deg);
-  opacity: 0;
-} */
-
-.about-page {
-  background-image: url('../images/about_us_bg.webp');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  color: #ffffff;
-}
-
-.about-page::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+#bg2 {
   z-index: -1;
 }
 
-.about-us-section {
-  background-color: rgba(0, 0, 0, 0);
-  color: #fff;
-  padding: 150px 5px;
+.hero {
+  height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
-}
-
-.about-us-container {
-  max-width: 1200px;
-  width: 100%;
+  justify-content: center;
   text-align: center;
-  font-family: 'Playfair Display', serif;
+  color: #111;
 }
 
-.about-us-container h2 {
-  color: #ff9933;
-  font-size: 2.8em;
+.hero h1 {
+  font-size: 4rem;
+  /* background: rgba(0, 0, 0, 0.6); */
+  padding: 20px 40px;
+  border-radius: 10px;
+}
+
+.text-section {
+  background: #fff;
+  color: #111;
+  padding: 200px 30px;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+
+.text-section h2 {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 15px;
 }
 
-.about-us-container p {
-  font-size: 1.2em;
-  line-height: 1.7;
-  margin-bottom: 15px;
-  text-align: justify;
-  color: #ddd;
+.text-section p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: auto;
+  line-height: 1.6;
 }
 
-.about-card {
-  background-color: rgba(255, 255, 255, 0.03);
-  border: 1px solid #ff9933;
-  border-radius: 20px;
-  padding: 30px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  max-width: 1200px;
-  margin: 0 auto;
-  color: #ff9933; 
-  margin-bottom: 20px;
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.about-card:hover,
-.about-card:active {
-  background-color: #666666;
-  color: #000;
+.scroll-arrow {
+  font-size: 2.5rem;
+  color: #fff;
+  opacity: 0.7;
+  margin-top: 20px;
+  animation: bounce 1.5s infinite;
 }
 
-.about-card:hover p,
-.about-card:active p {
-  color: #000;
+.footer-section {
+  background-color: #121212;
 }
 
-.about-card p {
-  margin: 0;
-  font-size: clamp(15px, 2vw, 18px);
-  line-height: 1.8;
-  text-align: left;
-  transition: color 0.3s ease;
-}
+@keyframes bounce {
 
-.about-page .footer-section {
-  background-color: #000 !important;
-}
-
-/* Responsive tweaks */
-/* Medium screens (tablets, e.g. iPad Pro 1024px) */
-@media (max-width: 1024px) {
-  .about-us-section {
-    padding: 100px 15px;
+  0%,
+  100% {
+    transform: translateY(0);
   }
 
-  .about-card {
-    padding: 25px;
-    margin: 0 15px 20px;
-  }
-
-  .about-us-container h2 {
-    font-size: 2.2em;
-  }
-
-  .about-us-container p {
-    font-size: 1.1em;
-    line-height: 1.6;
-  }
-}
-
-/* Small tablets and phones (e.g. 768px) */
-@media (max-width: 768px) {
-  .about-us-section {
-    flex-direction: column;
-    padding: 80px 10px;
-  }
-
-  .about-card {
-    padding: 20px;
-    margin: 0 10px 15px;
-  }
-
-  .about-us-container h2 {
-    font-size: 1.8em;
-  }
-
-  .about-us-container p {
-    font-size: 1em;
-    line-height: 1.5;
-  }
-}
-
-/* Mobile devices (e.g. 480px and below) */
-@media (max-width: 480px) {
-  .about-us-section {
-    padding: 60px 8px;
-  }
-
-  .about-card {
-    padding: 18px;
-    margin: 0 5px 15px;
-  }
-
-  .about-us-container h2 {
-    font-size: 1.5em;
-    letter-spacing: 1px;
-  }
-
-  .about-us-container p {
-    font-size: 0.95em;
-    line-height: 1.4;
-  }
-}
-
-@media print {
-  body {
-    display: none !important;
+  50% {
+    transform: translateY(10px);
   }
 }
