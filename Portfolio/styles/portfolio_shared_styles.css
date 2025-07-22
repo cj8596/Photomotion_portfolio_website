@@ -25,6 +25,35 @@ header h1 {
   align-items: center;
 }
 
+.back-portfolio-btn {
+  position: absolute;
+  top: 4rem;
+  right: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem;
+  border-radius: 50%;
+  transition: background 0.3s, transform 0.3s;
+  z-index: 10;
+}
+
+.back-portfolio-btn img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) saturate(100%) invert(66%) sepia(66%) saturate(805%) hue-rotate(359deg) brightness(101%) contrast(101%);
+}
+
+.back-portfolio-btn:hover {
+  background: #ffa726;
+  transform: scale(1.1);
+}
+
+.back-portfolio-btn:hover img {
+  filter: brightness(1.2);
+}
+
+
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

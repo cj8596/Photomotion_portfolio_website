@@ -69,15 +69,12 @@ header {
 .fixed-heading p {
   font-size: 2em;
   margin-bottom: 20px;
-  background: linear-gradient(to right, #ff9933, #ffd194, #ff9933, #f89b1f, #ff9933, #ffd194, #ff9933);
-  /* light → mid → dark orange */
+  background: white;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  /* For Firefox */
   color: transparent;
   text-shadow: none;
-  ;
   animation: riseFromDark 1.5s ease-out forwards;
 }
 

@@ -1,4 +1,3 @@
-<!-- Paste this entire code into your HTML file -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,12 +23,41 @@
       background: linear-gradient(to bottom, #000, #1e1e1e);
       padding: 2rem 1rem;
       text-align: center;
+      position: relative;
     }
 
     header h1 {
       font-size: 3rem;
       font-weight: 700;
       color: #fff;
+    }
+
+    .back-portfolio-btn {
+      position: absolute;
+      top: 3rem;
+      right: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem;
+      border-radius: 50%;
+      transition: background 0.3s, transform 0.3s;
+      z-index: 10;
+    }
+
+    .back-portfolio-btn img {
+      width: 22px;
+      height: 22px;
+      filter: brightness(0) saturate(100%) invert(66%) sepia(66%) saturate(805%) hue-rotate(359deg) brightness(101%) contrast(101%);
+    }
+
+    .back-portfolio-btn:hover {
+      background: #ffa726;
+      transform: scale(1.1);
+    }
+
+    .back-portfolio-btn:hover img {
+      filter: brightness(1.2);
     }
 
     nav.portfolio-nav {
@@ -182,7 +210,6 @@
     }
 
     @media (max-width: 768px) {
-
       header h1 {
         font-size: 2rem;
       }
@@ -208,28 +235,19 @@
 
   <header>
     <h1>PRODUCT PHOTOGRAPHY</h1>
+    <a href="/portfolio.html" class="back-portfolio-btn" title="Back to Portfolio">
+      <img src="/images/icons/grid.png" alt="Back to Portfolio">
+    </a>
   </header>
 
-  <!-- <nav class="portfolio-nav">
-    <ul>
-      <li><a href="#" class="active">Portfolio</a></li>
-      <li><a href="#">Drinks</a></li>
-      <li><a href="#">Food</a></li>
-      <li><a href="#">Liquid / Smoke</a></li>
-      <li><a href="#">Watches</a></li>
-      <li><a href="#">Jewellery</a></li>
-      <li><a href="#">Fashion</a></li>
-      <li><a href="#">Cosmetics</a></li>
-      <li><a href="#">Artwork</a></li>
-      <li><a href="#">Other Products</a></li>
-      <li><a href="#">Services</a></li>
-    </ul>
-  </nav> -->
+  <div class="breadcrumb">
+    <span>Home</span> / Product Photography
+  </div>
 
   <div class="portfolio-grid" id="portfolioGrid"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
-  <script src="/images/image_p.js"></script>
+  <script src="/images/js/product_images.js"></script>
 
   <script>
     const container = document.getElementById("portfolioGrid");
@@ -278,7 +296,6 @@
         ready: (fancybox) => {
           const container = fancybox.$container;
 
-          // --- Create custom nav arrows ---
           const navContainer = document.createElement("div");
           navContainer.className = "custom-nav-buttons";
 
@@ -290,14 +307,13 @@
           nextBtn.className = "custom-arrow next";
           nextBtn.innerHTML = `<img src="/images/icons/right-arrow.png" alt="Next">`;
 
-          // Use fancybox.getInstance() to get current instance on click
           prevBtn.addEventListener("click", (e) => {
-            e.stopPropagation(); // ✅ prevents Fancybox from thinking it's a close click
+            e.stopPropagation();
             const instance = Fancybox.getInstance();
             if (instance) instance.prev();
           });
           nextBtn.addEventListener("click", (e) => {
-            e.stopPropagation(); // ✅ same here
+            e.stopPropagation();
             const instance = Fancybox.getInstance();
             if (instance) instance.next();
           });
@@ -306,12 +322,10 @@
           navContainer.appendChild(nextBtn);
           container.appendChild(navContainer);
 
-          // --- Clean up when fancybox closes ---
           fancybox.on("closing", () => {
             navContainer.remove();
           });
 
-          // --- Set up toolbar buttons like fullscreen/zoom ---
           const fullscreenBtn = container.querySelector("#customFullscreenBtn");
           const fullscreenIcon = container.querySelector("#fullscreenIcon");
 
@@ -344,7 +358,6 @@
         }
       }
     });
-
   </script>
 
 </body>

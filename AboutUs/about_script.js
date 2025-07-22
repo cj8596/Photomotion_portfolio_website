@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function initSmartAboutHeaderFlip() {
   const header = document.getElementById('main-header');
-  const triggerSection = document.querySelector('.centered-section'); // ✅ Replace .image-wrapper
+  const triggerSection = document.querySelector('.hero');
   if (!header || !triggerSection) return;
 
   let pageTurned = false;

@@ -72,7 +72,7 @@ function initializeFancyboxGallery(images) {
     item.className = "portfolio-item";
     item.href = full;
     item.setAttribute("data-fancybox", "gallery");
-    item.setAttribute("data-caption", img.title);
+    // item.setAttribute("data-caption", img.title);
     item.innerHTML = `<img src="${full}" alt="${img.title}" loading="lazy" />`;
     container.appendChild(item);
   });
