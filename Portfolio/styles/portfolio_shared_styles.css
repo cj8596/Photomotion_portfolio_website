@@ -39,9 +39,9 @@ header h1 {
 }
 
 .back-portfolio-btn img {
-  width: 22px;
-  height: 22px;
-  filter: brightness(0) saturate(100%) invert(66%) sepia(66%) saturate(805%) hue-rotate(359deg) brightness(101%) contrast(101%);
+  width: 34px;
+  height: 34px;
+  /* filter: brightness(0) saturate(100%) invert(66%) sepia(66%) saturate(805%) hue-rotate(359deg) brightness(101%) contrast(101%); */
 }
 
 .back-portfolio-btn:hover {
