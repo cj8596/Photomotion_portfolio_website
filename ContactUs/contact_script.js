@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMenuToggle();
   initContentLockdown();
   initializeKeyboardProtection();
+  initFAQToggle();
   // initializeFormSubmission();
 });
 
@@ -41,3 +42,23 @@ document.addEventListener("DOMContentLoaded", () => {
 //       });
 //   });
 // }
+
+function initFAQToggle() {
+  const questions = document.querySelectorAll('.faq-question');
+
+  questions.forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.parentElement;
+      item.classList.toggle('active');
+
+      // Collapse other FAQ items
+      questions.forEach(otherBtn => {
+        if (otherBtn !== button) {
+          otherBtn.parentElement.classList.remove('active');
+        }
+      });
+    });
+  });
+}
+
+

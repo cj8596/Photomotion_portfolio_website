@@ -31,12 +31,12 @@ header {
 }
 
 .fixed-heading {
-  position: fixed;
+  /* position: fixed; */
   inset: 0;
   z-index: 1000;
   background-color: #212121;
   display: flex;
-  justify-content: center;
+  justify-content: center;  /* vertically center */
   align-items: center;
   flex-direction: column;
   text-align: center;
@@ -96,6 +96,12 @@ header {
   position: relative;
 }
 
+#extra.content-section {
+  min-height: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  height: 2px;
+}
 .content-section.active {
   opacity: 1;
 }
@@ -105,7 +111,7 @@ header {
   width: 520px;
   height: 650px;
   object-fit: cover;
-  border-radius: 120px;
+  border-radius: 50px;
   /* More rounded for premium look */
   box-shadow: 0 10px 30px rgba(164, 164, 164, 0.3);
   transition: transform 1.5s ease, opacity 0.8s ease;
@@ -129,7 +135,6 @@ header {
   justify-content: center;
   align-items: center;
   text-align: center;
-
   opacity: 0;
   transform: translateY(30px) scale(0.8);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -215,7 +220,6 @@ header {
   .side-image {
     width: 450px;
     height: 600px;
-    border-radius: 100px;
     margin: 0;
   }
 
@@ -255,7 +259,6 @@ header {
   .side-image {
     width: 330px;
     height: 600px;
-    border-radius: 100px;
     margin: 0;
   }
 
@@ -296,7 +299,6 @@ header {
   .side-image {
     width: 280px;
     height: 500px;
-    border-radius: 100px;
     margin: 0;
   }
 
@@ -327,67 +329,106 @@ header {
     padding: 30px 0 60px 0;
     gap: 40px;
   }
-  
-  .fixed-heading{
-    margin-top: 30px;
-    height:1000px;
-  }
 
-  .content-section {
+  .fixed-heading {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    /* Tight spacing */
-    padding: 10px 0 10px 0;
-    /* Reduced top/bottom padding */
+    text-align: center;
+    min-height: 90vh;
+    padding: 40px 10px 30px;
   }
 
-  .side-image {
-    width: 300px;
-    height: 500px;
-    object-fit: cover;
-    border-radius: 60px;
+  #product,
+  #jewellery,
+  #food,
+  #model {
+    display: grid !important;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    row-gap: 20px;
+    padding: 10px;
     margin: 0;
-    flex-shrink: 0;
-    order: 1;
+    min-height: auto !important; /* ✅ REMOVE FIXED HEIGHT */
+    height: auto;
+    opacity: 1 !important; /* prevent animation delay glitch */
+    transform: none !important;
+    margin-bottom: 150px;
+  }
+
+  #fashion {
+    display: grid !important;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    row-gap: 20px;
+    padding: 10px;
+    margin: 0;
+    min-height: auto !important; /* ✅ REMOVE FIXED HEIGHT */
+    height: auto;
+    opacity: 1 !important; /* prevent animation delay glitch */
+    transform: none !important;
+  }
+
+  .side-image.left {
+    grid-column: 1;
+    grid-row: 1;
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    object-fit: cover;
+    margin: 0;
+    align-self: center;
   }
 
   .center-content {
-    order: 2;
-    width: 100%;
-    max-width: 300px;
-    text-align: center;
-    margin: 0;
-    /* Remove default margin */
-    padding: 4px 0 0 0;
-    /* Optional: slight top padding */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    /* Minimal internal spacing */
+    display: contents;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .center-content h2 {
-    font-size: 1.8em;
-    margin: 0 0 10px 0;
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 1.6em;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+    white-space: nowrap;
+    align-self: center;
+    justify-self: start;
+    color: #ff9933;
   }
 
   .menu-button {
-    font-size: 16px;
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 1em;
     padding: 10px 16px;
+    margin: 0;
+    line-height: 1;
+    justify-self: start;
+    align-self: center;
   }
 
-  .fixed-heading h1 {
-    font-size: 6em;
-  }
-
-  .fixed-heading p {
-    font-size: 2em;
+  .side-image.right {
+    grid-column: 2;
+    grid-row: 2;
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    object-fit: cover;
+    margin: 0;
+    justify-self: start;
+    align-self: center;
   }
 }
+
+
+
+
 
 @media (max-width: 480px) {
   main {
