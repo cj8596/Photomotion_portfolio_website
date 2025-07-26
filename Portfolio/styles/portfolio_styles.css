@@ -173,18 +173,6 @@ header {
   color: white;
 }
 
-
-/* @keyframes slideInTop {
-  from {
-    transform: translateY(80px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-} */
-
 @keyframes riseFromDark {
   0% {
     transform: translateY(100px) scale(0.95);
@@ -344,11 +332,11 @@ header {
   #jewellery,
   #food,
   #model {
-    display: grid !important;
-    grid-template-columns: auto auto;
+    display: flex !important;
+    /* grid-template-columns: auto auto;
     grid-template-rows: auto auto;
     column-gap: 10px;
-    row-gap: 20px;
+    row-gap: 20px; */
     padding: 10px;
     margin: 0;
     min-height: auto !important; /* ✅ REMOVE FIXED HEIGHT */
