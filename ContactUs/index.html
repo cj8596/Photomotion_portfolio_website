@@ -71,17 +71,17 @@
         </div>
 
         <div class="contact-form">
-            <form>
+            <form id="contact-form">
                 <div class="form-group">
                     <input type="text" name="name" required />
                     <label>Name</label>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="bname" required />
+                    <input type="text" name="brand" required />
                     <label>Brand Name</label>
                 </div>
                 <div class="form-group">
-                    <input type="tel" name="phone" pattern="[0-9]{10}" required/>
+                    <input type="tel" name="phone" pattern="[0-9]{10}" required />
                     <label>Phone Number</label>
                 </div>
                 <div class="form-group">
@@ -139,6 +139,97 @@
         <div class="footer">&copy; 2025 PhotoMotion. All rights reserved.</div>
     </footer>
 
+    <!-- Form Submission Handler - Add just before </body> -->
+    <!-- <script>
+  // Only runs on pages with a form
+  if (document.querySelector('form')) {
+    document.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const iframe = document.createElement('iframe');
+      iframe.name = 'hidden-form-iframe';
+      iframe.style.display = 'none';
+      
+      document.body.appendChild(iframe);
+      
+      // Clone form and redirect response to iframe
+      const clone = form.cloneNode(true);
+      clone.target = 'hidden-form-iframe';
+      clone.action = 'https://script.google.com/macros/s/AKfycbzn1ALRNer9VdAL-FcSm0lhpz7ofqtIkyCoRcUrQ-B5D4r_0jLV4aV1FdiN902MZeHhbw/exec';
+      clone.method = 'POST';
+      clone.style.display = 'none';
+      
+      document.body.appendChild(clone);
+      clone.submit();
+      
+      // Show success message
+      alert('Message sent successfully!');
+      form.reset();
+      
+      // Clean up after 1 second
+      setTimeout(() => {
+        document.body.removeChild(iframe);
+        document.body.removeChild(clone);
+      }, 1000);
+    });
+  }
+</script> -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('contact-form');
+  
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Create iframe for submission
+      const iframe = document.createElement('iframe');
+      iframe.name = 'form-iframe';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+      
+      // Create new form
+      const formClone = document.createElement('form');
+      formClone.action = 'https://script.google.com/macros/s/AKfycbzn1ALRNer9VdAL-FcSm0lhpz7ofqtIkyCoRcUrQ-B5D4r_0jLV4aV1FdiN902MZeHhbw/exec';
+      formClone.method = 'POST';
+      formClone.target = 'form-iframe';
+      formClone.style.display = 'none';
+      
+      // Process all form elements
+      Array.from(form.elements).forEach(element => {
+        if (element.name && (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA')) {
+          // Handle regular inputs
+          const clone = element.cloneNode();
+          clone.name = element.name;
+          clone.value = element.value;
+          formClone.appendChild(clone);
+        } else if (element.name && element.tagName === 'SELECT') {
+          // Special handling for select dropdown
+          const selectedOption = element.options[element.selectedIndex];
+          if (selectedOption) {
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = element.name;
+            hiddenInput.value = selectedOption.value;
+            formClone.appendChild(hiddenInput);
+          }
+        }
+      });
+      
+      document.body.appendChild(formClone);
+      formClone.submit();
+      
+      // Success handling
+      setTimeout(() => {
+        alert('Thank You for Reaching out to us! We will get back to you soon');
+        form.reset();
+        document.body.removeChild(iframe);
+        document.body.removeChild(formClone);
+      }, 1000);
+    });
+  }
+});
+</script>
     <script src="/scripts/shared_script.js"></script>
     <script src="contact_script.js"></script>
 </body>
