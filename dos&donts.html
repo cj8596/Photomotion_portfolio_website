@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Do and Don’ts - PhotoMotion</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #212121;
+            color: #ffffff;
+            line-height: 1.75;
+            padding-top: 80px;
+            /* Matches header height */
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to bottom, rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0));
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            z-index: 1000;
+        }
+
+
+        header img {
+            height: 200px;
+            width: auto;
+        }
+
+        main {
+            max-width: 900px;
+            margin: auto;
+            padding: 0 24px 80px;
+            margin-top: 100px;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 40px;
+            color: #ff9933;
+            text-shadow: 0 0 4px rgba(255, 204, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: #ff9933;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 40px;
+        }
+
+        li {
+            background: #2a2a2a;
+            margin-bottom: 12px;
+            padding: 16px 20px;
+            border-left: 4px solid #ff9933;
+            border-radius: 6px;
+            position: relative;
+            padding-left: 48px;
+        }
+
+        .dos li::before {
+            content: "✅";
+            position: absolute;
+            left: 16px;
+            top: 14px;
+            font-size: 1.1rem;
+        }
+
+        .donts li::before {
+            content: "❌";
+            position: absolute;
+            left: 16px;
+            top: 14px;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 80px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                height: 70px;
+                padding: 0 16px;
+            }
+
+            body {
+                padding-top: 70px;
+                /* Match mobile header height */
+            }
+
+            header img {
+                height: 36px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="images/logo.png" alt="PhotoMotion Logo" />
+    </header>
+
+    <main>
+        <h1>Do and Don’ts</h1>
+
+        <h2>DOs</h2>
+        <ul class="dos">
+            <li>Ship clean, damage-free products — spotless, crease-free, and in perfect condition.</li>
+            <li>Label everything clearly — name, SKU, or product code to avoid mix-ups.</li>
+            <li>Include a packing list — with item names and quantities.</li>
+            <li>Package safely — bubble wrap, paper fill, or soft protective material.</li>
+            <li>Send extra units (optional) — especially for breakables or reflective items.</li>
+            <li>Specify product details — ingredients, textures, packaging notes.</li>
+            <li>Provide usage instructions (optional) — for interactive or special products.</li>
+            <li>Exchange brand guidelines — include colors, backgrounds, or styling preferences.</li>
+            <li>Provide a mood board or visual references — to match your brand tone.</li>
+            <li>Include return instructions — with address or courier details if needed.</li>
+        </ul>
+
+        <h2>DON’Ts</h2>
+        <ul class="donts">
+            <li>Don't ship damaged, dirty, or used products — they reduce quality and can’t be fixed in post.</li>
+            <li>Don't ship last minute — always confirm shoot timelines first.</li>
+            <li>Don't assume product usage — always clarify with notes or a demo.</li>
+            <li>Don't skip proper packaging — fragile items must be protected.</li>
+            <li>Don't mix product categories — keep cosmetics, garments, etc., separated and labeled.</li>
+            <li>Don't omit key styling info — include angles, must-haves, disclaimers, etc.</li>
+            <li>Don't forget legal or label approvals — use final packaging only.</li>
+        </ul>
+
+        <footer>
+            © 2025 PhotoMotion — All rights reserved.
+        </footer>
+    </main>
+
+</body>
+
+</html>
