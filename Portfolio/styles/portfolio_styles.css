@@ -245,7 +245,7 @@ header {
   }
 
   .side-image {
-    width: 330px;
+    width: 500px;
     height: 600px;
     margin: 0;
   }
@@ -312,7 +312,7 @@ header {
   }
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   main {
     padding: 30px 0 60px 0;
     gap: 40px;
@@ -336,12 +336,12 @@ header {
     /* grid-template-columns: auto auto;
     grid-template-rows: auto auto;
     column-gap: 10px;
-    row-gap: 20px; */
+    row-gap: 20px; 
     padding: 10px;
     margin: 0;
-    min-height: auto !important; /* ✅ REMOVE FIXED HEIGHT */
+    min-height: auto !important;
     height: auto;
-    opacity: 1 !important; /* prevent animation delay glitch */
+    opacity: 1 !important; 
     transform: none !important;
     margin-bottom: 150px;
   }
@@ -354,9 +354,9 @@ header {
     row-gap: 20px;
     padding: 10px;
     margin: 0;
-    min-height: auto !important; /* ✅ REMOVE FIXED HEIGHT */
+    min-height: auto !important; 
     height: auto;
-    opacity: 1 !important; /* prevent animation delay glitch */
+    opacity: 1 !important; 
     transform: none !important;
   }
 
@@ -412,9 +412,99 @@ header {
     justify-self: start;
     align-self: center;
   }
+} */
+
+
+@media (max-width: 768px) {
+  main {
+    padding: 30px 0 60px 0;
+    gap: 40px;
+  }
+
+  .fixed-heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 90vh;
+    padding: 40px 10px 30px;
+  }
+
+  #product,
+  #jewellery,
+  #food,
+  #model,
+  #fashion {
+    display: grid !important;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    row-gap: 30px; 
+    padding: 10px;
+    margin: 0;
+    min-height: auto !important;
+    height: auto;
+    opacity: 1 !important; 
+    transform: none !important;
+    margin-bottom: 200px;
+  }
+
+  .side-image.left {
+    grid-column: 1;
+    grid-row: 1;
+    width: 180px;
+    height: 180px;
+    border-radius: 20px;
+    object-fit: cover;
+    margin: 0;
+  }
+
+  .side-image.right {
+    grid-column: 2;
+    grid-row: 1;
+    width: 180px;
+    height: 180px;
+    border-radius: 20px;
+    object-fit: cover;
+    margin: 0;
+  }
+
+  .center-content {
+    display: contents;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .center-content h2 {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+    font-size: 1.6em;
+    margin: 0 auto;
+    padding: 0;
+    line-height: 1.2;
+    text-align: center;
+    color: #ff9933;
+  }
+
+  .menu-button {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+    font-size: 1em;
+    padding: 10px 16px;
+    margin: 8px auto 0;
+    justify-self: center;
+    align-self: center;
+  }
+
+  .fixed-heading h1 {
+    font-size: 6em;
+  }
+
+  .fixed-heading p {
+    font-size: 2em;
+  }
 }
-
-
 
 
 

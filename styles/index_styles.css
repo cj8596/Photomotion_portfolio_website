@@ -9,7 +9,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: #666666;
+  background: #000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,6 +28,14 @@
   max-width: 80vw;
   max-height: 80vh;
   object-fit: contain;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+#loader video:focus {
+  outline: none;
 }
 
 /* Content Visibility Control */
@@ -386,16 +394,16 @@ header.turn-page {
 
   .image-wrapper {
     margin-top: 150px;
-    height:500px;
+    height: 500px;
     margin-bottom: 15px;
     width: 100%
   }
 
-  .image-wrapper img{
+  .image-wrapper img {
     height: 500px;
     width: 100%;
   }
-  
+
 
   .why-us p.about {
     font-size: 1.3em;
@@ -557,11 +565,11 @@ header.turn-page {
 @media (max-width: 768px) {
   .image-wrapper {
     margin-top: 100px;
-    height:250px;
+    height: 250px;
     margin-bottom: 20px;
   }
 
-  .image-wrapper img{
+  .image-wrapper img {
     height: 300px;
   }
 
@@ -585,11 +593,11 @@ header.turn-page {
 @media (max-width: 468px) {
   .image-wrapper {
     margin-top: 80px;
-    height:150px;
+    height: 150px;
     margin-bottom: 15px;
   }
 
-  .image-wrapper img{
+  .image-wrapper img {
     height: 200px;
   }
 
@@ -712,9 +720,12 @@ header.turn-page {
 
   .image-wrapper img {
     content: url('../images/vertical_grid.webp');
-    width: 95vw;               /* wider but not touching screen edges */
-    height: auto;              /* maintain aspect ratio */
-    object-fit: contain;       /* show full image without cropping */
+    width: 95vw;
+    /* wider but not touching screen edges */
+    height: auto;
+    /* maintain aspect ratio */
+    object-fit: contain;
+    /* show full image without cropping */
     display: block;
   }
 }
@@ -728,7 +739,8 @@ header.turn-page {
   }
 
   .carousel-container {
-    height: 45vh; /* or 50vh — shrink height */
+    height: 45vh;
+    /* or 50vh — shrink height */
     padding-top: 0;
     padding-bottom: 0;
   }
@@ -741,8 +753,7 @@ header.turn-page {
   }
 
   .carousel-container {
-    height: 42vh; /* or adjust for tighter screens */
+    height: 42vh;
+    /* or adjust for tighter screens */
   }
 }
-
-

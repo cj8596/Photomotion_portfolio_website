@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 function initSmartAboutHeaderFlip() {
-  const header = document.getElementById('.main-header');
+  const header = document.getElementById('main-header');
   const triggerSection = document.querySelector('.centered-section'); 
   if (!header || !triggerSection) return;
 
