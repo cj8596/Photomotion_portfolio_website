@@ -18,6 +18,7 @@
   "logo": "https://www.photomotion-mp.com/images/icon.png"
 }
 </script>
+<script src="https://unpkg.com/lottie-web@latest/build/player/lottie.min.js"></script>
 </head>
 
 <body class="loaded">
@@ -61,7 +62,12 @@
     </a>
   </header>
 
-  <div class="portfolio-grid" id="portfolioGrid"></div>
+   <div class="portfolio-wrapper">
+    <div class="portfolio-grid" id="portfolioGrid"></div>
+    <div id="gridLoader">
+      <div id="lottieLoader" style="width: 60px; height: 60px;"></div>
+    </div>
+  </div>
 
   <footer class="footer-section">
     <div class="footer">&copy; 2025 PhotoMotion. All rights reserved.</div>

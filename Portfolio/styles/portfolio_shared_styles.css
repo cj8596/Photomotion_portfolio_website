@@ -155,6 +155,32 @@ header h1 {
   border: none;
 }
 
+.portfolio-wrapper {
+  position: relative;
+}
+#gridLoader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #121212;
+  display: flex;
+  align-items: flex-start; /* align content to the top */
+  justify-content: center;
+  padding-top: 200px; /* optional spacing from the top */
+  z-index: 10;
+  transition: opacity 0.4s ease;
+}
+
+#gridLoader img {
+  width: 60px;
+  height: 60px;
+  opacity: 0.8;
+}
+
+
+
 @media (max-width: 768px) {
    #main-header {
     position: relative;

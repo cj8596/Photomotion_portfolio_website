@@ -41,13 +41,12 @@ function scrollContent() {
   }
 }
 
-
-
 function initializeFancyboxGallery(images) {
   const container = document.getElementById("portfolioGrid");
+  const loader = document.getElementById("gridLoader");
 
-  // Optional: Clear container before appending (if re-initializing)
   container.innerHTML = "";
+  let loadedCount = 0;
 
   images.forEach((img) => {
     const full = `https://drive.google.com/thumbnail?id=${img.id}&sz=w4096`;
@@ -55,8 +54,23 @@ function initializeFancyboxGallery(images) {
     item.className = "portfolio-item";
     item.href = full;
     item.setAttribute("data-fancybox", "gallery");
-    // item.setAttribute("data-caption", img.title);
-    item.innerHTML = `<img src="${full}" alt="${img.title}" loading="lazy" />`;
+
+    const imageElement = document.createElement("img");
+    imageElement.src = full;
+    imageElement.alt = img.title;
+    imageElement.loading = "lazy";
+
+    imageElement.onload = imageElement.onerror = () => {
+      loadedCount++;
+      if (loadedCount === images.length) {
+        setTimeout(() => {
+          loader.style.opacity = "0";
+          setTimeout(() => loader.style.display = "none", 400);
+        }, 300);
+      }
+    };
+
+    item.appendChild(imageElement);
     container.appendChild(item);
   });
 
@@ -145,3 +159,5 @@ function initializeFancyboxGallery(images) {
     }
   });
 }
+
+
