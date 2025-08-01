@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Do's and Don'ts | PhotoMotion</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #222;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 28px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-top: 40px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 8px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin-bottom: 20px;
+      padding-left: 32px;
+      text-indent: -24px;
+    }
+
+    li::before {
+      display: inline-block;
+      width: 24px;
+    }
+
+    .dos li::before {
+      content: '✅';
+      color: green;
+    }
+
+    .donts li::before {
+      content: '❌';
+      color: red;
+    }
+
+    /* Fixed logo */
+    .logo {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      width: 100px;
+      height: auto;
+      background: #666666;
+    }
+
+    /* Full-width footer */
+    footer {
+      width: 100%;
+      /* background-color: #000; */
+      border-top: 1px solid #ddd;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 14px;
+      color: #555;
+      box-sizing: border-box;
+    }
+
+    @media print {
+      body {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Logo (fixed, non-intrusive) -->
+  <img src="images/logo_.png" alt="Logo" class="logo">
+
+  <div class="container">
+    <h1>Do and Don’ts</h1>
+
+    <h2>✅ DOs</h2>
+    <ul class="dos">
+      <li><strong>Ship Clean, Damage-Free Products</strong><br>
+        Make sure all products are spotless, crease-free, dust-free, and in immaculate condition — we photograph
+        precisely what we get.</li>
+      <li><strong>Label Everything Clearly</strong><br>
+        Label every item with its name, SKU, or product code so we don't get confused — particularly if you're shipping
+        different variants.</li>
+      <li><strong>Include a Packing List</strong><br>
+        Insert a printed checklist within the package with item names and quantities. Makes it easier for us to confirm
+        everything on delivery.</li>
+      <li><strong>Package Safely</strong><br>
+        Use bubble wrap, paper fill, or soft material for protection against breakage or scratching in transit.</li>
+      <li><strong>Send Extra Units (optional)</strong><br>
+        For breakable goods, consumables, or those packaged with reflective materials — send spares for backup or
+        alternative styling purposes.</li>
+      <li><strong>Specify Product Details</strong><br>
+        Inform us of any product features to emphasize, such as textures, ingredients, or packaging information.</li>
+      <li><strong>Provide Usage Instructions (optional)</strong><br>
+        If the item is interactive (e.g., sprays, opening-closing mechanisms), provide how it must be used or presented.
+      </li>
+      <li><strong>Exchange Brand Guidelines</strong><br>
+        If you have brand color, background, and style references — send them in advance.</li>
+      <li><strong>Provide a Mood Board or Reference</strong><br>
+        Visual direction assists us in gaining a better sense of your brand tone and styling references.</li>
+      <li><strong>Provide Return Instructions (if necessary)</strong><br>
+        Clearly indicate if you would like the products back and provide a return address or courier arrangement.</li>
+    </ul>
+
+    <h2>❌ DON'Ts</h2>
+    <ul class="donts">
+      <li><strong>Don't Ship Damaged, Dirty, or Used Products</strong><br>
+        Scratched finishes, broken labels, or worn materials will impact the end looks and can't always be repaired in
+        post-production.</li>
+      <li><strong>Don't Ship Last Minute Without Planning</strong><br>
+        Always check shoot schedules and delivery deadlines with us prior to shipping products.</li>
+      <li><strong>Don't Make Assumptions About Product Use</strong><br>
+        When the use is unknown, always include a note or video demonstration to avoid misinterpretation.</li>
+      <li><strong>Don't Ship with Fragile Packaging Without Support</strong><br>
+        Damaged in transit products can postpone the shoot or minimize your deliverables.</li>
+      <li><strong>Don't Commingle Product Categories Without Segregation</strong><br>
+        Keep cosmetics, garments, breakables, etc., separately packaged or marked for systematic handling.</li>
+      <li><strong>Don't Leave Out Key Information</strong><br>
+        Add on any "must-include" angles, brand identity, disclaimers, or styling do's/don’ts you need us to adhere to.
+      </li>
+      <li><strong>Don't Leave Out Legal/Label Approvals (if applicable)</strong><br>
+        For commerce use, ensure all product labels or packaging exhibited are final approved ones.</li>
+    </ul>
+  </div>
+
+  <footer>
+    © 2025 PhotoMotion Media Production. All rights reserved.
+  </footer>
+
+  <script>
+    // Disable right-click
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Disable text selection and drag
+    document.addEventListener('selectstart', e => e.preventDefault());
+    document.addEventListener('dragstart', e => e.preventDefault());
+
+    // Disable keyboard shortcuts
+    document.addEventListener('keydown', function (e) {
+      // Block common dev keys and copy
+      if (
+        e.key === 'F12' ||                            // Dev tools
+        e.key === 'F11' ||
+        (e.ctrlKey && ['u', 's', 'c', 'p', 'a'].includes(e.key.toLowerCase())) || // Ctrl+U/S/C/P/A
+        (e.ctrlKey && e.shiftKey && ['i', 'j'].includes(e.key.toLowerCase()))     // Ctrl+Shift+I/J
+      ) {
+        e.preventDefault();
+      }
+
+      // Attempt to disrupt PrintScreen
+      if (e.key === 'PrintScreen') {
+        navigator.clipboard.writeText('');
+        alert('Screenshots are disabled on this page.');
+      }
+    });
+
+    // Try to block PrintScreen using clipboard overwrite
+    window.addEventListener('keyup', function (e) {
+      if (e.key === 'PrintScreen') {
+        navigator.clipboard.writeText('');
+      }
+    });
+
+    // Blur screen if suspicious keys are pressed (visual distraction technique)
+    const blurScreen = () => {
+      document.body.style.filter = 'blur(5px)';
+      setTimeout(() => document.body.style.filter = 'none', 1500);
+    };
+
+    ['PrintScreen', 'F12'].forEach(key => {
+      window.addEventListener('keydown', e => {
+        if (e.key === key) blurScreen();
+      });
+    });
+  </script>
+
+
+</body>
+
+</html>

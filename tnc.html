@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terms & Conditions | PhotoMotion</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #222;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .section p {
+      margin: 0;
+    }
+
+    .logo {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 100px;
+      z-index: 1000;
+      pointer-events: none;
+      background: #666666;
+    }
+
+    footer {
+      width: 100%;
+      /* background-color: #f9f9f9; */
+      border-top: 1px solid #ddd;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 14px;
+      color: #555;
+      box-sizing: border-box;
+      margin-top: 60px;
+    }
+
+    @media print {
+      body {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo -->
+  <img src="images/logo_.png" alt="Logo" class="logo" />
+
+  <div class="container">
+    <h1>Photography Studio – Terms & Conditions</h1>
+
+    <div class="section">
+      <h3>1. Booking & Payment</h3>
+      <p>Bookings are only confirmed upon receiving a 50% advance payment. The balance is payable on the shoot date. Bookings are made on availability.</p>
+    </div>
+
+    <div class="section">
+      <h3>2. Cancellation & Rescheduling</h3>
+      <p>Cancellations within 72 hours of the shoot are non-transferable. Rescheduling is permitted once with a minimum of 48 hours' notice, subject to availability.</p>
+    </div>
+
+    <div class="section">
+      <h3>3. Product Delivery & Handling</h3>
+      <p>The clients have to ship and package goods safely to the studio. The studio is not responsible for damage incurred during shipping. Kindly attach a clear detailed list of items shipped.</p>
+    </div>
+
+    <div class="section">
+      <h3>4. Creative Direction</h3>
+      <p>Shots are completed according to the brief and mood board agreed. Significant changes on the day of the shoot will cost extra. Creative choices on the day of the shoot are at the discretion of the studio unless specifically noted otherwise in advance.</p>
+    </div>
+
+    <div class="section">
+      <h3>5. Image Usage & Copyright</h3>
+      <p>Final edited photographs are licensed to the client for use commercially. Copyright remains with the studio and can be used for portfolio, website, or advertising purposes unless otherwise stated in writing.</p>
+    </div>
+
+    <div class="section">
+      <h3>6. Delivery Schedule</h3>
+      <p>Final photos will be delivered within 7–10 working days from the shoot, unless otherwise stated. Rush fee may be charged for urgent delivery requests.</p>
+    </div>
+
+    <div class="section">
+      <h3>7. Client Feedback & Revisions</h3>
+      <p>Clients are entitled to a single round of image editing (cropping, basic color). Further editing will be billed. Feedback has to be given within 5 working days of receipt.</p>
+    </div>
+
+    <div class="section">
+      <h3>8. Liability</h3>
+      <p>The studio uses extreme care with handling and photography of products but is not liable for wear and tear, slight damage, or loss except due to negligence.</p>
+    </div>
+
+    <div class="section">
+      <h3>9. Confidentiality</h3>
+      <p>All client information, product information, and unseen visuals shall be kept secret and not disclosed without first seeking permission.</p>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 PhotoMotion. All rights reserved.
+  </footer>
+
+  <!-- Protection Script -->
+  <script>
+    // Disable right-click
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Disable text selection and drag
+    document.addEventListener('selectstart', e => e.preventDefault());
+    document.addEventListener('dragstart', e => e.preventDefault());
+
+    // Disable dev tools, copy shortcuts
+    document.addEventListener('keydown', function(e) {
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && ['u', 's', 'c', 'p', 'a'].includes(e.key.toLowerCase())) ||
+        (e.ctrlKey && e.shiftKey && ['i', 'j'].includes(e.key.toLowerCase()))
+      ) {
+        e.preventDefault();
+      }
+
+      // Block PrintScreen
+      if (e.key === 'PrintScreen') {
+        navigator.clipboard.writeText('');
+        alert('Screenshots are disabled on this page.');
+      }
+    });
+
+    window.addEventListener('keyup', function(e) {
+      if (e.key === 'PrintScreen') {
+        navigator.clipboard.writeText('');
+      }
+    });
+
+    // Blur screen briefly as deterrent
+    const blurScreen = () => {
+      document.body.style.filter = 'blur(5px)';
+      setTimeout(() => document.body.style.filter = 'none', 1500);
+    };
+
+    ['PrintScreen', 'F12'].forEach(key => {
+      window.addEventListener('keydown', e => {
+        if (e.key === key) blurScreen();
+      });
+    });
+  </script>
+</body>
+</html>

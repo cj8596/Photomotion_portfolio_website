@@ -587,3 +587,9 @@ header {
     font-size: 1em;
   }
 }
+
+@media print {
+  body {
+    display: none !important;
+  }
+}

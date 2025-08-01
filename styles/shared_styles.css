@@ -956,3 +956,9 @@ nav a:hover {
     display: none !important;
   }
 }
+
+@media print {
+  body {
+    display: none !important;
+  }
+}

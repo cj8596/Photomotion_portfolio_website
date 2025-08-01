@@ -236,3 +236,9 @@ header h1 {
     max-width: calc(100% - 20px);
   }
 }
+
+@media print {
+  body {
+    display: none !important;
+  }
+}

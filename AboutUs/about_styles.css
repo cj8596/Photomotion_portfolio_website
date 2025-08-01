@@ -126,3 +126,9 @@ header.turn-page {
     transform: translateY(10px);
   }
 }
+
+@media print {
+  body {
+    display: none !important;
+  }
+}

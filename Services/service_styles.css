@@ -528,3 +528,9 @@ header.turn-page {
     margin-right: 10px;
   }
 }
+
+@media print {
+  body {
+    display: none !important;
+  }
+}
