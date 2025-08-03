@@ -19,12 +19,20 @@
   pointer-events: all;
 }
 
+#loader img {
+  max-width: 80vw;     /* adjust size for responsiveness */
+  max-height: 80vh;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
 #loader.fade-out {
   opacity: 0;
   pointer-events: none;
 }
 
-#loader video {
+/* #loader video {
   max-width: 80vw;
   max-height: 80vh;
   object-fit: contain;
@@ -36,7 +44,7 @@
 
 #loader video:focus {
   outline: none;
-}
+} */
 
 /* Content Visibility Control */
 #content {
