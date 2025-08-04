@@ -627,10 +627,14 @@ nav a:hover {
 
   .contact-section {
     overflow: hidden;
+    justify-content: flex-start !important;
+    padding-top: 10px !important;
+    margin-top: 0 !important;
   }
 
+  
   .contact-section a {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 
   #fullpage-menu {
@@ -950,12 +954,6 @@ nav a:hover {
   }
 }
 
-
-@media print {
-  body {
-    display: none !important;
-  }
-}
 
 @media print {
   body {
