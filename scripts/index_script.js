@@ -155,7 +155,7 @@ function initLoader() {
         document.body.classList.add('loaded');
         window.scrollTo(0, 0);
       }, 1000);
-    }, 4500);
+    }, 5000);
   });
 }
 
