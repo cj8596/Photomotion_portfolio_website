@@ -159,5 +159,3 @@ function initializeFancyboxGallery(images) {
     }
   });
 }
-
-
