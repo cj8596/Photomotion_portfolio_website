@@ -76,7 +76,7 @@ function initializeFancyboxGallery(images) {
 
   Fancybox.bind("[data-fancybox='gallery']", {
     closeButton: false,
-    Thumbs: false,
+    Thumbs: false, // keep Fancybox thumbs off
     caption: (fancybox, carousel, slide) => {
       return `<div class="custom-caption">${slide.caption || ""}</div>`;
     },
@@ -206,12 +206,16 @@ function initializeFancyboxGallery(images) {
         let currentIndex = groupImages.findIndex(img => url.includes(img.id));
         if (currentIndex === -1) return;
 
-        // ✅ Create carousel container
+        // ✅ Create carousel container + thumbs area
         const carouselContainer = document.createElement('div');
         carouselContainer.className = 'product-carousel';
-        carouselContainer.innerHTML = `<div class="carousel-track"></div>`;
+        carouselContainer.innerHTML = `
+          <div class="carousel-track"></div>
+          <div class="mini-thumbs" aria-label="Thumbnails"></div>
+        `;
 
-        const track = carouselContainer.querySelector(".carousel-track");
+        const track  = carouselContainer.querySelector(".carousel-track");
+        const thumbs = carouselContainer.querySelector(".mini-thumbs");
 
         // ✅ Render adaptable frame (1, 2, or 3 images)
         const renderCarousel = () => {
@@ -219,19 +223,13 @@ function initializeFancyboxGallery(images) {
           const rightIndex = (currentIndex + 1) % groupImages.length;
 
           const center = groupImages[currentIndex];
-          let imagesToShow = dedupeById([groupImages[leftIndex], center, groupImages[rightIndex]]);
+          const imagesToShow = dedupeById([groupImages[leftIndex], center, groupImages[rightIndex]]);
 
-          // Determine which rendered index is active:
-          // - 3 items: middle is active
-          // - 2 items: the one equal to center is active
-          // - 1 item: the only one is active
+          // Determine which rendered index is active
           let activeRenderIndex = imagesToShow.findIndex(img => img.id === center.id);
           if (activeRenderIndex < 0) activeRenderIndex = 0;
 
-          if (!track) {
-            console.warn('Carousel track not found');
-            return;
-          }
+          if (!track) return;
 
           track.innerHTML = imagesToShow.map((img, i) => {
             const isActive = i === activeRenderIndex;
@@ -241,6 +239,7 @@ function initializeFancyboxGallery(images) {
                 <img
                   src="https://drive.google.com/thumbnail?id=${img.id}&sz=${size}"
                   alt="${img.title}"
+                  loading="lazy"
                   ${isActive ? 'data-center="1"' : ''}
                 >
               </div>
@@ -248,7 +247,48 @@ function initializeFancyboxGallery(images) {
           }).join("");
         };
 
-        renderCarousel();
+        // ✅ Render the thumbnail strip (only for this mini carousel)
+        const renderThumbs = () => {
+          if (!thumbs.dataset.built) {
+            thumbs.innerHTML = groupImages.map((img, idx) => `
+              <button class="mini-thumb ${idx === currentIndex ? 'is-active' : ''}"
+                      data-idx="${idx}" title="${img.title}">
+                <img
+                  src="https://drive.google.com/thumbnail?id=${img.id}&sz=w256"
+                  alt="${img.title}"
+                  loading="lazy"
+                >
+              </button>
+            `).join("");
+
+            // Click to jump within the mini carousel (not the Fancybox slide)
+            thumbs.addEventListener("click", (e) => {
+              const btn = e.target.closest(".mini-thumb");
+              if (!btn) return;
+              e.stopPropagation(); // don't close the lightbox
+              const idx = parseInt(btn.dataset.idx, 10);
+              if (!Number.isNaN(idx)) {
+                currentIndex = idx;
+                renderAll();
+                btn.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+              }
+            });
+
+            thumbs.dataset.built = "1";
+          }
+
+          thumbs.querySelectorAll(".mini-thumb").forEach((el, idx) => {
+            el.classList.toggle("is-active", idx === currentIndex);
+          });
+        };
+
+        const renderAll = () => {
+          renderCarousel();
+          renderThumbs();
+        };
+
+        // initial render
+        renderAll();
 
         // ✅ Update the slide content safely
         setTimeout(() => {
@@ -268,19 +308,19 @@ function initializeFancyboxGallery(images) {
           }
         }, 50);
 
-        // Auto-advance every 3s (only when there are >1 items)
-        let interval = null;
-        if (groupImages.length > 1) {
-          interval = setInterval(() => {
-            currentIndex = (currentIndex + 1) % groupImages.length;
-            renderCarousel();
-          }, 3000);
-        }
+        // // Auto-advance every 3s (only when there are >1 items)
+        // let interval = null;
+        // if (groupImages.length > 1) {
+        //   interval = setInterval(() => {
+        //     currentIndex = (currentIndex + 1) % groupImages.length;
+        //     renderAll();
+        //   }, 3000);
+        // }
 
         // Stop autoplay on close
-        fancybox.on("closing", () => {
-          if (interval) clearInterval(interval);
-        });
+        // fancybox.on("closing", () => {
+        //   if (interval) clearInterval(interval);
+        // });
       }
 
     }

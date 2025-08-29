@@ -32,11 +32,11 @@ const portfolioImages = [
 
 const portfolioExtraImages = {
   perfume: [
-    { id: "12JfQ02J_lbi8Fx33QQoTfN6BGUBHWbx0", title: "Perfume Extra 1" },
+    { id:"1EkH6l1UmWAk9THDSKfZMNjrFIXa7qXkz", title: "Product 10" },
     // { id: "13rlXDfyT_KkplkF4C4mEIwa-9txwtstv", title: "Perfume Extra 2" }
   ],
   watch: [
-    { id: "168iBHqZZvbkrwbEViVxne2-mYrmgfDFs", title: "Watch Extra 1" },
+    { id: "1Uwpue9t70IH3-QpeXpKohgE9wCtWdXf3", title: "Product 16" },
     // { id: "18pJ_kpRmI5csHh-D6rDkGseYkBovOc_J", title: "Watch Extra 2" }
   ],
   jewellery: [
