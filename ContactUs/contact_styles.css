@@ -1,0 +1,248 @@
+/* Reset some basic styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #1f1f1f, #2a2a2a);
+  color: #fff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Header styles (ensure it's on top) */
+#main-header {
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: linear-gradient(145deg, #1e1e1e, #2b2b2b); /* semi-transparent black */
+  padding: 15px 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+header .logo img {
+  height: 10vw;
+  max-height: 150px;
+  margin-right: 10px;
+  display: block;
+}
+
+/* Padding to make space for fixed header */
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px; 
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  margin-bottom: 50px;
+}
+
+/* Left info section */
+.contact-info {
+  flex: 1;
+  padding: 50px 40px;
+  background: linear-gradient(145deg, #1e1e1e, #2b2b2b);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-info h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.contact-info p {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: #ddd;
+}
+
+.social-icons {
+  display: flex;
+  gap: 30px;
+}
+
+.social-icons a {
+  font-size: 26px;
+  color: orange;
+  transition: transform 0.3s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+}
+
+/* Right form section */
+.contact-form {
+  flex: 1;
+  padding: 50px 40px;
+  background: linear-gradient(145deg, #2e2e2e, #3a3a3a);
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-group {
+  position: relative;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid orange;
+  /* color: #fff; */
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #ffa500;
+}
+
+label {
+  position: absolute;
+  top: -18px;
+  left: 0;
+  font-size: 14px;
+  color: #aaa;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+
+/* Keep labels above when filled (optional, JS can also do this) */
+input:valid + label,
+textarea:valid + label,
+select:valid + label {
+  color: orange;
+}
+
+/* Submit button */
+.submit-btn {
+  background: transparent;
+  border: 2px solid orange;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 40px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: orange;
+  color: #000;
+}
+
+.faq-section {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 40px;
+  background: linear-gradient(to right, #1e1e1e, #292929);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.faq-heading {
+  font-size: 2.8em;
+  text-align: center;
+  margin-bottom: 30px;
+  background: linear-gradient(to right, #ff9933, #ffd194);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.faq-item {
+  border-bottom: 1px solid #444;
+  padding: 16px 0;
+}
+
+.faq-question {
+  background: none;
+  border: none;
+  font-size: 1.3em;
+  width: 100%;
+  text-align: left;
+  color: #ffb347;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  padding-right: 30px;
+}
+
+.faq-question .icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 1.5em;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question .icon {
+  transform: rotate(45deg);
+  color: #ffd194;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  color: #ccc;
+  font-size: 1em;
+  padding-left: 5px;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+  }
+
+  .contact-info,
+  .contact-form {
+    padding: 30px 20px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media print {
+  body {
+    display: none !important;
+  }
+}

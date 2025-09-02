@@ -1,0 +1,412 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #121212;
+  color: #fff;
+}
+
+header {
+  /* background: linear-gradient(to bottom, #000, #1e1e1e); */
+  background: linear-gradient(to bottom, #000000, #333333);
+  padding: 2rem 1rem;
+  text-align: center;
+  border: none;
+}
+
+header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+  align-items: center;
+}
+
+.back-portfolio-btn {
+  position: absolute;
+  top: 4rem;
+  right: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem;
+  border-radius: 50%;
+  transition: background 0.3s, transform 0.3s;
+  z-index: 10;
+}
+
+.back-portfolio-btn img {
+  width: 34px;
+  height: 34px;
+  /* filter: brightness(0) saturate(100%) invert(66%) sepia(66%) saturate(805%) hue-rotate(359deg) brightness(101%) contrast(101%); */
+}
+
+.back-portfolio-btn:hover {
+  background: #ffa726;
+  transform: scale(1.1);
+}
+
+.back-portfolio-btn:hover img {
+  filter: brightness(1.2);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  max-width: 100%;
+}
+
+.portfolio-item {
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.custom-caption {
+  position: absolute;
+  top: 200px;
+  left: 60px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  z-index: 10000;
+  pointer-events: none;
+  max-width: 80%;
+}
+
+.fancybox__button.custom-icon-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 5px;
+}
+
+.fancybox__button.custom-icon-btn img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) saturate(100%) invert(66%) sepia(66%) saturate(805%) hue-rotate(359deg) brightness(101%) contrast(101%);
+  transition: filter 0.3s ease;
+}
+
+.fancybox__button.custom-icon-btn:hover img {
+  filter: brightness(1.5);
+}
+
+.fancybox__nav {
+  display: none !important;
+}
+
+.fancybox__backdrop {
+  background-color: rgba(0, 0, 0, 0.94) !important;
+}
+
+.custom-nav-buttons {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: translateY(-50%);
+  padding: 0 40px;
+}
+
+.custom-arrow {
+  background: none;
+  border: none;
+  pointer-events: all;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.custom-arrow img {
+  width: 100%;
+  height: auto;
+  filter: brightness(0) saturate(100%) invert(66%) sepia(66%) saturate(805%) hue-rotate(359deg) brightness(101%) contrast(101%);
+}
+
+.custom-arrow:hover {
+  transform: scale(1.1);
+}
+
+.custom-arrow:hover img {
+  filter: brightness(1.5);
+}
+
+.footer-section {
+  border: none;
+}
+
+.portfolio-wrapper {
+  position: relative;
+}
+
+#gridLoader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #121212;
+  display: flex;
+  align-items: flex-start;
+  /* align content to the top */
+  justify-content: center;
+  padding-top: 200px;
+  /* optional spacing from the top */
+  z-index: 10;
+  transition: opacity 0.4s ease;
+}
+
+#gridLoader img {
+  width: 60px;
+  height: 60px;
+  opacity: 0.8;
+}
+
+/* Reset Fancybox defaults */
+.fancybox__slide {
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.fancybox__content {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+}
+
+/* ---------- Product carousel inside slide (FINAL) ---------- */
+/* .product-carousel {
+  position: absolute;
+  inset: 0;
+  padding-top: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: transparent;
+}
+
+.carousel-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+} */
+
+.product-carousel {
+  position: relative;
+  /* not absolute, so children can stack naturally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+}
+
+.carousel-track {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  width: 100%;
+  perspective: 1000px;
+}
+
+.mini-thumbs {
+.mini-thumbs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  margin-top: 12px;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  max-width: 92%;
+  flex-wrap: wrap;   
+  overflow: hidden;  
+}
+}
+
+
+.carousel-item {
+  flex-shrink: 0;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-item img {
+  max-height: 80vh;
+  max-width: 72vw;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  transition: all 0.6s ease;
+  object-fit: contain;
+}
+
+.carousel-item.active img {
+  max-height: 85vh;
+  max-width: 78vw;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+}
+
+.carousel-item.side img {
+  max-height: 60vh;
+  max-width: 32vw;
+  filter: blur(3px) brightness(1);
+  opacity: 0.85;
+  transform: scale(0.92);
+}
+
+/* .fancybox__container .mini-thumbs-bar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 16px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  max-width: min(92vw, 1280px);
+  width: max-content;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 5;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+} */
+
+.mini-thumb {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 8px;
+  flex: 0 0 auto;
+}
+
+.mini-thumb img {
+  display: block;
+  height: 64px;
+  width: auto;
+  border-radius: 8px;
+  opacity: 0.85;
+  transition: transform 180ms ease, opacity 180ms ease, box-shadow 180ms ease;
+}
+
+.mini-thumb:hover img {
+  transform: translateY(-1px);
+  opacity: 1;
+}
+
+.mini-thumb.is-active img {
+  opacity: 1;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9), 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+
+@media (max-width: 768px) {
+  #main-header {
+    position: relative;
+    padding: 1rem 1rem 2rem;
+  }
+
+  #main-header nav,
+  #main-header h1,
+  .back-portfolio-btn {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+  }
+
+  #main-header nav {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    z-index: 10;
+  }
+
+  .back-portfolio-btn {
+    position: absolute;
+    right: 1rem;
+    top: 1.5rem;
+    width: 50px;
+    height: 50px;
+    padding: 0.4rem;
+    z-index: 10;
+  }
+
+  #main-header h1 {
+    position: relative;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+    padding: 1rem 3.5rem;
+    box-sizing: border-box;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .custom-caption {
+    top: unset;
+    bottom: 20px;
+    left: 10px;
+    right: 10px;
+    font-size: 1.1rem;
+    text-align: center;
+    max-width: calc(100% - 20px);
+  }
+}
+
+@media print {
+  body {
+    display: none !important;
+  }
+}

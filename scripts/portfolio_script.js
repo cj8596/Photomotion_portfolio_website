@@ -1,5 +1,9 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const sections = document.querySelectorAll(".content-section");
+window.addEventListener('DOMContentLoaded', () => {
+  scrollContent();
+});
+
+function scrollContent(){
+  const sections = document.querySelectorAll(".content-section:not(.fixed-heading)");
 
   const observer = new IntersectionObserver(
     entries => {
@@ -8,9 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     },
     {
-      threshold: 0.5, // section is visible when 50% enters viewport
+      threshold: 0.5,
     }
   );
 
   sections.forEach(section => observer.observe(section));
-});
+}

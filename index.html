@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QYKNDF8RMX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-QYKNDF8RMX');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>PhotoMotion Media Production</title>
@@ -27,7 +36,12 @@
 <body class="loading">
   <!-- Loader -->
   <div id="loader">
-    <img src="images/logo-animation-2.gif" alt="logo" />
+    <!-- <video id="loaderVideo" autoplay muted playsinline webkit-playsinline loop>
+      <source src="video/loader (1).mp4" type="video/mp4">
+    </video> -->
+    <div id="loader">
+      <img src="images/logo-animation-3.gif" alt="logo" />
+    </div>
   </div>
 
   <!-- Main Content -->
@@ -48,9 +62,9 @@
             <ul class="left-menu">
               <br>
               <li><a href="index.html" tabindex="-1">Home</a></li>
-              <li><a href="portfolio.html" tabindex="-1">Our Work</a></li>
-              <li><a href="services.html" tabindex="-1">Our Service</a></li>
-              <li><a href="about_us.html" tabindex="-1">About Us</a></li>
+              <li><a href="/Portfolio/" tabindex="-1">Our Work</a></li>
+              <li><a href="/Services/" tabindex="-1">Our Service</a></li>
+              <li><a href="/AboutUs/" tabindex="-1">About Us</a></li>
             </ul>
           </div>
           <div class="contact-section slide-up">
@@ -58,10 +72,14 @@
               <li>
                 <h2><span id="animated-word">Start a Conversation</span></h2>
               </li>
-              <li><a href="mailto:hello@photomotion-mp.com" tabindex="-1">
-                <i class="fas fa-envelope" style="margin-right: 12px;"></i>
-                hello@photomotion-mp.com</a></li>
-              <li><a href="contact.html" class="menu-contact-button">Contact us</a></li>
+              <li><a href="mailto:hello@photomotion-mp.com">
+                  <i class="fas fa-envelope" style="margin-right: 12px;"></i>
+                  hello@photomotion-mp.com</a></li>
+              <li><a href="tel:+919619286602" tabindex="-1">
+                  <i class="fas fa-phone" style="margin-right: 10px;"></i>
+                  +91 9619286602</a>
+              </li>
+              <li><a href="/ContactUs/" class="menu-contact-button">Contact us</a></li>
             </ul>
           </div>
         </div>
@@ -193,11 +211,11 @@
 
         <!-- Left Text Links -->
         <div class="footer-column left-links">
-          <a href="about_us.html">ABOUT US</a>
-          <a href="contact.html">CONTACT</a>
-          <a href="#">DO's & DONT's</a>
-          <a href="#">PRIVACY POLICY</a>
-          <a href="#">T&C</a>
+          <a href="AboutUs/">ABOUT US</a>
+          <a href="ContactUs/">CONTACT</a>
+          <a href="/dosndonts.html" target="_blank">DO's & DONT's</a>
+          <a href="/privacypolicy.html" target="_blank">PRIVACY POLICY</a>
+          <a href="/tnc.html" target="_blank">TERMS & CONDITIONS</a>
         </div>
 
         <!-- Center Logo with Line -->
@@ -208,10 +226,10 @@
 
         <!-- Right Social Links -->
         <div class="footer-column right-links">
-          <a href="#"><img src="images/icons/instagram.png" alt="Instagram" /></a>
-          <a href="#"><img src="images/icons/threads.png" alt="Threads" /></a>
+          <a href="https://www.instagram.com/photomotionmedia/" target="_blank"><img src="images/icons/instagram.png" alt="Instagram" /></a>
+          <a href="https://www.threads.com/@photomotionmedia?igshid=NTc4MTIwNjQ2YQ%3D%3D" target="_blank"><img src="images/icons/threads.png" alt="Threads" /></a>
           <a href="#"><img src="images/icons/linkedin.png" alt="LinkedIn" /></a>
-          <a href="#"><img src="images/icons/pinterest.png" alt="Pinterest" /></a>
+          <a href="https://www.pinterest.com/photomotionmediaproduction/" target="_blank"><img src="images/icons/pinterest.png" alt="Pinterest" /></a>
         </div>
       </div>
       <div class="footer">&copy; 2025 PhotoMotion. All rights reserved.</div>

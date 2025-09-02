@@ -97,7 +97,7 @@ function initContactButton() {
     if (isInBackToTopMode) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      window.location.href = 'contact.html'; // Replace with actual contact page
+      window.location.href = '/ContactUs/'; // Replace with actual contact page
     }
   });
 
@@ -204,34 +204,14 @@ function initSmartHeaderFlip() {
       header.classList.add('light-header');
     }
 
-    lastScrollY = currentScrollY;
-  }
-
-  window.addEventListener('scroll', updateHeaderState);
-  window.addEventListener('load', updateHeaderState);
-}
-
-
-function initHeaderFlip() {
-  const header = document.getElementById('main-header');
-  if (!header) return;
-
-  let pageTurned = false;
-
-  function updateHeaderState() {
-    const scrollY = window.scrollY;
-
-    // Flip header when scrolling down beyond 80px
-    if (scrollY > 80 && !pageTurned) {
-      header.classList.add('turn-page');
-      pageTurned = true;
-    }
-
-    // Restore header when scrolling back up
-    if (scrollY <= 80 && pageTurned) {
+    if (window.scrollY <= 0) {
       header.classList.remove('turn-page');
+      header.classList.add('light-header');
       pageTurned = false;
     }
+
+
+    lastScrollY = currentScrollY;
   }
 
   window.addEventListener('scroll', updateHeaderState);
