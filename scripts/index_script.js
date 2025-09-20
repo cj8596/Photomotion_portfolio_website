@@ -33,7 +33,7 @@ function initCategoryHover() {
 
 // Hover color effect on camera image (first image in section)
 function initCameraHover() {
-  const img = document.querySelector('section img[src="images/grid.webp"]');
+  const img = document.querySelector('section img[src="/images/grid.webp"]');
   if (!img) return;
 
   img.style.transition = 'filter 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
