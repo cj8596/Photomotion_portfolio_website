@@ -42,287 +42,392 @@ function scrollContent() {
 }
 
 function initializeFancyboxGallery(images) {
+
   const container = document.getElementById("portfolioGrid");
-  const loader = document.getElementById("gridLoader");
-
+  if (!container) return;
   container.innerHTML = "";
-  let loadedCount = 0;
-
-  images.forEach((img) => {
-    const full = `https://drive.google.com/thumbnail?id=${img.id}&sz=w4096`;
-    const item = document.createElement("a");
+  images.forEach((set, idx) => {
+    const item = document.createElement("div");
     item.className = "portfolio-item";
-    item.href = full;
-    item.setAttribute("data-fancybox", "gallery");
+    item.innerHTML = `<img src="${set.main}" alt="Portfolio ${idx + 1}" loading="lazy" />`;
+    item.addEventListener("click", () => openAdaptiveViewer(images, idx));
+    container.appendChild(item);
+  });
+}
 
-    const imageElement = document.createElement("img");
-    imageElement.src = full;
-    imageElement.alt = img.title;
-    imageElement.loading = "lazy";
 
-    imageElement.onload = imageElement.onerror = () => {
-      loadedCount++;
-      if (loadedCount === images.length) {
+function openAdaptiveViewer(images, startIndex) {
+  let currentSetIndex = startIndex;
+  const set = images[currentSetIndex];
+  const total = 1 + Math.min(set.sides?.length || 0, 2);
+
+  let html = `
+  <div class="adaptive-frame">
+    <div class="images-row">`;
+
+  if (total === 3) {
+    html += `
+      <img src="${set.sides[0]}" class="side left">
+      <img src="${set.main}" class="center">
+      <img src="${set.sides[1]}" class="side right">`;
+  } else if (total === 2) {
+    html += `
+      <img src="${set.main}" class="center" data-main="${set.main}" data-alt="${set.sides[0]}">`;
+  } else {
+    html += `<img src="${set.main}" class="single center">`;
+  }
+
+  html += `
+    </div>
+  </div>`;
+
+  const instance = Fancybox.show([{ src: html, type: "html" }], {
+    Toolbar: false,
+    dragToClose: false,
+    placeFocusBack: false,
+    closeButton: false
+  });
+
+  document.body.style.overflow = "hidden";
+
+  requestAnimationFrame(() => {
+    const container = instance?.$container;
+    if (!container) return;
+    const frame = container.querySelector(".adaptive-frame");
+    const row = frame.querySelector(".images-row");
+    let imgs = Array.from(row.querySelectorAll("img"));
+
+    const toolbar = document.createElement("div");
+    toolbar.className = "custom-toolbar";
+    frame.style.position = "relative";
+    toolbar.innerHTML = `
+      <button data-act="zoom"><img src="/images/icons/zoom.png"></button>
+      <button data-act="fs"><img id="fullscreenIcon" src="/images/icons/fullscreen_enter.png"></button>
+      <button data-act="close"><img src="/images/icons/grid.png"></button>`;
+    frame.appendChild(toolbar);
+
+    const lArr = document.createElement("button");
+    lArr.className = "overlay-arrow left";
+    lArr.innerHTML = `<img src="/images/icons/left-arrow.png">`;
+    const rArr = document.createElement("button");
+    rArr.className = "overlay-arrow right";
+    rArr.innerHTML = `<img src="/images/icons/right-arrow.png">`;
+    container.append(lArr, rArr);
+
+    let thumbs = null;
+    if (total > 1) {
+      thumbs = document.createElement("div");
+      thumbs.className = "custom-thumbs";
+
+      const srcs =
+        total === 3
+          ? [set.sides[0], set.main, set.sides[1]]
+          : [set.main, set.sides[0]];
+
+      srcs.forEach((s, i) => {
+        if (!s) return;
+        const t = document.createElement("img");
+        t.src = s;
+        if (i === 0) t.classList.add("active");
+        t.onclick = e => {
+          e.stopPropagation();
+          if (total === 3) rotate3ToCenter(s);
+          else if (total === 2) show2ImageVariant(s);
+          refreshActiveThumb(s);
+        };
+        thumbs.appendChild(t);
+      });
+
+      frame.appendChild(thumbs);
+    }
+
+    const refreshActiveThumb = src => {
+      thumbs?.querySelectorAll("img").forEach(t => t.classList.toggle("active", t.src === src));
+    };
+
+    const refreshImages = () => (imgs = Array.from(row.querySelectorAll("img")));
+
+    function rotate3ToCenter(target) {
+      refreshImages();
+      const idx = imgs.findIndex(i => i.src === target);
+      if (idx === 1 || idx === -1) return;
+      const srcs = imgs.map(i => i.src);
+      const order = idx === 0 ? [srcs[2], srcs[0], srcs[1]] : [srcs[1], srcs[2], srcs[0]];
+      imgs.forEach((img, i) => {
+        img.src = order[i];
+        img.className = i === 1 ? "center" : "side";
+      });
+      refreshActiveThumb(imgs[1].src);
+    }
+
+    function show2ImageVariant(target) {
+      const center = row.querySelector(".center");
+      if (center && target !== center.src) {
+        center.classList.add("fade-out");
         setTimeout(() => {
-          loader.style.opacity = "0";
-          setTimeout(() => loader.style.display = "none", 400);
-        }, 300);
+          center.src = target;
+          center.classList.remove("fade-out");
+          center.classList.add("fade-in");
+          setTimeout(() => center.classList.remove("fade-in"), 300);
+        }, 200);
+      }
+    }
+
+    /* --- Zoom & drag (safe drag – prevents accidental close) --- */
+    /* --- Zoom & drag (safe drag – prevents accidental close) --- */
+    let zoomed = false;
+    let dragging = false;
+    let startX = 0, startY = 0, ox = 0, oy = 0;
+
+    function toggleZoom(img) {
+      zoomed = !zoomed;
+
+      const thumbs = frame.querySelector(".custom-thumbs");
+
+      if (zoomed) {
+        thumbs && (thumbs.style.opacity = "0", thumbs.style.pointerEvents = "none");
+
+        img.style.transition = "transform 0.2s ease-out";
+        img.style.cursor = "grab";
+        img.style.transformOrigin = "center center";
+        img.style.transform = `scale(3) translate(0, 0)`;
+        img.style.objectFit = "contain";
+        img.style.maxWidth = "none";
+        img.style.maxHeight = "none";
+        frame.classList.add("drag-enabled");
+
+        ox = oy = 0;
+
+        // Start dragging
+        img.onmousedown = e => {
+          if (!zoomed) return;
+          e.preventDefault();
+          dragging = true;
+          img.style.cursor = "grabbing";
+          startX = e.clientX - ox;
+          startY = e.clientY - oy;
+
+          const move = ev => {
+            if (!dragging) return;
+            ox = ev.clientX - startX;
+            oy = ev.clientY - startY;
+            img.style.transform = `scale(3) translate(${ox / 1.3}px, ${oy / 1.3}px)`;
+          };
+
+          const up = () => {
+            dragging = false;
+            img.style.cursor = "grab";
+            document.removeEventListener("mousemove", move);
+            document.removeEventListener("mouseup", up);
+          };
+
+          document.addEventListener("mousemove", move);
+          document.addEventListener("mouseup", up);
+        };
+
+      } else {
+        thumbs && (thumbs.style.opacity = "1", thumbs.style.pointerEvents = "auto");
+        img.style.transform = "scale(1)";
+        img.style.cursor = "pointer";
+        img.style.maxWidth = "";
+        img.style.maxHeight = "";
+        ox = oy = 0;
+        frame.classList.remove("drag-enabled");
+      }
+    }
+
+    /* Prevent accidental close while zoomed or dragging */
+    frame.addEventListener("click", e => {
+      // Only close if NOT zoomed and NOT dragging
+      if (zoomed || dragging) {
+        e.stopPropagation();
+        return;
+      }
+      const isInside =
+        e.target.closest(".images-row img, .custom-thumbs img, .custom-toolbar, .overlay-arrow");
+      if (!isInside) instance.close();
+    });
+
+
+    imgs.forEach(img => {
+      img.onclick = e => {
+        e.stopPropagation();
+        if (img.classList.contains("ghost")) return;
+        if (total === 3 && img.classList.contains("side")) rotate3ToCenter(img.src);
+        else if (total === 2) toggleZoom(img);
+        else toggleZoom(img);
+      };
+    });
+
+    toolbar.querySelector('[data-act="zoom"]').onclick = e => {
+      e.stopPropagation();
+      const active =
+        imgs.find(i => i.classList.contains("center") && !i.classList.contains("ghost")) || imgs[0];
+      toggleZoom(active);
+    };
+
+    const fsBtn = toolbar.querySelector('[data-act="fs"]');
+    const fsIcon = toolbar.querySelector("#fullscreenIcon");
+    fsBtn.onclick = async e => {
+      e.stopPropagation();
+      const isFull = !!document.fullscreenElement;
+      if (!isFull) {
+        await frame.requestFullscreen();
+        frame.classList.add("fullscreen-only");
+        fsIcon.src = "/images/icons/fullscreen_exit.png";
+      } else {
+        await document.exitFullscreen();
+        frame.classList.remove("fullscreen-only");
+        fsIcon.src = "/images/icons/fullscreen_enter.png";
       }
     };
 
-    item.appendChild(imageElement);
-    container.appendChild(item);
-  });
+    document.addEventListener("fullscreenchange", () => {
+      const isFull = !!document.fullscreenElement;
+      fsIcon.src = isFull
+        ? "/images/icons/fullscreen_exit.png"
+        : "/images/icons/fullscreen_enter.png";
+      thumbs && (thumbs.style.display = isFull ? "none" : "flex");
+    });
 
-  Fancybox.bind("[data-fancybox='gallery']", {
-    closeButton: false,
-    Thumbs: false, // keep Fancybox thumbs off
-    caption: (fancybox, carousel, slide) => {
-      return `<div class="custom-caption">${slide.caption || ""}</div>`;
-    },
-    Toolbar: {
-      display: [
-        {
-          id: "zoom",
-          html: `<button class="fancybox__button custom-icon-btn" title="Zoom">
-            <img src="/images/icons/zoom.png" alt="Zoom" />
-          </button>`
-        },
-        {
-          id: "fullscreen",
-          html: `<button class="fancybox__button custom-icon-btn" id="customFullscreenBtn" title="Fullscreen">
-            <img id="fullscreenIcon" src="/images/icons/fullscreen_enter.png" alt="Enter Fullscreen" />
-          </button>`
-        },
-        {
-          id: "grid-close",
-          html: `<button class="fancybox__button custom-icon-btn" title="Close">
-            <img src="/images/icons/grid.png" alt="Grid/Close" />
-          </button>`,
-          position: "right"
-        }
-      ]
-    },
-    on: {
-      ready: (fancybox) => {
-        const container = fancybox.$container;
+    toolbar.querySelector('[data-act="close"]').onclick = e => {
+      e.stopPropagation();
+      instance.close();
+    };
 
-        const navContainer = document.createElement("div");
-        navContainer.className = "custom-nav-buttons";
+    const goLeft = () => {
+      currentSetIndex = (currentSetIndex - 1 + images.length) % images.length;
+      instance.close();
+      openAdaptiveViewer(images, currentSetIndex);
+    };
+    const goRight = () => {
+      currentSetIndex = (currentSetIndex + 1) % images.length;
+      instance.close();
+      openAdaptiveViewer(images, currentSetIndex);
+    };
+    lArr.onclick = e => {
+      e.stopPropagation();
+      goLeft();
+    };
+    rArr.onclick = e => {
+      e.stopPropagation();
+      goRight();
+    };
 
-        const prevBtn = document.createElement("button");
-        prevBtn.className = "custom-arrow prev";
-        prevBtn.innerHTML = `<img src="/images/icons/left-arrow.png" alt="Previous">`;
+    frame.addEventListener("click", e => {
+      // Prevent close if dragging or zooming
+      if (zoomed || dragging) return;
 
-        const nextBtn = document.createElement("button");
-        nextBtn.className = "custom-arrow next";
-        nextBtn.innerHTML = `<img src="/images/icons/right-arrow.png" alt="Next">`;
+      const isInside =
+        e.target.closest(".images-row img, .custom-thumbs img, .custom-toolbar, .overlay-arrow");
+      if (!isInside) instance.close();
+    });
 
-        prevBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          Fancybox.getInstance()?.prev();
-        });
-        nextBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          Fancybox.getInstance()?.next();
-        });
 
-        navContainer.appendChild(prevBtn);
-        navContainer.appendChild(nextBtn);
-        container.appendChild(navContainer);
-
-        fancybox.on("closing", () => navContainer.remove());
-
-        const fullscreenBtn = container.querySelector("#customFullscreenBtn");
-        const fullscreenIcon = container.querySelector("#fullscreenIcon");
-
-        // 🔄 Fullscreen the CENTER image (fallback to the only img)
-        fullscreenBtn?.addEventListener("click", () => {
-          const inst = Fancybox.getInstance();
-          const currentSlide = inst?.getSlide();
-          if (!currentSlide) return;
-
-          const centerImg =
-            currentSlide.$content?.querySelector(".product-carousel .carousel-item.active img") ||
-            currentSlide.$content?.querySelector(".product-carousel img");
-
-          if (!centerImg) return;
-
-          if (document.fullscreenElement) {
-            document.exitFullscreen().catch(() => {});
-          } else {
-            (centerImg.requestFullscreen ||
-              centerImg.webkitRequestFullscreen ||
-              centerImg.msRequestFullscreen ||
-              centerImg.mozRequestFullScreen
-            )?.call(centerImg);
-          }
-        });
-
-        document.addEventListener("fullscreenchange", () => {
-          const isFullscreen = !!document.fullscreenElement;
-          if (fullscreenIcon) {
-            fullscreenIcon.src = isFullscreen
-              ? "/images/icons/fullscreen_exit.png"
-              : "/images/icons/fullscreen_enter.png";
-            fullscreenIcon.alt = isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen";
-          }
-        });
-
-        container.querySelector(".fancybox__button[title='Zoom']")
-          ?.addEventListener("click", () => Fancybox.getInstance()?.toggleZoom());
-
-        container.querySelector(".fancybox__button[title='Close']")
-          ?.addEventListener("click", () => Fancybox.getInstance()?.close());
-      },
-
-      /* ------------------------
-         MAIN + SIDE IMAGE HOOK
-      ------------------------ */
-      "Carousel.selectSlide": (fancybox, carousel, slide) => {
-        console.log("Slide opened:", slide.src);
-        const url = slide.src;
-
-        // Find the main image entry
-        const main = portfolioImages.find(img => url.includes(img.id));
-        if (!main || !main.group) return;
-
-        // Gather and dedupe group images by id (avoid overlaps between main/extras)
-        const groupMain = portfolioImages.filter(img => img.group === main.group);
-        const groupExtras = portfolioExtraImages[main.group] || [];
-        const dedupeById = (arr) => {
-          const seen = new Set();
-          const out = [];
-          for (const img of arr) {
-            if (img && !seen.has(img.id)) {
-              seen.add(img.id);
-              out.push(img);
-            }
-          }
-          return out;
-        };
-        const groupImages = dedupeById([...groupMain, ...groupExtras]);
-
-        let currentIndex = groupImages.findIndex(img => url.includes(img.id));
-        if (currentIndex === -1) return;
-
-        // ✅ Create carousel container + thumbs area
-        const carouselContainer = document.createElement('div');
-        carouselContainer.className = 'product-carousel';
-        carouselContainer.innerHTML = `
-          <div class="carousel-track"></div>
-          <div class="mini-thumbs" aria-label="Thumbnails"></div>
-        `;
-
-        const track  = carouselContainer.querySelector(".carousel-track");
-        const thumbs = carouselContainer.querySelector(".mini-thumbs");
-
-        // ✅ Render adaptable frame (1, 2, or 3 images)
-        const renderCarousel = () => {
-          const leftIndex  = (currentIndex - 1 + groupImages.length) % groupImages.length;
-          const rightIndex = (currentIndex + 1) % groupImages.length;
-
-          const center = groupImages[currentIndex];
-          const imagesToShow = dedupeById([groupImages[leftIndex], center, groupImages[rightIndex]]);
-
-          // Determine which rendered index is active
-          let activeRenderIndex = imagesToShow.findIndex(img => img.id === center.id);
-          if (activeRenderIndex < 0) activeRenderIndex = 0;
-
-          if (!track) return;
-
-          track.innerHTML = imagesToShow.map((img, i) => {
-            const isActive = i === activeRenderIndex;
-            const size = isActive ? 'w4096' : 'w1024';
-            return `
-              <div class="carousel-item ${isActive ? 'active' : 'side'}">
-                <img
-                  src="https://drive.google.com/thumbnail?id=${img.id}&sz=${size}"
-                  alt="${img.title}"
-                  loading="lazy"
-                  ${isActive ? 'data-center="1"' : ''}
-                >
-              </div>
-            `;
-          }).join("");
-        };
-
-        // ✅ Render the thumbnail strip (only for this mini carousel)
-        const renderThumbs = () => {
-          if (!thumbs.dataset.built) {
-            thumbs.innerHTML = groupImages.map((img, idx) => `
-              <button class="mini-thumb ${idx === currentIndex ? 'is-active' : ''}"
-                      data-idx="${idx}" title="${img.title}">
-                <img
-                  src="https://drive.google.com/thumbnail?id=${img.id}&sz=w256"
-                  alt="${img.title}"
-                  loading="lazy"
-                >
-              </button>
-            `).join("");
-
-            // Click to jump within the mini carousel (not the Fancybox slide)
-            thumbs.addEventListener("click", (e) => {
-              const btn = e.target.closest(".mini-thumb");
-              if (!btn) return;
-              e.stopPropagation(); // don't close the lightbox
-              const idx = parseInt(btn.dataset.idx, 10);
-              if (!Number.isNaN(idx)) {
-                currentIndex = idx;
-                renderAll();
-                btn.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
-              }
-            });
-
-            thumbs.dataset.built = "1";
-          }
-
-          thumbs.querySelectorAll(".mini-thumb").forEach((el, idx) => {
-            el.classList.toggle("is-active", idx === currentIndex);
-          });
-        };
-
-        const renderAll = () => {
-          renderCarousel();
-          renderThumbs();
-        };
-
-        // initial render
-        renderAll();
-
-        // ✅ Update the slide content safely
-        setTimeout(() => {
-          const currentSlide = fancybox.getSlide();
-          if (currentSlide && currentSlide.$content) {
-            currentSlide.$content.innerHTML = '';
-            currentSlide.$content.appendChild(carouselContainer);
-
-            // ✨ Click on empty space (not the image) closes the lightbox
-            currentSlide.$content.addEventListener("click", (e) => {
-              if (!(e.target instanceof HTMLImageElement)) {
-                Fancybox.getInstance()?.close();
-              }
-            });
-          } else {
-            console.warn('Could not update slide content - element not ready');
-          }
-        }, 50);
-
-        // // Auto-advance every 3s (only when there are >1 items)
-        // let interval = null;
-        // if (groupImages.length > 1) {
-        //   interval = setInterval(() => {
-        //     currentIndex = (currentIndex + 1) % groupImages.length;
-        //     renderAll();
-        //   }, 3000);
-        // }
-
-        // Stop autoplay on close
-        // fancybox.on("closing", () => {
-        //   if (interval) clearInterval(interval);
-        // });
-      }
-
-    }
+    instance.on("closing", () => {
+      document.body.style.overflow = "";
+    });
   });
 }
+
+
+
+//   const container = document.getElementById("portfolioGrid");
+//   container.innerHTML = "";
+
+//   images.forEach((img) => {
+//     const full = `https://drive.google.com/thumbnail?id=${img.id}&sz=w4096`;
+//     const item = document.createElement("a");
+//     item.className = "portfolio-item";
+//     item.href = full;
+//     item.setAttribute("data-fancybox", "gallery");
+//     item.setAttribute("data-caption", img.title);
+//     item.innerHTML = `<img src="${full}" alt="${img.title}" loading="lazy" />`;
+//     container.appendChild(item);
+//   });
+
+//   Fancybox.bind("[data-fancybox='gallery']", {
+//     closeButton: false,
+//     Thumbs: true,
+//     caption: (fancybox, carousel, slide) => {
+//       return `<div class="custom-caption">${slide.caption || ""}</div>`;
+//     },
+//     Toolbar: {
+//       display: [
+//         {
+//           id: "zoom",
+//           html: `<button class="fancybox__button custom-icon-btn" title="Zoom">
+//             <img src="/images/icons/zoom.png" alt="Zoom" />
+//           </button>`
+//         },
+//         {
+//           id: "fullscreen",
+//           html: `<button class="fancybox__button custom-icon-btn" id="customFullscreenBtn" title="Fullscreen">
+//             <img id="fullscreenIcon" src="/images/icons/fullscreen_enter.png" alt="Enter Fullscreen" />
+//           </button>`
+//         },
+//         {
+//           id: "grid-close",
+//           html: `<button class="fancybox__button custom-icon-btn" title="Close">
+//             <img src="/images/icons/grid.png" alt="Grid/Close" />
+//           </button>`,
+//           position: "right"
+//         }
+//       ]
+//     },
+//     on: {
+//       ready: (fancybox) => {
+//         const container = fancybox.$container;
+
+//         const navContainer = document.createElement("div");
+//         navContainer.className = "custom-nav-buttons";
+
+//         const prevBtn = document.createElement("button");
+//         prevBtn.className = "custom-arrow prev";
+//         prevBtn.innerHTML = `<img src="/images/icons/left-arrow.png" alt="Previous">`;
+
+//         const nextBtn = document.createElement("button");
+//         nextBtn.className = "custom-arrow next";
+//         nextBtn.innerHTML = `<img src="/images/icons/right-arrow.png" alt="Next">`;
+
+//         prevBtn.addEventListener("click", (e) => {
+//           e.stopPropagation();
+//           Fancybox.getInstance()?.prev();
+//         });
+//         nextBtn.addEventListener("click", (e) => {
+//           e.stopPropagation();
+//           Fancybox.getInstance()?.next();
+//         });
+
+//         navContainer.appendChild(prevBtn);
+//         navContainer.appendChild(nextBtn);
+//         container.appendChild(navContainer);
+
+//         fancybox.on("closing", () => navContainer.remove());
+
+//         const fullscreenBtn = container.querySelector("#customFullscreenBtn");
+//         const fullscreenIcon = container.querySelector("#fullscreenIcon");
+
+//         fullscreenBtn?.addEventListener("click", () => {
+//           Fancybox.getInstance()?.toggleFullscreen();
+//         });
+
+//         document.addEventListener("fullscreenchange", () => {
+//           const isFullscreen = !!document.fullscreenElement;
+//           if (fullscreenIcon) {
+//             fullscreenIcon.src = isFullscreen
+//               ? "/images/icons/fullscreen_exit.png"
+//               : "/images/icons/fullscreen_enter.png";
+//             fullscreenIcon.alt = isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen";
+//           }
+//         });
+
+//         container.querySelector(".fancybox__button[title='Zoom']")
+//           ?.addEventListener("click", () => Fancybox.getInstance()?.toggleZoom());
+
+//         container.querySelector(".fancybox__button[title='Close']")
+//           ?.addEventListener("click", () => Fancybox.getInstance()?.close());
+//       }
+//     }
+//   });
+// }
