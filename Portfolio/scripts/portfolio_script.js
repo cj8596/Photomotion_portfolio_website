@@ -48,12 +48,68 @@ function initializeFancyboxGallery(images) {
   images.forEach((set, idx) => {
     const item = document.createElement("div");
     item.className = "portfolio-item";
+    const imgList = [set.main];
+    if (set.sides && set.sides.length > 0) imgList.push(...set.sides);
+    item.dataset.images = JSON.stringify(imgList);
     item.innerHTML = `<img src="${set.main}" alt="Portfolio ${idx + 1}" loading="lazy" />`;
     item.addEventListener("click", () => openAdaptiveViewer(images, idx));
     container.appendChild(item);
   });
-}
 
+
+  const gridItems = document.querySelectorAll(".portfolio-item");
+  gridItems.forEach(item => {
+    const img = item.querySelector("img");
+    const imgs = item.dataset.images ? JSON.parse(item.dataset.images) : [];
+
+    if (imgs.length > 1) {
+      let index = 0;
+      let interval;
+      const fadeDuration = 1000; // 1s transition
+      const delayBetween = 2000; // 2s pause between images
+
+      // prepare transition
+      img.style.transition = `opacity ${fadeDuration}ms ease-in-out, transform ${fadeDuration}ms ease-in-out`;
+      img.style.transformOrigin = "center center";
+
+      // helper function for smooth switch
+      const switchImage = () => {
+        index = (index + 1) % imgs.length;
+
+        // animate out (fade + zoom)
+        img.style.opacity = "0";
+        img.style.transform = "scale(1.05)";
+
+        setTimeout(() => {
+          img.src = imgs[index];
+          // animate in (fade + zoom back)
+          img.style.opacity = "1";
+          img.style.transform = "scale(1)";
+        }, fadeDuration / 2);
+      };
+
+      item.addEventListener("mouseenter", () => {
+        if (interval) clearInterval(interval);
+        index = 0;
+
+        // instant first change
+        switchImage();
+
+        // continue switching every 2s after that
+        interval = setInterval(switchImage, delayBetween + fadeDuration);
+      });
+
+      item.addEventListener("mouseleave", () => {
+        clearInterval(interval);
+        interval = null;
+        index = 0;
+        img.style.opacity = "1";
+        img.style.transform = "scale(1)";
+        img.src = imgs[0];
+      });
+    }
+  });
+}
 
 function openAdaptiveViewer(images, startIndex) {
   let currentSetIndex = startIndex;

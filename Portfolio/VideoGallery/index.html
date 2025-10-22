@@ -4,21 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>PhotoMotion Media Production</title>
+  <title>Video Gallery | PhotoMotion Media Production</title>
   <link rel="icon" href="/images/icon.png" type="image/png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
   <link rel="stylesheet" href="/styles/shared_styles.css" />
   <link rel="stylesheet" href="/Portfolio/styles/portfolio_shared_styles.css" />
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "PhotoMotion Media Production",
-  "url": "https://www.photomotion-mp.com",
-  "logo": "https://www.photomotion-mp.com/images/icon.png"
-}
-</script>
-<script src="https://unpkg.com/lottie-web@latest/build/player/lottie.min.js"></script>
 </head>
 
 <body class="loaded">
@@ -33,10 +23,10 @@
         <div class="menu-section slide-down">
           <ul class="left-menu">
             <br>
-            <li><a href="/index.html" tabindex="-1">Home</a></li>
-            <li><a href="/Portfolio/" tabindex="-1">Our Work</a></li>
-            <li><a href="/Services/" tabindex="-1">Our Service</a></li>
-            <li><a href="/AboutUs/" tabindex="-1">About Us</a></li>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/Portfolio/">Our Work</a></li>
+            <li><a href="/Services/">Our Service</a></li>
+            <li><a href="/AboutUs/">About Us</a></li>
           </ul>
         </div>
         <div class="contact-section slide-up">
@@ -44,28 +34,29 @@
             <li>
               <h2><span id="animated-word">Start a Conversation</span></h2>
             </li>
-            <li><a href="mailto:hello@photomotion-mp.com" tabindex="-1">
-                <i class="fas fa-envelope" style="margin-right: 12px;"></i>
-                hello@photomotion-mp.com</a></li>
-            <li><a href="tel:+919619286602" tabindex="-1">
-                <i class="fas fa-phone" style="margin-right: 10px;"></i>
-                +91 96192 86602</a>
+            <li><a href="mailto:hello@photomotion-mp.com">
+              <i class="fas fa-envelope" style="margin-right: 12px;"></i>
+              hello@photomotion-mp.com</a>
+            </li>
+            <li><a href="tel:+911234567890">
+              <i class="fas fa-phone" style="margin-right: 10px;"></i>
+              +91 12345 67890</a>
             </li>
             <li><a href="/ContactUs/" class="menu-contact-button">Contact us</a></li>
           </ul>
         </div>
       </div>
     </div>
-    <h1>MODEL PORTFOLIO</h1>
-    <a href="/Portfolio/#model" class="back-portfolio-btn" title="Back to Portfolio">
+
+    <h1>VIDEO GALLERY</h1>
+    <a href="/Portfolio/#video" class="back-portfolio-btn" title="Back to Portfolio">
       <img src="/images/icons/portfolio_2.png" alt="Back to Portfolio">
     </a>
   </header>
 
-   <main>
-    <section class="portfolio-section">
-      <div id="portfolioGrid">
-      </div>
+  <main>
+    <section class="portfolio-section video-gallery">
+      <div id="videoGrid"></div>
     </section>
   </main>
 
@@ -74,11 +65,9 @@
   </footer>
 
   <script src="/scripts/shared_script.js"></script>
-  <script src="/Portfolio/scripts/portfolio_script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
-  <script src="/images/js/model_images.js"></script>
-  <script src="/Portfolio/scripts/portfolio_shared_script.js"></script>
-
+  <script src="/images/js/video_data.js"></script>
+  <script src="video_gallery.js"></script>
 </body>
 
 </html>
