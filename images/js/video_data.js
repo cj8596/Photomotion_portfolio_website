@@ -1,23 +1,43 @@
 // video_data.js
 const videoData = [
   {
-    src: "/video/loader.mp4",
-    title: "Fashion Reel"
+    "src": "https://www.photomotion-mp.com/Media/Videos/karuna+01.mp4",
+    "title": "Karuna+01"
   },
   {
-    src: "/video/sample.mp4",
-    title: "Product Highlights"
+    "src": "https://www.photomotion-mp.com/Media/Videos/rasika+02.mp4",
+    "title": "Rasika+02"
   },
   {
-    src: "/video/logo-animation.mp4",
-    title: "Food Ad"
+    "src": "https://www.photomotion-mp.com/Media/Videos/sakshi+02.mp4",
+    "title": "Sakshi+02"
   },
   {
-    src: "https://photomotion-mp.com/Media/videos/model.mp4",
-    title: "Model Shoot"
+    "src": "https://www.photomotion-mp.com/Media/Videos/karuna+08.mp4",
+    "title": "Karuna+08"
   },
   {
-    src: "https://photomotion-mp.com/Media/videos/jewellery.mp4",
-    title: "Jewellery Showcase"
+    "src": "https://www.photomotion-mp.com/Media/Videos/rasika+01.mp4",
+    "title": "Rasika+01"
+  },
+  {
+    "src": "https://www.photomotion-mp.com/Media/Videos/sakshi+03.mp4",
+    "title": "Sakshi+03"
+  },
+  {
+    "src": "https://www.photomotion-mp.com/Media/Videos/karuna+13.mp4",
+    "title": "Karuna+13"
+  },
+  {
+    "src": "https://www.photomotion-mp.com/Media/Videos/sakshi+11.mp4",
+    "title": "Sakshi+11"
+  },
+  {
+    "src": "https://www.photomotion-mp.com/Media/Videos/karuna+15.mp4",
+    "title": "Karuna+15"
+  },
+  {
+    "src": "https://www.photomotion-mp.com/Media/Videos/sakshi+14.mp4",
+    "title": "Sakshi+14"
   }
 ];

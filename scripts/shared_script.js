@@ -1,21 +1,11 @@
-// Menu toggle
 function initMenuToggle() {
   const menuButton = document.getElementById('menu-button');
   const menuClose = document.getElementById('menu-close');
   const fullpageMenu = document.getElementById('fullpage-menu');
   const contactBtn = document.getElementById('contact-float-btn');
 
-  // function openMenu() {
-  //   fullpageMenu.classList.add('active');
-  //   document.body.classList.add('menu-active');
-  //   fullpageMenu.setAttribute('aria-hidden', 'false');
-  //   fullpageMenu.querySelectorAll('a').forEach(a => a.tabIndex = 0);
-  //   fullpageMenu.style.display = 'flex';
-  //   if (contactBtn) contactBtn.style.display = 'none';
-  // }
-
   function openMenu() {
-    fullpageMenu.classList.remove('closing'); // Ensure clean state
+    fullpageMenu.classList.remove('closing');
     fullpageMenu.style.display = 'flex';
     fullpageMenu.classList.add('animating-in');
 
@@ -55,7 +45,6 @@ function initMenuToggle() {
   }
 }
 
-// Word animator
 function initWordAnimator() {
   const words = ["Start a Conversation!", "Book a Session!", "Let’s Create!", "Say Hello!"];
   const wordElement = document.getElementById("animated-word");
@@ -97,7 +86,7 @@ function initContactButton() {
     if (isInBackToTopMode) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      window.location.href = '/ContactUs/'; // Replace with actual contact page
+      window.location.href = '/ContactUs/';
     }
   });
 
@@ -117,8 +106,6 @@ function initContactButton() {
 }
 
 
-
-// Disables text selection, copy/paste, dev tools
 function initContentLockdown() {
   const preventEvent = e => e.preventDefault();
 
@@ -156,7 +143,7 @@ function initContentLockdown() {
   document.head.appendChild(style);
 }
 
-// Secondary key protection
+
 function initializeKeyboardProtection() {
   document.addEventListener('keydown', function (event) {
     const forbiddenKeys = ['s', 'u', 'c', 'a'];
@@ -184,21 +171,18 @@ function initSmartHeaderFlip() {
 
     if (scrolled) hasScrolled = true;
 
-    // Flip header up when image-wrapper is visible AND scrolling down
     if (gridTop <= 120 && !pageTurned && hasScrolled && !scrollingUp) {
       header.classList.remove('light-header');
       header.classList.add('turn-page');
       pageTurned = true;
     }
 
-    // Flip header back immediately if scrolling up
     else if (scrollingUp && pageTurned) {
       header.classList.remove('turn-page');
       header.classList.add('light-header');
       pageTurned = false;
     }
 
-    // Initial load: force header to be visible
     if (!hasScrolled) {
       header.classList.remove('turn-page');
       header.classList.add('light-header');

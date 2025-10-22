@@ -40,7 +40,7 @@ header h1 {
 .back-portfolio-btn img {
   width: 34px;
   height: 34px;
- }
+}
 
 .back-portfolio-btn:hover {
   background: #ffa726;
@@ -71,10 +71,11 @@ header h1 {
   cursor: pointer;
   position: relative;
 }
+
 /*test*/
 .portfolio-item img,
 #portfolioGrid img {
-  width: 100%; 
+  width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
@@ -127,7 +128,7 @@ header h1 {
   background: transparent;
   align-items: stretch;
   justify-content: center;
-  
+
 }
 
 .images-row {
@@ -215,6 +216,7 @@ header h1 {
 .adaptive-frame:has(.single) .custom-thumbs {
   display: none !important;
 }
+
 .adaptive-frame.initial-open .images-row img.center {
   transition: none !important;
   transform: none !important;
@@ -451,7 +453,7 @@ header h1 {
   align-items: center;
   background: transparent;
   overflow: hidden;
-  z-index: 99999; 
+  z-index: 99999;
 }
 
 .adaptive-frame .images-row {
@@ -527,7 +529,7 @@ header h1 {
 .fancybox__container .adaptive-frame .images-row img.single {
   max-height: 75vh !important;
   object-fit: contain !important;
-  margin-bottom: 60px !important; 
+  margin-bottom: 60px !important;
   display: block !important;
 }
 
@@ -627,6 +629,7 @@ header h1 {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
+
 .fade-in {
   opacity: 1;
   transition: opacity 0.3s ease;
@@ -661,11 +664,13 @@ header h1 {
   opacity: 1;
   animation: slideInFromLeft 0.5s ease forwards;
 }
+
 /* --- Smooth slide transition for image rows --- */
 .images-row {
   transition: transform 0.5s ease, opacity 0.5s ease;
   opacity: 1;
-  transform: translateX(0); /* ✅ Ensure it starts centered */
+  transform: translateX(0);
+  /* ✅ Ensure it starts centered */
 }
 
 /* Only apply sliding when NOT in initial open state */
@@ -691,20 +696,40 @@ header h1 {
   margin-top: 1rem;
 }
 
-#videoGrid {
+/* #videoGrid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 1.5rem;
-  padding: 0 2rem;
+  gap: 2rem;
+  padding: 3rem 3rem;
 }
 
 #videoGrid .portfolio-item {
   position: relative;
   overflow: hidden;
   aspect-ratio: 9/16;
-  border-radius: 1rem;
+  border-radius: 2rem;
   cursor: pointer;
+} */
+
+#videoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 280px);
+  gap: 10rem;
+  justify-content: center;
+  padding: 2rem 0;
 }
+
+
+#videoGrid .portfolio-item {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 9 / 16;      /* maintain vertical look */
+  border-radius: 1.5rem;
+  cursor: pointer;
+  max-width: 280px;          /* ✅ same size as before */
+}
+
 
 #videoGrid video {
   width: 100%;
@@ -723,7 +748,7 @@ header h1 {
 #videoGrid .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 40%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 40%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -750,7 +775,35 @@ header h1 {
   margin: 0;
 }
 
+/* ✅ Watermark overlay on grid videos */
+#videoGrid .portfolio-item::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 100px; /* adjust based on your watermark PNG */
+  height: 40px;
+  background: url("/images/watermark.png") no-repeat center center;
+  background-size: contain;
+  opacity: 0.8;
+  pointer-events: none; /* lets hover effects work normally */
+  z-index: 3;
+}
 
+/* ✅ Watermark overlay inside Fancybox video player */
+.fancybox__content::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 120px;
+  height: 50px;
+  background: url("/images/watermark.png") no-repeat center center;
+  background-size: contain;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 10000; /* keeps it visible above the video */
+}
 
 /* Keyframes */
 @keyframes slideInFromRight {
@@ -758,6 +811,7 @@ header h1 {
     transform: translateX(100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -769,6 +823,7 @@ header h1 {
     transform: translateX(-100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -781,6 +836,7 @@ header h1 {
     transform: translateX(100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -792,9 +848,16 @@ header h1 {
     transform: translateX(-100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
+  }
+}
+
+@media (max-width: 2048px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
   }
 }
 
@@ -805,8 +868,9 @@ header h1 {
     font-size: 2rem;
   }
 
-  .portfolio-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
+  #portfolioGrid,
+  .portfolio-grid  {
+    grid-template-columns: repeat(4, 1fr) !important;
   }
 
   .images-row {
@@ -838,6 +902,7 @@ header h1 {
     font-size: 2rem;
   }
 
+   #portfolioGrid,
   .portfolio-grid {
     grid-template-columns: repeat(3, 1fr) !important;
   }
@@ -898,6 +963,7 @@ header h1 {
     height: 28px;
   }
 
+  #portfolioGrid,
   .portfolio-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -949,8 +1015,9 @@ header h1 {
     font-size: 1rem;
   }
 
+  #portfolioGrid,
   .portfolio-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .back-portfolio-btn {
@@ -982,5 +1049,82 @@ header h1 {
 @media print {
   body {
     display: none !important;
+  }
+}
+
+@media (min-width: 1800px) {
+  #videoGrid {
+    grid-template-columns: repeat(3, 320px);
+    gap: 8rem;
+  }
+  #videoGrid .portfolio-item {
+    max-width: 320px;
+  }
+}
+
+/* ✅ Laptops (≤1440px) */
+@media (max-width: 1440px) {
+  #videoGrid {
+    grid-template-columns: repeat(3, 260px);
+    gap: 5rem;
+  }
+  #videoGrid .portfolio-item {
+    max-width: 260px;
+  }
+}
+
+/* ✅ Tablets (≤1024px) */
+@media (max-width: 1024px) {
+  #videoGrid {
+    grid-template-columns: repeat(2, 260px);
+    gap: 4rem;
+    justify-content: center;
+    padding: 2.5rem 0;
+  }
+}
+
+/* ✅ Small Tablets / Large Mobiles (≤768px) */
+@media (max-width: 768px) {
+  #videoGrid {
+    grid-template-columns: repeat(2, 240px);
+    gap: 2.5rem;
+    justify-content: center;
+    padding: 2rem 0;
+  }
+  #videoGrid .portfolio-item {
+    max-width: 240px;
+    border-radius: 1rem;
+  }
+}
+
+/* ✅ Mobile (≤480px) */
+@media (max-width: 480px) {
+  #videoGrid {
+    display: flex;                /* ✅ Switch to flex layout for perfect centering */
+    flex-direction: column;
+    align-items: center;          /* centers items horizontally */
+    justify-content: center;      /* centers vertically if needed */
+    gap: 2rem;
+    padding: 2rem 0;
+  }
+  #videoGrid .portfolio-item {
+    width: 80%;                   /* uses % width but stays centered via flex */
+    max-width: 320px;
+    border-radius: 1rem;
+  }
+}
+
+/* ✅ Small Mobile (≤360px) */
+@media (max-width: 360px) {
+  #videoGrid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+  }
+  #videoGrid .portfolio-item {
+    width: 90%;
+    max-width: 300px;
   }
 }

@@ -63,51 +63,58 @@ function initializeFancyboxGallery(images) {
     const imgs = item.dataset.images ? JSON.parse(item.dataset.images) : [];
 
     if (imgs.length > 1) {
-      let index = 0;
-      let interval;
-      const fadeDuration = 1000; // 1s transition
-      const delayBetween = 2000; // 2s pause between images
+  let index = 0;
+  let interval;
+  const fadeDuration = 1200; // 1.2s for buttery smooth transition
+  const delayBetween = 2000; // 2s pause between changes
 
-      // prepare transition
-      img.style.transition = `opacity ${fadeDuration}ms ease-in-out, transform ${fadeDuration}ms ease-in-out`;
-      img.style.transformOrigin = "center center";
+  // base transition settings
+  img.style.transition = `opacity ${fadeDuration}ms cubic-bezier(0.4, 0, 0.2, 1), transform ${fadeDuration * 1.2}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+  img.style.transformOrigin = "center center";
+  img.style.willChange = "opacity, transform";
 
-      // helper function for smooth switch
-      const switchImage = () => {
-        index = (index + 1) % imgs.length;
+  const switchImage = () => {
+    index = (index + 1) % imgs.length;
 
-        // animate out (fade + zoom)
-        img.style.opacity = "0";
-        img.style.transform = "scale(1.05)";
+    // Step 1: smooth fade and scale slightly up (zoom-out feel)
+    img.style.opacity = "0";
+    img.style.transform = "scale(1.04)";
+    
+    setTimeout(() => {
+      // Step 2: change image mid-fade
+      img.src = imgs[index];
 
-        setTimeout(() => {
-          img.src = imgs[index];
-          // animate in (fade + zoom back)
-          img.style.opacity = "1";
-          img.style.transform = "scale(1)";
-        }, fadeDuration / 2);
-      };
-
-      item.addEventListener("mouseenter", () => {
-        if (interval) clearInterval(interval);
-        index = 0;
-
-        // instant first change
-        switchImage();
-
-        // continue switching every 2s after that
-        interval = setInterval(switchImage, delayBetween + fadeDuration);
-      });
-
-      item.addEventListener("mouseleave", () => {
-        clearInterval(interval);
-        interval = null;
-        index = 0;
+      // Step 3: fade back in with reverse scale
+      requestAnimationFrame(() => {
         img.style.opacity = "1";
         img.style.transform = "scale(1)";
-        img.src = imgs[0];
       });
-    }
+    }, fadeDuration * 0.45);
+  };
+
+  item.addEventListener("mouseenter", () => {
+    if (interval) clearInterval(interval);
+    index = 0;
+
+    // instant first change when hovered
+    switchImage();
+
+    // keep changing smoothly every 2s after that
+    interval = setInterval(switchImage, delayBetween + fadeDuration);
+  });
+
+  item.addEventListener("mouseleave", () => {
+    clearInterval(interval);
+    interval = null;
+    index = 0;
+
+    // reset image and animation cleanly
+    img.style.opacity = "1";
+    img.style.transform = "scale(1)";
+    img.src = imgs[0];
+  });
+}
+
   });
 }
 
