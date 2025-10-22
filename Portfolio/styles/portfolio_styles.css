@@ -6,6 +6,21 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+html {
+  scroll-behavior: smooth;
+  height:100%
+}
+
+main {
+  scroll-snap-type: y mandatory;
+}
+
+.content-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #212121;

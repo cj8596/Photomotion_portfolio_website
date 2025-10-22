@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
       renderer: "svg",
       loop: true,
       autoplay: true,
-      path: "/images/icons/loader.json" // 🔁 ensure this path is correct
+      path: "/images/icons/loader.json" 
     });
   }
 

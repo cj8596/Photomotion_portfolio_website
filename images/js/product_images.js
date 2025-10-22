@@ -1,31 +1,87 @@
 const portfolioImages = [
-  { id: "11LRxtqg9V40kgn8gyFDVISJ29NMdXkYW"},
-  { id: "12JfQ02J_lbi8Fx33QQoTfN6BGUBHWbx0"},
-  { id: "13rlXDfyT_KkplkF4C4mEIwa-9txwtstv"},
-  { id: "15w-MzROlZmLkSm4BfbHblfhoJY6QM5Q0"},
-  { id: "168iBHqZZvbkrwbEViVxne2-mYrmgfDFs"},
-  { id: "18pJ_kpRmI5csHh-D6rDkGseYkBovOc_J"},
-  { id: "18yap8Wfu3zHyS9VZ0vPSRiuor1QgZrZg"},
-  { id: "1AKcBeJol2vVa5NFNOKkk7cOADfqAbWHD"},
-  { id: "1CiRjIXCLP53Of7vRPJQwPQB3kGi6VWJa"},
-  { id: "1EkH6l1UmWAk9THDSKfZMNjrFIXa7qXkz"},
-  { id: "1FMgwBVcagrcKstbPDT6cshqs2YcP9N8o"},
-  { id: "1Fkc_ii4TI24Q4k3kHYltHfh6SzHhsOzn"},
-  { id: "1HNezpLNBctqZapijhKKcHWthd2iRnwlt"},
-  { id: "1K3a8EVZnHRqGMQ94mHOf8nfw4k8wTnz8"},
-  { id: "1MdW3UPqxK0UkWWC2hoP0GtxiBIQdGxro"},
-  { id: "1Uwpue9t70IH3-QpeXpKohgE9wCtWdXf3"},
-  { id: "1ZaECHgBo5zVgmOQGKCZnc4VydD35UkV2"},
-  { id: "1bAVHr6fbWj_AdRaeGEzLO4rZwnm5q35k"},
-  { id: "1bX6PFSqezJHHibYG5MD7sE7Q0yFOUesp"},
-  { id: "1glnbHRY9g3bH7HJKoxXQDA9njbz9aRTg"},
-  { id: "1hS9ZVD2Ijp5m8rvXFVREo5IjhgrSsASv"},
-  { id: "1hdzu0OTdhTVTzwVjz2qyrqZPGA3uKzqi"},
-  { id: "1jN2STWCut_DwM_1rO9kLebO_3wC0wX2l"},
-  { id: "1ktiOEIECVQzhf4xYYx56QL_q0xK72lP8"},
-  { id: "1mw6fkvMOBqOMfNZ9DcTMUgpaE4DmEAuq"},
-  { id: "1nJZOigcORzd1G3-2mDJiEvD5RXXJ7An-"},
-  { id: "1z87ogPIfsH8-WuiNeZSJ2akGmTgIgv51"},
-  { id: "1z_zvhkW8qauwj1cZTHaMfiiscjXaWpJS"}
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/MCAFG01/MCAFG01-1.webp",
+    "sides": [
+      "https://www.photomotion-mp.com/Media/Product/MCAFG01/MCAFG01-2.webp",
+      "https://www.photomotion-mp.com/Media/Product/MCAFG01/MCAFG01-3.webp"
+    ]
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/PSR01/PSR01-1.webp",
+    "sides": [
+      "https://www.photomotion-mp.com/Media/Product/PSR01/PSR01-2.webp",
+      "https://www.photomotion-mp.com/Media/Product/PSR01/PSR01-3.webp"
+    ]
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/Products/MCAFC01.webp",
+    "sides": []
+  },
+   {
+    "main": "https://www.photomotion-mp.com/Media/Product/Products/THS02.webp",
+    "sides": []
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/Products/MCAFS01.webp",
+    "sides": []
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/Products/PBCE01.webp",
+    "sides": []
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/Products/PBSC01webp.webp",
+    "sides": []
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/Products/PDD01.webp",
+    "sides": []
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/Products/PMD01.webp",
+    "sides": []
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/Products/PWS01.webp",
+    "sides": []
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/Products/THS04.webp",
+    "sides": []
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/Products/THS06.webp",
+    "sides": []
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/Products/THS07.webp",
+    "sides": []
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/THS05/THS05-01.webp",
+    "sides": [
+      "https://www.photomotion-mp.com/Media/Product/THS05/THS05-02.webp"
+    ]
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/THS01/THS01-01.webp",
+    "sides": [
+      "https://www.photomotion-mp.com/Media/Product/THS01/THS01-02.webp"
+    ]
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/Products/THS08.webp",
+    "sides": []
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/THS03/THS03-01.webp",
+    "sides": [
+      "https://www.photomotion-mp.com/Media/Product/THS03/THS03-02.webp",
+      "https://www.photomotion-mp.com/Media/Product/THS03/THS03-03.webp"
+    ]
+  },
+  {
+    "main": "https://www.photomotion-mp.com/Media/Product/Products/Watch.webp",
+    "sides": []
+  }
 ];
-
