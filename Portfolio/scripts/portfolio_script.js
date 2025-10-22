@@ -62,58 +62,55 @@ function initializeFancyboxGallery(images) {
     const img = item.querySelector("img");
     const imgs = item.dataset.images ? JSON.parse(item.dataset.images) : [];
 
-    if (imgs.length > 1) {
+if (imgs.length > 1) {
   let index = 0;
   let interval;
-  const fadeDuration = 1200; // 1.2s for buttery smooth transition
-  const delayBetween = 2000; // 2s pause between changes
+  const fadeDuration = 1000; // 1s fade
+  const delayBetween = 2000; // 2s visible before next image
 
-  // base transition settings
-  img.style.transition = `opacity ${fadeDuration}ms cubic-bezier(0.4, 0, 0.2, 1), transform ${fadeDuration * 1.2}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+  // smooth transitions
+  img.style.transition = `opacity ${fadeDuration}ms ease-in-out, transform ${fadeDuration}ms ease-in-out`;
   img.style.transformOrigin = "center center";
-  img.style.willChange = "opacity, transform";
 
   const switchImage = () => {
-    index = (index + 1) % imgs.length;
-
-    // Step 1: smooth fade and scale slightly up (zoom-out feel)
     img.style.opacity = "0";
     img.style.transform = "scale(1.04)";
-    
-    setTimeout(() => {
-      // Step 2: change image mid-fade
-      img.src = imgs[index];
 
-      // Step 3: fade back in with reverse scale
+    setTimeout(() => {
+      index = (index + 1) % imgs.length;
+      img.src = imgs[index];
       requestAnimationFrame(() => {
         img.style.opacity = "1";
         img.style.transform = "scale(1)";
       });
-    }, fadeDuration * 0.45);
+    }, fadeDuration * 0.8); // swap just before fade ends for smoothness
   };
 
   item.addEventListener("mouseenter", () => {
     if (interval) clearInterval(interval);
     index = 0;
-
-    // instant first change when hovered
     switchImage();
-
-    // keep changing smoothly every 2s after that
-    interval = setInterval(switchImage, delayBetween + fadeDuration);
+    interval = setInterval(switchImage, delayBetween);
   });
 
   item.addEventListener("mouseleave", () => {
-    clearInterval(interval);
+    if (interval) clearInterval(interval);
     interval = null;
-    index = 0;
 
-    // reset image and animation cleanly
-    img.style.opacity = "1";
-    img.style.transform = "scale(1)";
-    img.src = imgs[0];
+    // ✅ fade back to original image smoothly
+    img.style.opacity = "0";
+    img.style.transform = "scale(1.04)";
+
+    setTimeout(() => {
+      img.src = imgs[0]; // main/original image
+      requestAnimationFrame(() => {
+        img.style.opacity = "1";
+        img.style.transform = "scale(1)";
+      });
+    }, fadeDuration * 0.8);
   });
 }
+
 
   });
 }
