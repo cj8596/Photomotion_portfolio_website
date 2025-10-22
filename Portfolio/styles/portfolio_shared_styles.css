@@ -776,36 +776,28 @@ header h1 {
 }
 
 /* ✅ Watermark overlay on grid videos */
+#videoGrid .portfolio-item {
+  position: relative;
+  overflow: hidden;
+}
+
 #videoGrid .portfolio-item::after {
   content: "";
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 100px; /* adjust based on your watermark PNG */
-  height: 40px;
-  background: url("/images/watermark.png") no-repeat center center;
-  background-size: contain;
-  opacity: 0.8;
-  pointer-events: none; /* lets hover effects work normally */
-  z-index: 3;
-}
-
-/* ✅ Watermark overlay inside Fancybox video player */
-.fancybox__content::after {
-  content: "";
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 120px;
-  height: 50px;
-  background: url("/images/watermark.png") no-repeat center center;
+  top: 0;
+  right: 0;
+  width: 110px; /* Adjust to watermark size */
+  height: 45px;
+  background: url("/images/watermark.png") no-repeat top right;
   background-size: contain;
   opacity: 0.9;
   pointer-events: none;
-  z-index: 10000; /* keeps it visible above the video */
+  z-index: 3;
 }
 
-/* Keyframes */
+
+
+
 @keyframes slideInFromRight {
   from {
     transform: translateX(100%);

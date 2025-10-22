@@ -5,6 +5,9 @@ window.addEventListener('DOMContentLoaded', () => {
   initVideoGallery();
 });
 
+/* ======================================================
+   1️⃣ Video Grid Initialization
+====================================================== */
 function initVideoGallery() {
   const videoGrid = document.getElementById("videoGrid");
 
@@ -18,7 +21,7 @@ function initVideoGallery() {
     return;
   }
 
-  videoGrid.innerHTML = ""; // Clear grid before filling
+  videoGrid.innerHTML = ""; // Clear existing content if reinitializing
 
   videoData.forEach(video => {
     const item = document.createElement("div");
@@ -30,8 +33,9 @@ function initVideoGallery() {
           src="${video.src}" 
           muted 
           playsinline 
-          preload="metadata">
-        </video>
+          preload="metadata"
+          data-gallery-video
+        ></video>
         <div class="overlay">
           <span class="play-icon">▶</span>
         </div>
@@ -39,52 +43,14 @@ function initVideoGallery() {
     `;
 
     const vid = item.querySelector("video");
-    const link = item.querySelector("a");
 
-    // --- 🖱️ Desktop Hover ---
+    // Hover play/pause effect
     item.addEventListener("mouseenter", () => vid.play());
-    item.addEventListener("mouseleave", () => {
-      vid.pause();
-      vid.currentTime = 0;
-    });
-
-    // --- 📱 Mobile Touch Hold ---
-    let touchStartTime = 0;
-    let touchHoldTimer = null;
-    let isPlaying = false;
-
-    item.addEventListener("touchstart", (e) => {
-      touchStartTime = Date.now();
-
-      // Start a timer — if finger stays >300ms, treat it as a "hover touch"
-      touchHoldTimer = setTimeout(() => {
-        vid.play();
-        isPlaying = true;
-      }, 300);
-    }, { passive: true });
-
-    item.addEventListener("touchend", (e) => {
-      const touchDuration = Date.now() - touchStartTime;
-      clearTimeout(touchHoldTimer);
-
-      // If the touch was quick (<300ms) — consider it a "tap" → open Fancybox
-      if (touchDuration < 300) {
-        vid.pause();
-        vid.currentTime = 0;
-        isPlaying = false;
-        link.click(); // ✅ triggers Fancybox open
-      } else {
-        // If user held finger, stop video when they lift it
-        if (isPlaying) {
-          vid.pause();
-          vid.currentTime = 0;
-          isPlaying = false;
-        }
-      }
-    });
+    item.addEventListener("mouseleave", () => vid.pause());
 
     videoGrid.appendChild(item);
   });
 
-  console.log("✅ Video gallery initialized with hover + touch hold support.");
+  console.log("✅ Video gallery initialized.");
 }
+
