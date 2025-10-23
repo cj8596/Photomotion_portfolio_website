@@ -129,17 +129,23 @@ header.turn-page {
 }
 
 
+/* ======================
+   FULLSCREEN VIDEO BACKGROUND
+   ====================== */
+
 #bgVideo.background-layer {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  z-index: -3; /* behind the fading image layers */
   position: fixed;
   top: 0;
   left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain; /* ensures full-screen fill while keeping proportions */
+  object-position: center center;
+  z-index: -3; /* behind everything */
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  pointer-events: none; /* ensures you can still interact with content */
+  pointer-events: none; /* lets you click through */
+  background-color: #000; /* avoids gaps during load */
 }
 
 
@@ -343,6 +349,194 @@ header.turn-page {
     font-size: 0.9rem;
   }
 }
+
+/* ======================
+   RESPONSIVE ENHANCEMENTS
+   ====================== */
+
+/* --- 1240px (Small desktop/laptop) --- */
+@media (max-width: 1240px) {
+  .hero h1 {
+    font-size: 3.2rem;
+  }
+
+  .text-section {
+    padding: 150px 40px;
+  }
+
+  .text-section h2 {
+    font-size: 1.4rem;
+  }
+
+  .text-section p {
+    font-size: 1.1rem;
+    max-width: 650px;
+  }
+
+  .team-section {
+    padding: 80px 40px;
+  }
+
+  .team-card {
+    max-width: 700px;
+  }
+
+  .icon-wrapper {
+    width: 220px;
+    height: 120px;
+  }
+}
+
+/* --- 768px (Tablet) --- */
+@media (max-width: 768px) {
+  header {
+    padding: 0.8rem 1.2rem;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    padding: 10px 20px;
+  }
+
+  .text-section {
+    padding: 100px 25px;
+  }
+
+  .text-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .text-section p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .team-section {
+    padding: 60px 20px;
+  }
+
+  .team-section h2 {
+    font-size: 2.2rem;
+  }
+
+  .team-card {
+    max-width: 90%;
+    padding: 1.5rem 1.2rem;
+  }
+
+  .icon-wrapper {
+    width: 140px;
+    height: 140px;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .role,
+  .desc {
+    font-size: 1rem;
+  }
+
+  .scroll-arrow-img {
+    width: 45px;
+  }
+}
+
+/* --- 460px (Mobile) --- */
+@media (max-width: 460px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .scroll-arrow-img {
+    width: 35px;
+  }
+
+  .text-section {
+    padding: 70px 20px;
+  }
+
+  .text-section h2 {
+    font-size: 1.1rem;
+  }
+
+  .text-section p {
+    font-size: 0.95rem;
+  }
+
+  .team-section h2 {
+    font-size: 1.6rem;
+  }
+
+  .team-card {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .icon-wrapper {
+    width: 110px;
+    height: 110px;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .role,
+  .desc {
+    font-size: 0.9rem;
+  }
+}
+
+/* --- 320px (Smallest mobile) --- */
+@media (max-width: 320px) {
+  body {
+    font-size: 0.85rem;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .text-section {
+    padding: 60px 15px;
+  }
+
+  .text-section h2 {
+    font-size: 1rem;
+  }
+
+  .text-section p {
+    font-size: 0.9rem;
+  }
+
+  .team-section h2 {
+    font-size: 1.4rem;
+  }
+
+  .team-card {
+    padding: 1rem 0.6rem;
+  }
+
+  .icon-wrapper {
+    width: 90px;
+    height: 90px;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .desc {
+    font-size: 0.85rem;
+  }
+
+  .scroll-arrow-img {
+    width: 30px;
+  }
+}
+
+
 
 
 @media print {
