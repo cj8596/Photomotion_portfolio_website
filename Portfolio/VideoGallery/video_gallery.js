@@ -52,5 +52,11 @@ function initVideoGallery() {
   });
 
   console.log("✅ Video gallery initialized.");
+  // ✅ Disable Fancybox thumbnails and toolbar
+  Fancybox.bind("[data-fancybox='video-gallery']", {
+    Thumbs: false,
+    Toolbar: false,
+  });
+
 }
 
