@@ -121,13 +121,13 @@ header.turn-page {
 .accordion-list {
   list-style: none;
   padding-left: 0;
-  max-width: 1000px;
-  margin: auto auto 100px;
+  max-width: 1500px;
+  margin: auto auto 50px;
 }
 
 .accordion-list li {
   position: relative;
-  padding-left: 60px;
+  padding-left: 50px;
   /* increased space */
   margin-bottom: 20px;
   font-size: 2rem;
@@ -238,7 +238,7 @@ header.turn-page {
 .service-container .custom-bullet-list {
   list-style: none;
   padding-left: 0;
-  max-width: 800px;
+  max-width: 1200px;
   margin: auto auto 100px;
 }
 
