@@ -126,14 +126,14 @@ function openAdaptiveViewer(images, startIndex) {
 
   if (total === 3) {
     html += `
-      <img src="${set.sides[0]}" class="side left">
-      <img src="${set.main}" class="center">
-      <img src="${set.sides[1]}" class="side right">`;
+      <img src="${set.sides[0]}" class="side left" loading="lazy" decoding="async">
+      <img src="${set.main}" class="center" loading="lazy" decoding="async">
+      <img src="${set.sides[1]}" class="side right" loading="lazy" decoding="async">`;
   } else if (total === 2) {
     html += `
-      <img src="${set.main}" class="center" data-main="${set.main}" data-alt="${set.sides[0]}">`;
+      <img src="${set.main}" class="center" data-main="${set.main}" data-alt="${set.sides[0]}"> loading="lazy" decoding="async"`;
   } else {
-    html += `<img src="${set.main}" class="single center">`;
+    html += `<img src="${set.main}" class="single center" loading="lazy" decoding="async">`;
   }
 
   html += `
@@ -168,17 +168,17 @@ function openAdaptiveViewer(images, startIndex) {
     toolbar.className = "custom-toolbar";
     frame.style.position = "relative";
     toolbar.innerHTML = `
-      <button data-act="zoom"><img src="/images/icons/zoom.png"></button>
-      <button data-act="fs"><img id="fullscreenIcon" src="/images/icons/fullscreen_enter.png"></button>
-      <button data-act="close"><img src="/images/icons/grid.png"></button>`;
+      <button data-act="zoom"><img src="/images/icons/zoom.png" loading="lazy" decoding="async"></button>
+      <button data-act="fs"><img id="fullscreenIcon" src="/images/icons/fullscreen_enter.png" loading="lazy" decoding="async"></button>
+      <button data-act="close"><img src="/images/icons/grid.png" loading="lazy" decoding="async"></button>`;
     frame.appendChild(toolbar);
 
     const lArr = document.createElement("button");
     lArr.className = "overlay-arrow left";
-    lArr.innerHTML = `<img src="/images/icons/left-arrow.png">`;
+    lArr.innerHTML = `<img src="/images/icons/left-arrow.png" loading="lazy" decoding="async">`;
     const rArr = document.createElement("button");
     rArr.className = "overlay-arrow right";
-    rArr.innerHTML = `<img src="/images/icons/right-arrow.png">`;
+    rArr.innerHTML = `<img src="/images/icons/right-arrow.png" loading="lazy" decoding="async">`;
     container.append(lArr, rArr);
 
     let thumbs = null;
@@ -397,16 +397,16 @@ function openAdaptiveViewer(images, startIndex) {
         let html = "";
         if (total === 3) {
           html = `
-        <img src="${newSet.sides[0]}" class="side left">
-        <img src="${newSet.main}" class="center">
-        <img src="${newSet.sides[1]}" class="side right">
+        <img src="${newSet.sides[0]}" class="side left" loading="lazy" decoding="async">
+        <img src="${newSet.main}" class="center" loading="lazy" decoding="async">
+        <img src="${newSet.sides[1]}" class="side right" loading="lazy" decoding="async">
       `;
         } else if (total === 2) {
           html = `
-        <img src="${newSet.main}" class="center" data-main="${newSet.main}" data-alt="${newSet.sides[0]}">
+        <img src="${newSet.main}" class="center" data-main="${newSet.main}" data-alt="${newSet.sides[0]}" loading="lazy" decoding="async">
       `;
         } else {
-          html = `<img src="${newSet.main}" class="single center">`;
+          html = `<img src="${newSet.main}" class="single center" loading="lazy" decoding="async">`;
         }
 
         row.innerHTML = html;

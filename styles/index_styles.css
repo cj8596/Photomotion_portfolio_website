@@ -195,6 +195,8 @@ h2.section-title {
 
 
 .carousel-item {
+  position:relative;
+  overflow: visible;
   flex: 0 0 auto;
   transition: filter 0.4s ease, transform 0.4s ease;
   margin: 0;
@@ -216,6 +218,31 @@ h2.section-title {
   filter: blur(0);
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
 }
+
+/* --- Watermark overlay on each carousel item --- */
+.carousel-item::after {
+  content: "";
+  position: absolute;
+  top: 5px;             /* distance from top */
+  right: 5px;           /* distance from right */
+  width: 30px;           /* adjust size */
+  height: 30px;
+  background: url("/images/watermark.png") no-repeat center center;
+  background-size: contain;
+  opacity: 0.8;          /* subtle visibility */
+  pointer-events: none;  /* ensure no interference */
+  z-index: 5;            /* keeps it above images */
+  transition: opacity 0.3s ease;
+}
+
+/* Slightly more visible when image is centered */
+.carousel-item img.zoomed-in-center + ::after,
+.carousel-item.active::after {
+  opacity: 0.8;
+}
+
+
+
 
 /* Flip-out animation for header */
 header {
@@ -763,5 +790,24 @@ header.turn-page {
   .carousel-container {
     height: 42vh;
     /* or adjust for tighter screens */
+  }
+}
+
+/* Responsive scaling */
+@media (max-width: 768px) {
+  .carousel-item::after {
+    width: 30px;
+    height: 30px;
+    top: 2px;
+    right: 5px;
+  }
+}
+
+@media (max-width: 468px) {
+  .carousel-item::after {
+    width: 35px;
+    height: 35px;
+    top: 4px;
+    right: 8px;
   }
 }

@@ -37,7 +37,7 @@ function initVideoGallery() {
           data-gallery-video
         ></video>
         <div class="overlay">
-          <img src="/images/icons/play_button.png" alt="Play" class="play-icon">
+          <img src="/images/icons/play_button.png" alt="Play" class="play-icon" loading="lazy" decoding="async">
         </div>
       </a>
     `;
