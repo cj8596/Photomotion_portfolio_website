@@ -240,27 +240,27 @@ h2.section-title {
 }
 
 /* --- Watermark overlay on each carousel item --- */
-.carousel-item::after {
+/* .carousel-item::after {
   content: "";
   position: absolute;
   top: 5px;             /* distance from top */
-  right: 5px;           /* distance from right */
-  width: 30px;           /* adjust size */
-  height: 30px;
-  background: url("/images/watermark.png") no-repeat center center;
-  background-size: contain;
-  opacity: 0.8;          /* subtle visibility */
-  pointer-events: none;  /* ensure no interference */
-  z-index: 5;            /* keeps it above images */
+  /* right: 5px;           distance from right */
+  /* width: 30px;           adjust size */
+  /* height: 30px; */
+  /* background: url("/images/watermark.png") no-repeat center center; */
+  /* background-size: contain; */
+  /* opacity: 0.8;          subtle visibility */
+  /* pointer-events: none;  ensure no interference
+  z-index: 5;            keeps it above images
   transition: opacity 0.3s ease;
-}
+} */
 
 /* Slightly more visible when image is centered */
-.carousel-item img.zoomed-in-center + ::after,
+/* .carousel-item img.zoomed-in-center + ::after,
 .carousel-item.active::after {
   opacity: 0.8;
 }
-
+ */ 
 
 
 
@@ -619,7 +619,7 @@ header.turn-page {
 /* Fine-tuned spacing for smaller screens */
 @media (max-width: 768px) {
   .image-wrapper {
-    margin-top: 100px;
+    margin-top: 90px;
     height: 250px;
     margin-bottom: 20px;
   }
