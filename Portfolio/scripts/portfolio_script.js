@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
   scrollContent();
+  waitForImagesAndHideLoader();
 });
 
 function scrollContent() {
@@ -51,7 +52,7 @@ function initializeFancyboxGallery(images) {
     const imgList = [set.main];
     if (set.sides && set.sides.length > 0) imgList.push(...set.sides);
     item.dataset.images = JSON.stringify(imgList);
-    item.innerHTML = `<img src="${set.main}" alt="Portfolio ${idx + 1}" loading="lazy" />`;
+    item.innerHTML = `<img src="${set.main}" alt="Portfolio ${idx + 1}"/>`;
     item.addEventListener("click", () => openAdaptiveViewer(images, idx));
     container.appendChild(item);
   });
@@ -126,14 +127,14 @@ function openAdaptiveViewer(images, startIndex) {
 
   if (total === 3) {
     html += `
-      <img src="${set.sides[0]}" class="side left" loading="lazy" decoding="async">
-      <img src="${set.main}" class="center" loading="lazy" decoding="async">
-      <img src="${set.sides[1]}" class="side right" loading="lazy" decoding="async">`;
+      <img src="${set.sides[0]}" class="side left">
+      <img src="${set.main}" class="center">
+      <img src="${set.sides[1]}" class="side right">`;
   } else if (total === 2) {
     html += `
-      <img src="${set.main}" class="center" data-main="${set.main}" data-alt="${set.sides[0]}"> loading="lazy" decoding="async"`;
+      <img src="${set.main}" class="center" data-main="${set.main}" data-alt="${set.sides[0]}">`;
   } else {
-    html += `<img src="${set.main}" class="single center" loading="lazy" decoding="async">`;
+    html += `<img src="${set.main}" class="single center">`;
   }
 
   html += `
@@ -168,17 +169,17 @@ function openAdaptiveViewer(images, startIndex) {
     toolbar.className = "custom-toolbar";
     frame.style.position = "relative";
     toolbar.innerHTML = `
-      <button data-act="zoom"><img src="/images/icons/zoom.png" loading="lazy" decoding="async"></button>
-      <button data-act="fs"><img id="fullscreenIcon" src="/images/icons/fullscreen_enter.png" loading="lazy" decoding="async"></button>
-      <button data-act="close"><img src="/images/icons/grid.png" loading="lazy" decoding="async"></button>`;
+      <button data-act="zoom"><img src="/images/icons/zoom.png"></button>
+      <button data-act="fs"><img id="fullscreenIcon" src="/images/icons/fullscreen_enter.png"></button>
+      <button data-act="close"><img src="/images/icons/grid.png"></button>`;
     frame.appendChild(toolbar);
 
     const lArr = document.createElement("button");
     lArr.className = "overlay-arrow left";
-    lArr.innerHTML = `<img src="/images/icons/left-arrow.png" loading="lazy" decoding="async">`;
+    lArr.innerHTML = `<img src="/images/icons/left-arrow.png">`;
     const rArr = document.createElement("button");
     rArr.className = "overlay-arrow right";
-    rArr.innerHTML = `<img src="/images/icons/right-arrow.png" loading="lazy" decoding="async">`;
+    rArr.innerHTML = `<img src="/images/icons/right-arrow.png">`;
     container.append(lArr, rArr);
 
     let thumbs = null;
@@ -397,16 +398,16 @@ function openAdaptiveViewer(images, startIndex) {
         let html = "";
         if (total === 3) {
           html = `
-        <img src="${newSet.sides[0]}" class="side left" loading="lazy" decoding="async">
-        <img src="${newSet.main}" class="center" loading="lazy" decoding="async">
-        <img src="${newSet.sides[1]}" class="side right" loading="lazy" decoding="async">
+        <img src="${newSet.sides[0]}" class="side left" loading="eager" decoding="async">
+        <img src="${newSet.main}" class="center" loading="eager" decoding="async">
+        <img src="${newSet.sides[1]}" class="side right" loading="eager" decoding="async">
       `;
         } else if (total === 2) {
           html = `
-        <img src="${newSet.main}" class="center" data-main="${newSet.main}" data-alt="${newSet.sides[0]}" loading="lazy" decoding="async">
+        <img src="${newSet.main}" class="center" data-main="${newSet.main}" data-alt="${newSet.sides[0]}" loading="eager" decoding="async">
       `;
         } else {
-          html = `<img src="${newSet.main}" class="single center" loading="lazy" decoding="async">`;
+          html = `<img src="${newSet.main}" class="single center" loading="eager" decoding="async">`;
         }
 
         row.innerHTML = html;
@@ -461,3 +462,32 @@ function openAdaptiveViewer(images, startIndex) {
     });
   });
 }
+
+function waitForImagesAndHideLoader() {
+  const loader = document.getElementById("imageLoader");
+  const images = document.querySelectorAll("img");
+  let loadedCount = 0;
+  const total = images.length;
+
+  if (total === 0) {
+    loader?.classList.add("hidden");
+    return;
+  }
+
+  images.forEach(img => {
+    if (img.complete) {
+      loadedCount++;
+      if (loadedCount === total) loader?.classList.add("hidden");
+    } else {
+      img.addEventListener("load", () => {
+        loadedCount++;
+        if (loadedCount === total) loader?.classList.add("hidden");
+      });
+      img.addEventListener("error", () => {
+        loadedCount++;
+        if (loadedCount === total) loader?.classList.add("hidden");
+      });
+    }
+  });
+}
+

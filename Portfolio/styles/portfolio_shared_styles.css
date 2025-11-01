@@ -24,6 +24,32 @@ header h1 {
   align-items: center;
 }
 
+
+/* === Portfolio Image Loader === */
+#imageLoader {
+  position: fixed;
+  inset: 0;
+  background: #0a0a0a; /* dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#imageLoader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#loaderGif {
+  width: 120px;  /* adjust to your GIF size */
+  height: 120px;
+  object-fit: contain;
+}
+
+
 .back-portfolio-btn {
   position: absolute;
   top: 4rem;
@@ -451,7 +477,7 @@ header h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.4);
   overflow: hidden;
   z-index: 99999;
 }
@@ -482,7 +508,7 @@ header h1 {
   display: flex;
   gap: 10px;
   z-index: 10000;
-  background: rgba(0, 0, 0, 0.35);
+  background: transparent;
   border-radius: 8px;
   padding: 6px;
   backdrop-filter: blur(4px);
@@ -615,7 +641,7 @@ header h1 {
 
 .adaptive-frame .images-row img.side {
   transform: scale(0.9);
-  opacity: 0.6;
+  opacity: 0.9;
   filter: blur(4px);
 }
 
